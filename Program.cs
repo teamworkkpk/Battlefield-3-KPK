@@ -10,6 +10,7 @@ namespace BattleFiled
         static void Main(string[] args)
         {
             //TEST
+            //Test by Tsigularoff
             Console.Write("Enter the size of the battle field: n = ");
             string en = Console.ReadLine();
             int n = int.Parse(en);
