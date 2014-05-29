@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cell.cs" />
+    <Compile Include="Enumerations.cs" />
+    <Compile Include="Field.cs" />
+    <Compile Include="Interfaces.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,13 +9,21 @@ namespace BattleFiled
     {
         static void Main(string[] args)
         {
+            //Singleton test
+            Playfield singletonField = Playfield.Instance;
+                        
+            singletonField.SetFieldSize(10);
+            singletonField.InitializeEmptyField();
+            singletonField.PlaceMines();
+            
+
             //TEST
             //Test by Tsigularoff
             //Test by icom85
             Console.Write("Enter the size of the battle field: n = ");
             string en = Console.ReadLine();
             int n = int.Parse(en);
-            
+
 
             //tuka si pravq poleto
             string[,] battleField = new string[n, n];
@@ -27,14 +35,14 @@ namespace BattleFiled
             {
                 for (int col = 0; col < n; col++)
                 {
-                    
+
                     battleField[row, col] = "-";
                 }
             }
 
             string[] minesArray = { "1", "2", "3", "4", "5" };
 
-            double fifteenPercentNSquared = 0.15 * n * n; 
+            double fifteenPercentNSquared = 0.15 * n * n;
             double thirtyPercenNSquared = 0.3 * n * n;
 
             int fifteenPercent = Convert.ToInt16(fifteenPercentNSquared);
@@ -80,23 +88,26 @@ namespace BattleFiled
                 int positionWhenIStopped = 0; ;
 
                 for (int i = 0; i < 100; i++)
-                    
+
                     if (flagForRow)
-                    
-                        if (line[i] != ' '){
+
+                        if (line[i] != ' ')
+                        {
                             stringRow += line[i];
 
                             if (line[i + 1] == ' ')
-                            {   positionWhenIStopped = i + 1;
+                            {
+                                positionWhenIStopped = i + 1;
 
 
 
                                 flagForRow = false;
                                 flagForCol = true;
-                                break;}
+                                break;
+                            }
                         }
-                    
-                
+
+
 
                 for (int i = positionWhenIStopped; i < 100; i++)
                 {
@@ -115,7 +126,7 @@ namespace BattleFiled
                 row = int.Parse(stringRow);
                 col = int.Parse(stringCol);
 
-                if (battleField[row, col] == "-" || battleField[row, col]=="X")
+                if (battleField[row, col] == "-" || battleField[row, col] == "X")
                 {
                     if (turns > 0)
                     {
@@ -131,14 +142,14 @@ namespace BattleFiled
                 //tuka proverqvam dali emina
                 if (battleField[row, col] == "1" || battleField[row, col] == "2" || battleField[row, col] == "3" || battleField[row, col] == "4" || battleField[row, col] == "5")
                 {
-                        battleField = HodNaIgracha(row, col, n, battleField);
-                        moveCounter++;
+                    battleField = HodNaIgracha(row, col, n, battleField);
+                    moveCounter++;
                 }
 
-                
+
                 printirai(battleField);
 
-                int count =0;
+                int count = 0;
                 bool krai = false;
 
                 for (int rowCheck = 0; rowCheck < n; rowCheck++)
@@ -151,11 +162,11 @@ namespace BattleFiled
                         }
                         if (count == n * n)
                         {
-                            krai = true; 
+                            krai = true;
                         }
                     }
                 }
-                
+
                 if (krai)
                 {
                     printirai(battleField);
@@ -166,6 +177,7 @@ namespace BattleFiled
             }
         }
 
+        
         static string[,] HodNaIgracha(int row, int col, int n, string[,] battleField)
         {
             if (Convert.ToInt16(battleField[row, col]) >= 1)
