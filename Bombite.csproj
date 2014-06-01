@@ -58,7 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BattleFieldMain.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="Interfaces.cs" />

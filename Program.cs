@@ -7,6 +7,7 @@ namespace BattleFiled
 {
     class Program
     {
+        /*
         static void Main(string[] args)
         {
             //Singleton test
@@ -354,5 +355,6 @@ namespace BattleFiled
         
         
         }
+         */
     }
 }
