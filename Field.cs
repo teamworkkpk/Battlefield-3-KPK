@@ -39,7 +39,7 @@
             {
                 for (int j = 0; j < this.playfield.GetLength(1); j++)
                 {
-                    this.playfield[i, j] = new Cell();
+                   // this.playfield[i, j] = new Cell();
                 }
             }
         }
@@ -60,10 +60,10 @@
                 int mineRowPosition = randomGenerator.Next(0, PlayfieldSize);
                 int mineColPosition = randomGenerator.Next(0, PlayfieldSize);
 
-                Cell bombCell = new Cell();
-                bombCell.CellType = CellTypes.Bomb;
+                //Cell bombCell = new Cell();
+                //bombCell.CellType = CellTypes.Bomb;
 
-                this.playfield[mineRowPosition, mineColPosition] = bombCell;
+//                this.playfield[mineRowPosition, mineColPosition] = bombCell;
             }           
         }
     }
