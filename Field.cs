@@ -1,8 +1,10 @@
 ﻿namespace BattleFiled
 {
     using System;
+    using System.Text;
+    using Interfaces;
 
-    public sealed class Playfield
+    public sealed class Playfield : IGameObject
     {
         private static readonly Playfield PlayfieldInstance = new Playfield();
 
@@ -39,31 +41,51 @@
             {
                 for (int j = 0; j < this.playfield.GetLength(1); j++)
                 {
-                   // this.playfield[i, j] = new Cell();
+                    this.playfield[i, j] = new Cell(CellTypes.EmptyCell);
+                   // Console.WriteLine(this.playfield[i, j]);
                 }
             }
         }
 
+        public override string ToString()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = 0; i < this.PlayfieldSize; i++)
+            {
+                for (int j = 0; j < this.PlayfieldSize; j++)
+                {
+                    builder.Append(this.playfield[i,j]);
+                }
+
+                builder.AppendLine();
+                builder.AppendLine();
+            }
+
+            return builder.ToString();
+        }
+
         public void PlaceMines()
         {
-            Random randomGenerator = new Random();
+            //TODO find why all mines are displayed with white color, but not magenda and fix it
 
             int totalCellsCount = this.PlayfieldSize * this.PlayfieldSize;
 
             int fifteenPercentCellsCount = (int)Math.Floor(totalCellsCount * 0.15);
             int thirtyPercentCellsCount = (int)Math.Floor(totalCellsCount * 0.30);
 
-            int minesCount = randomGenerator.Next(fifteenPercentCellsCount, thirtyPercentCellsCount + 1);            
+            int minesCount = RandomGenerator.GetRandomNumber(fifteenPercentCellsCount, thirtyPercentCellsCount + 1);            
 
             for (int i = 0; i < minesCount; i++)
             {
-                int mineRowPosition = randomGenerator.Next(0, PlayfieldSize);
-                int mineColPosition = randomGenerator.Next(0, PlayfieldSize);
+                int mineRowPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
+                int mineColPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
 
-                //Cell bombCell = new Cell();
+                Cell bombCell = new Cell(CellTypes.Bomb);
                 //bombCell.CellType = CellTypes.Bomb;
 
-//                this.playfield[mineRowPosition, mineColPosition] = bombCell;
+               this.playfield[mineRowPosition, mineColPosition] = bombCell;
+                
             }           
         }
     }

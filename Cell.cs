@@ -2,12 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
+    using Interfaces;
 
     public class Cell : ICell
     {
 
         public Cell(CellTypes celltypes)
         {
+            int number;
+
             switch (celltypes)
             {
                 case CellTypes.EmptyCell:
@@ -15,8 +18,7 @@
                     this.Color = BattleFiled.Color.White;
                     break;
                 case CellTypes.Bomb:
-                    Random random = new Random();
-                    int number = random.Next(1, 6);
+                    number = RandomGenerator.GetRandomNumber(1,6);
                     switch (number)
                     {
                         case 1:
@@ -38,6 +40,7 @@
                             break;
                     }
                     this.Color = BattleFiled.Color.Magenda;
+                    //Console.WriteLine(this.Color);
                     break;
                 case CellTypes.BlownCell:
 
@@ -84,8 +87,8 @@
 
                     break;
             }
-
-            return ((int)this.CellView).ToString();
+            //edit to cast chat instead of int, so the symbol is returned
+            return " " + ((char)this.CellView).ToString() + " ";
         }
 
 
