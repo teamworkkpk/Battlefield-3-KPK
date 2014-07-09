@@ -3,13 +3,13 @@
     using System;
     using System.Text;
     using Interfaces;
-
+    //test commit
     public sealed class Playfield : IGameObject
     {
-        private static readonly Playfield PlayfieldInstance = new Playfield();
+        private static Playfield PlayfieldInstance;
 
         private ICell[,] playfield;
-
+        
         private Playfield()
         {
         }
@@ -18,8 +18,13 @@
         {
             get
             {
+                if (Playfield.PlayfieldInstance == null)
+                {
+                    Playfield.PlayfieldInstance = new Playfield();
+                }
                 return PlayfieldInstance;
-            }
+            }  
+            
         }
 
         public int PlayfieldSize
