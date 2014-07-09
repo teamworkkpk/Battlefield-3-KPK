@@ -66,6 +66,7 @@
     <Compile Include="Interfaces\ICell.cs" />
     <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Interfaces\IRender.cs" />
+    <Compile Include="KeyEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Render.cs" />
