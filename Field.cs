@@ -6,7 +6,7 @@
 
     public sealed class Playfield : IGameObject
     {
-        private static readonly Playfield PlayfieldInstance = new Playfield();
+        private static Playfield PlayfieldInstance;
 
         private ICell[,] playfield;
 
@@ -18,6 +18,10 @@
         {
             get
             {
+                if (Playfield.PlayfieldInstance == null)
+                {
+                    Playfield.PlayfieldInstance = new Playfield();
+                }
                 return PlayfieldInstance;
             }
         }

@@ -37,6 +37,7 @@
         private Playfield InitializeField(int sizeOfField)
         {
             Playfield field = Playfield.Instance;
+            //field = null;
 
             field.SetFieldSize(sizeOfField);
             field.InitializeEmptyField();
