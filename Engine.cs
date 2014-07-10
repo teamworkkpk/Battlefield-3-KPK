@@ -4,7 +4,7 @@
     using Interfaces;
     using System.Collections.Generic;
 
-    class Engine
+   class Engine
     {
         //int sizeOfField;
         //public Engine(int sizeOfField)
@@ -84,10 +84,10 @@
             gameObjects.Add(field);
             this.renderer.DrawGameElements(gameObjects);
             // TODO Render Field, Handle Exceptions...
-
+            this.isRunning = true;
             while (keepRunning)
             {
-                this.isRunning = true;
+                
 
                 //Check if any keys where pressed
                 ConsoleKey pressedKey;
