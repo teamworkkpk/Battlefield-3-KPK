@@ -10,5 +10,13 @@
         {
             this.pressedKey = pressedKey;
         }
+
+        public ConsoleKey PressedKey 
+        {
+            get
+            {
+                return this.pressedKey;
+            }
+        }
     }
 }
