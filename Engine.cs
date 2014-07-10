@@ -71,7 +71,7 @@
             this.keepRunning = false;
         }
 
-        private void Run() 
+        public void Run() 
         {
             if (this.renderer == null)
             {

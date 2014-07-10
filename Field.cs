@@ -3,8 +3,9 @@
     using System;
     using System.Text;
     using Interfaces;
-    //test commit
-    public sealed class Playfield : IGameObject
+    using System.Collections;
+    
+    public sealed class Playfield : IGameObject, IEnumerable
     {
         private static Playfield PlayfieldInstance;
 
@@ -92,6 +93,17 @@
                this.playfield[mineRowPosition, mineColPosition] = bombCell;
                 
             }           
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < this.playfield.GetLength(0); i++)
+            {
+                for (int j = 0; j < this.playfield.GetLength(1); j++)
+                {
+                    yield return this.playfield[i, j];
+                }
+            }            
         }
     }
 }
