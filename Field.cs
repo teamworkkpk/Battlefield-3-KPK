@@ -10,7 +10,8 @@
         private static Playfield PlayfieldInstance;
 
         private ICell[,] playfield;
-        
+
+        private CellFactory cellFactory;
         private Playfield()
         {
         }
@@ -43,11 +44,13 @@
 
         public void InitializeEmptyField()
         {
+            cellFactory = new CellFactory();
+            
             for (int i = 0; i < this.playfield.GetLength(0); i++)
             {
                 for (int j = 0; j < this.playfield.GetLength(1); j++)
                 {
-                    this.playfield[i, j] = new Cell(CellTypes.EmptyCell);
+                    this.playfield[i, j] = cellFactory.GetCell(CellTypes.EmptyCell);
                    // Console.WriteLine(this.playfield[i, j]);
                 }
             }
@@ -62,6 +65,7 @@
                 for (int j = 0; j < this.PlayfieldSize; j++)
                 {
                     builder.Append(this.playfield[i,j]);
+                    //Console.WriteLine(this.playfield[i,j].CellView);
                 }
 
                 builder.AppendLine();
@@ -76,7 +80,8 @@
             //TODO find why all mines are displayed with white color, but not magenda and fix it
 
             int totalCellsCount = this.PlayfieldSize * this.PlayfieldSize;
-
+            
+            //CellView cellView;
             int fifteenPercentCellsCount = (int)Math.Floor(totalCellsCount * 0.15);
             int thirtyPercentCellsCount = (int)Math.Floor(totalCellsCount * 0.30);
 
@@ -87,11 +92,15 @@
                 int mineRowPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
                 int mineColPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
 
-                Cell bombCell = new Cell(CellTypes.Bomb);
+                ICell bombCell = cellFactory.GetCell(CellTypes.Bomb);
+                //cellView = (CellView)RandomGenerator.GetRandomNumber(1, 6);
+                //bombCell.CellView = cellView;
+                //Console.WriteLine(cellView);
+                
                 //bombCell.CellType = CellTypes.Bomb;
 
-               this.playfield[mineRowPosition, mineColPosition] = bombCell;
-                
+                this.playfield[mineRowPosition, mineColPosition] = bombCell;
+                //Console.WriteLine(this.playfield[mineRowPosition, mineColPosition].CellView);
             }           
         }
 

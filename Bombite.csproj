@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="BattleFieldMain.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="CellFactory.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Field.cs" />
