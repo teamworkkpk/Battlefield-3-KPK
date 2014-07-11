@@ -5,12 +5,10 @@ using System.Text;
 
 namespace BattleFiled.SaveLoad
 {
-    public class GameMemory : ICloneable
+    public class GameMemory 
     {
-        public object Clone()
-        {
-            // TODO: Implement this method
-            throw new NotImplementedException();
-        }
+        public MementoField MementoField { get; set; }
+
+        public MementoPlayer MementoPlayer { get; set; }
     }
 }

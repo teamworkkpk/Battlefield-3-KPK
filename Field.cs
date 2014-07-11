@@ -119,27 +119,34 @@
         public MementoField Save()
         {
             Console.WriteLine("\nSaving state --\n");
-            MementoField savedField = new MementoField();
-            
 
-            return savedField;
+            MementoField memento = new MementoField();
+
+            memento.PlayFieldBackup = CloneField(this.playfield);            
+
+            return memento;
+        }
+
+        public void Load(MementoField memento)
+        {
+            this.playfield = this.CloneField(memento.PlayFieldBackup);
         }
 
         private ICell[,] CloneField(ICell[,] fieldToCopy)
         {
             int fieldSize = fieldToCopy.GetLength(0);
 
-            ICell[,] fieldCopy = new Cell[fieldSize, fieldSize];
+            ICell[,] copy = new Cell[fieldSize, fieldSize];
 
             for (int i = 0; i < fieldToCopy.GetLength(0); i++)
             {
                 for (int j = 0; j < fieldToCopy.GetLength(1); j++)
                 {
-                    fieldToCopy[i, j] = fieldToCopy[i, j].Clone();
+                    copy[i, j] = fieldToCopy[i, j].Clone();
                 }
             }
 
-            return fieldToCopy;
+            return copy;
         }
     }
 }
