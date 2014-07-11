@@ -10,9 +10,10 @@
     {
         private static Playfield PlayfieldInstance;
 
-        private ICell[,] playfield;
+        private ICell[,] cells;
 
         private CellFactory cellFactory;
+
         private Playfield()
         {
         }
@@ -26,33 +27,44 @@
                     Playfield.PlayfieldInstance = new Playfield();
                 }
                 return PlayfieldInstance;
-            }  
-            
+            }
         }
 
         public int PlayfieldSize
         {
             get
             {
-                return this.playfield.GetLength(0);
+                return this.cells.GetLength(0);
+            }
+        }
+
+        public ICell this[int posX, int posY]
+        {
+            get
+            {
+                return this.cells[posX, posY];
+            }
+            set
+            {
+                throw new InvalidOperationException("Playfield indexer is read-only.");
             }
         }
 
         public void SetFieldSize(int size)
         {
-            this.playfield = new Cell[size, size];
+            this.cells = new Cell[size, size];
         }
 
         public void InitializeEmptyField()
         {
             cellFactory = new CellFactory();
             
-            for (int i = 0; i < this.playfield.GetLength(0); i++)
+            for (int i = 0; i < this.cells.GetLength(0); i++)
             {
-                for (int j = 0; j < this.playfield.GetLength(1); j++)
+                for (int j = 0; j < this.cells.GetLength(1); j++)
                 {
-                    this.playfield[i, j] = cellFactory.GetCell(CellTypes.EmptyCell);
-                   // Console.WriteLine(this.playfield[i, j]);
+                    this.cells[i, j] = cellFactory.GetCell(CellTypes.EmptyCell);
+                    // Console.WriteLine(this.playfield[i, j]);
                 }
             }
         }
@@ -65,7 +77,7 @@
             {
                 for (int j = 0; j < this.PlayfieldSize; j++)
                 {
-                    builder.Append(this.playfield[i,j]);
+                    builder.Append(this.cells[i, j]);
                     //Console.WriteLine(this.playfield[i,j].CellView);
                 }
 
@@ -79,7 +91,6 @@
         public void PlaceMines()
         {
             //TODO find why all mines are displayed with white color, but not magenda and fix it
-
             int totalCellsCount = this.PlayfieldSize * this.PlayfieldSize;
             
             //CellView cellView;
@@ -100,27 +111,27 @@
                 
                 //bombCell.CellType = CellTypes.Bomb;
 
-                this.playfield[mineRowPosition, mineColPosition] = bombCell;
+                this.cells[mineRowPosition, mineColPosition] = bombCell;
                 //Console.WriteLine(this.playfield[mineRowPosition, mineColPosition].CellView);
-            }           
+            }
         }
 
         public IEnumerator GetEnumerator()
         {
-            for (int i = 0; i < this.playfield.GetLength(0); i++)
+            for (int i = 0; i < this.cells.GetLength(0); i++)
             {
-                for (int j = 0; j < this.playfield.GetLength(1); j++)
+                for (int j = 0; j < this.cells.GetLength(1); j++)
                 {
-                    yield return this.playfield[i, j];
+                    yield return this.cells[i, j];
                 }
-            }            
+            }
         }
 
         public MementoField Save()
-        {  
+        { 
             MementoField memento = new MementoField();
 
-            memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.playfield as Cell[,]);
+            memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.cells as Cell[,]);
             memento.FieldDimension = this.PlayfieldSize;
 
             return memento;
@@ -128,7 +139,7 @@
 
         public void Load(MementoField memento)
         {
-            this.playfield = this.CloneToMultiDimArray(memento.ZeroBasedPlayField, memento.FieldDimension);
+            this.cells = this.CloneToMultiDimArray(memento.ZeroBasedPlayField, memento.FieldDimension);
         }
 
         private Cell[] CloneToZeroBasedArray(Cell[,] fieldToCopy)
@@ -136,7 +147,6 @@
             int backupArrayLength = fieldToCopy.GetLength(0) * fieldToCopy.GetLength(0);
 
             Cell[] copy = new Cell[backupArrayLength];           
-            
 
             int index = 0;
             foreach (Cell item in this)

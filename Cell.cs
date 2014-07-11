@@ -6,6 +6,9 @@
 
     public class Cell : ICell
     {
+        private int positionX;
+        private int positionY;
+        
         public Cell()
         {
 
@@ -88,11 +91,40 @@
             get;
             set;
         }
-        public Color Color
+        
+        public int X
         {
-            get;
-            set;
+            get
+            {
+                return this.positionX;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Cell's X position is always a positive number or 0.");
+                }
+                this.positionX = value;
+            }
         }
+
+        public int Y
+        {
+            get
+            {
+                return this.positionY;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Cell's Y position is always a positive number or 0.");
+                }
+                this.positionY = value;
+            }
+        }
+
+        public Color Color { get;set; }
 
         public override string ToString()
         {

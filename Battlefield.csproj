@@ -60,10 +60,12 @@
   <ItemGroup>
     <Compile Include="BattleFieldMain.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="GameEngine\CellEventArgs.cs" />
     <Compile Include="CellFactory.cs" />
-    <Compile Include="Engine.cs" />
+    <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Field.cs" />
+    <Compile Include="GameEngine\CellRegionEventArgs.cs" />
     <Compile Include="Interfaces\ICell.cs" />
     <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Interfaces\IRender.cs" />
@@ -77,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Renderer\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
