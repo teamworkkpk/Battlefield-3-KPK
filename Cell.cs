@@ -6,6 +6,10 @@
 
     public class Cell : ICell
     {
+        public Cell()
+        {
+
+        }
 
         public Cell(CellTypes celltypes)
         {

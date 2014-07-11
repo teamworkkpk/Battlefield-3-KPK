@@ -117,32 +117,48 @@
         }
 
         public MementoField Save()
-        {
-            Console.WriteLine("\nSaving state --\n");
-
+        {  
             MementoField memento = new MementoField();
 
-            memento.PlayFieldBackup = CloneField(this.playfield);            
+            memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.playfield as Cell[,]);
+            memento.FieldDimension = this.PlayfieldSize;
 
             return memento;
         }
 
         public void Load(MementoField memento)
         {
-            this.playfield = this.CloneField(memento.PlayFieldBackup);
+            this.playfield = this.CloneToMultiDimArray(memento.ZeroBasedPlayField, memento.FieldDimension);
         }
 
-        private ICell[,] CloneField(ICell[,] fieldToCopy)
+        private Cell[] CloneToZeroBasedArray(Cell[,] fieldToCopy)
         {
-            int fieldSize = fieldToCopy.GetLength(0);
+            int backupArrayLength = fieldToCopy.GetLength(0) * fieldToCopy.GetLength(0);
 
-            ICell[,] copy = new Cell[fieldSize, fieldSize];
+            Cell[] copy = new Cell[backupArrayLength];           
+            
 
-            for (int i = 0; i < fieldToCopy.GetLength(0); i++)
+            int index = 0;
+            foreach (Cell item in this)
             {
-                for (int j = 0; j < fieldToCopy.GetLength(1); j++)
+                copy[index] = item.Clone() as Cell;
+                index++;
+            }
+
+            return copy;
+        }
+
+        private Cell[,] CloneToMultiDimArray(Cell[] zeroBasedArray, int fieldDimensions)
+        {
+            Cell[,] copy = new Cell[fieldDimensions, fieldDimensions];
+            int index = 0;
+
+            for (int i = 0; i < fieldDimensions; i++)
+            {
+                for (int j = 0; j < fieldDimensions; j++)
                 {
-                    copy[i, j] = fieldToCopy[i, j].Clone();
+                    copy[i, j] = zeroBasedArray[index].Clone() as Cell;
+                    index++;
                 }
             }
 
