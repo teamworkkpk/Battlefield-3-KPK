@@ -1,11 +1,11 @@
-﻿namespace BattleFiled
+﻿namespace BattleFiled.Cells
 {
     using System;
-    using System.Collections.Generic;
+    using BattleFiled;
 
     public interface ICell
     {
-        CellTypes CellType { get; set; }
+        CellType CellType { get; }
 
         CellView CellView { get; set; }
 

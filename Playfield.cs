@@ -2,6 +2,7 @@
 {
     using System;
     using System.Text;
+    using BattleFiled.Cells;
     using Interfaces;
     using System.Collections;
     using SaveLoad;
@@ -11,8 +12,6 @@
         private static Playfield PlayfieldInstance;
 
         private ICell[,] cells;
-
-        private CellFactory cellFactory;
 
         private Playfield()
         {
@@ -57,14 +56,14 @@
 
         public void InitializeEmptyField()
         {
-            cellFactory = new CellFactory();
-            
             for (int i = 0; i < this.cells.GetLength(0); i++)
             {
                 for (int j = 0; j < this.cells.GetLength(1); j++)
                 {
-                    this.cells[i, j] = cellFactory.GetCell(CellTypes.EmptyCell);
-                    // Console.WriteLine(this.playfield[i, j]);
+                    ICell cell  = CellFactory.CreateCell(CellType.EmptyCell);
+                    cell.X = i;
+                    cell.Y = j;
+                    this.cells[i, j] = cell;
                 }
             }
         }
@@ -104,13 +103,9 @@
                 int mineRowPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
                 int mineColPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
 
-                ICell bombCell = cellFactory.GetCell(CellTypes.Bomb);
-                //cellView = (CellView)RandomGenerator.GetRandomNumber(1, 6);
-                //bombCell.CellView = cellView;
-                //Console.WriteLine(cellView);
-                
-                //bombCell.CellType = CellTypes.Bomb;
-
+                ICell bombCell = CellFactory.CreateCell(CellType.Bomb);
+                bombCell.X = mineRowPosition;
+                bombCell.Y = mineColPosition;
                 this.cells[mineRowPosition, mineColPosition] = bombCell;
                 //Console.WriteLine(this.playfield[mineRowPosition, mineColPosition].CellView);
             }
@@ -118,13 +113,7 @@
 
         public IEnumerator GetEnumerator()
         {
-            for (int i = 0; i < this.cells.GetLength(0); i++)
-            {
-                for (int j = 0; j < this.cells.GetLength(1); j++)
-                {
-                    yield return this.cells[i, j];
-                }
-            }
+            return this.cells.GetEnumerator();
         }
 
         public MementoField Save()

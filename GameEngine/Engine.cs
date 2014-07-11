@@ -1,7 +1,9 @@
-﻿namespace BattleFiled
+﻿namespace BattleFiled.GameEngine
 {
     using System;
-    using BattleFiled.GameEngine;
+    using BattleFiled;
+    using BattleFiled.Cells;
+    using BattleFiled.Renderer;
 
     class Engine
     {
@@ -21,7 +23,7 @@
         }
         
         private ICell currentCell;
-        private Render renderer;
+        private Renderer renderer;
 
         private bool keepRunning;
         private bool isRunning;
@@ -39,7 +41,7 @@
             }
         }
 
-        protected Playfield PlayField 
+        public Playfield PlayField 
         {
             private set
             {
@@ -48,6 +50,8 @@
                     throw new ArgumentNullException("Cannot set Playfield to null.");
                 }
                 this.playField = value;
+                PlayfieldChangedEventArgs e = new PlayfieldChangedEventArgs(value);
+                this.OnPlayfieldChanged(e);
             }
 
             get
@@ -61,6 +65,7 @@
         /// </summary>
         public event EventHandler<CellEventArgs> CurrentCellChanged;
         public event EventHandler<CellRegionEventArgs> CellsInRegionChanged;
+        public event EventHandler<PlayfieldChangedEventArgs> PlayfieldChanged;
 
         public Engine()
         {
@@ -92,7 +97,7 @@
         {
             if (this.renderer == null)
             {
-                this.renderer = new Render();
+                this.renderer = new ConsoleRenderer(this);
             }
 
             this.isRunning = true;
@@ -206,6 +211,14 @@
             if (this.CellsInRegionChanged != null)
             {
                 this.CellsInRegionChanged(this, e);
+            }
+        }
+
+        protected virtual void OnPlayfieldChanged(PlayfieldChangedEventArgs e)
+        {
+            if (this.PlayfieldChanged != null)
+            {
+                this.PlayfieldChanged(this, e);
             }
         }
 

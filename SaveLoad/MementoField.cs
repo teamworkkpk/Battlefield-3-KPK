@@ -1,6 +1,7 @@
 ﻿namespace BattleFiled.SaveLoad
 {
     using System;
+    using BattleFiled.Cells;
 
     public class MementoField
     {

@@ -1,6 +1,7 @@
 namespace BattleFiled.GameEngine
 {
     using System;
+    using BattleFiled.Cells;
 
     public class CellEventArgs : EventArgs
     {
