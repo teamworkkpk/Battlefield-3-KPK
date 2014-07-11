@@ -4,6 +4,7 @@
     using System.Text;
     using Interfaces;
     using System.Collections;
+    using SaveLoad;
     
     public sealed class Playfield : IGameObject, IEnumerable
     {
@@ -113,6 +114,32 @@
                     yield return this.playfield[i, j];
                 }
             }            
+        }
+
+        public MementoField Save()
+        {
+            Console.WriteLine("\nSaving state --\n");
+            MementoField savedField = new MementoField();
+            
+
+            return savedField;
+        }
+
+        private ICell[,] CloneField(ICell[,] fieldToCopy)
+        {
+            int fieldSize = fieldToCopy.GetLength(0);
+
+            ICell[,] fieldCopy = new Cell[fieldSize, fieldSize];
+
+            for (int i = 0; i < fieldToCopy.GetLength(0); i++)
+            {
+                for (int j = 0; j < fieldToCopy.GetLength(1); j++)
+                {
+                    fieldToCopy[i, j] = fieldToCopy[i, j];
+                }
+            }
+
+            return fieldToCopy;
         }
     }
 }

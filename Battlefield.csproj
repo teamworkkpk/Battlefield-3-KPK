@@ -71,6 +71,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Render.cs" />
+    <Compile Include="SaveLoad\GameMemory.cs" />
+    <Compile Include="SaveLoad\MementoField.cs" />
+    <Compile Include="SaveLoad\MementoPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
