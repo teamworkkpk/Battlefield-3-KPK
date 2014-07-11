@@ -135,7 +135,7 @@
             {
                 for (int j = 0; j < fieldToCopy.GetLength(1); j++)
                 {
-                    fieldToCopy[i, j] = fieldToCopy[i, j];
+                    fieldToCopy[i, j] = fieldToCopy[i, j].Clone();
                 }
             }
 

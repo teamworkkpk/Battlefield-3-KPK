@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Interfaces;
 
-    public class Cell : ICell, ICloneable
+    public class Cell : ICell
     {
 
         public Cell(CellTypes celltypes)
@@ -26,7 +26,7 @@
             }
         }
 
-        public object Clone()
+        public ICell Clone()
         {
             ICell cellCopy = new Cell(this.CellType);
             

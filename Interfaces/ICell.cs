@@ -10,5 +10,7 @@
         CellView CellView { get; set; }
 
         Color Color { get; set; }
+
+        ICell Clone();
     }
 }
