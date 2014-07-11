@@ -5,7 +5,12 @@ using System.Text;
 
 namespace BattleFiled.SaveLoad
 {
-    public class GameMemory
+    public class GameMemory : ICloneable
     {
+        public object Clone()
+        {
+            // TODO: Implement this method
+            throw new NotImplementedException();
+        }
     }
 }

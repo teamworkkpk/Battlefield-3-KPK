@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Interfaces;
 
-    public class Cell : ICell
+    public class Cell : ICell, ICloneable
     {
 
         public Cell(CellTypes celltypes)
@@ -24,6 +24,16 @@
                 default:
                     break;
             }
+        }
+
+        public object Clone()
+        {
+            ICell cellCopy = new Cell(this.CellType);
+            
+            cellCopy.CellView = this.CellView;
+            cellCopy.Color = this.Color;
+
+            return cellCopy;
         }
 
         private void CreateEmptyCell()
