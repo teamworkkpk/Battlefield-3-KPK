@@ -4,6 +4,7 @@
     using BattleFiled;
     using BattleFiled.Cells;
     using BattleFiled.Renderer;
+    using BattleFiled.Sounds;
 
     class Engine
     {
@@ -60,6 +61,8 @@
             }
         }
 
+        protected Sounds SoundsPlayer { get; set; }
+
         /// <summary>
         /// Occurs when an arrow keypress is detected.
         /// </summary>
@@ -77,6 +80,7 @@
             //TODO: Read last playfield.
             this.PlayField = this.GetNewField();
             this.CurrentCell = this.PlayField[0, 0];
+            this.SoundsPlayer = this.GetNewSoundsPlayer();
         }
 
         public void Start()
@@ -108,7 +112,7 @@
                 if (Console.KeyAvailable)
                 {
                     pressedKey = Console.ReadKey().Key;
-                    bool keyHandled = this.OnDirectionKeyPressed(pressedKey) && 
+                    bool keyHandled = this.OnDirectionKeyPressed(pressedKey) &&
                         this.OnEnterKeyPressed(pressedKey);
                     
                     //Clear any pending keypresses from the inputstream.
@@ -192,6 +196,15 @@
             int sizeOfField = this.ReadSize();
             Playfield field = InitializeField(sizeOfField);
             return field;
+        }
+
+        private Sounds GetNewSoundsPlayer()
+        {
+            string pathToInvalidMoveSound = "../../Sounds/Resources/invalid.wav";
+            string pathToDetonatedBombSound = "../../Sounds/Resources/boom.wav";
+            Sounds player = new Sounds(pathToInvalidMoveSound, pathToDetonatedBombSound);
+
+            return player;
         }
 
         /// <summary>
