@@ -1,7 +1,15 @@
-﻿namespace BattleFiled.Cells
+﻿// <copyright file="CellFactory.cs" company="Team Battlefield 3">
+// All rights reserved.
+// </copyright>
+// <author>Team Battlefield 3</author>
+
+namespace BattleFiled.Cells
 {
     using System;
 
+    /// <summary>
+    /// Creates and returns new Cell depending on CellType
+    /// </summary>
     internal static class CellFactory
     {
         /// <summary>
@@ -12,12 +20,12 @@
         /// <returns>ICell cell</returns>
         public static ICell CreateCell(CellType cellType)
         {
-            // Uses "lazy initialization"
+            //// Uses "lazy initialization"
             ICell cell;
 
-            //Check if cell of CellType is already created and if it's not of type CellType.Bomb
-            //if already created makes it point to the reference of the already created cell
-            //if not created new Cell of type CellType
+            // Check if cell of CellType is already created and if it's not of type CellType.Bomb
+            // if already created makes it point to the reference of the already created cell
+            // if not created new Cell of type CellType
                 switch (cellType)
                 {
                     case CellType.EmptyCell:
