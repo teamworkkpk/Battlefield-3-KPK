@@ -74,8 +74,7 @@
             {
                 throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
             }
-
-            Console.WriteLine("                   {0}", Cursor.Position);
+           
             for (int i = 0; i < this.cells.GetLength(0); i++)
             {
                 for (int j = 0; j < this.cells.GetLength(1); j++)
