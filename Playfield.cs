@@ -14,6 +14,9 @@
     /// </summary>    
     public sealed class Playfield : IGameObject, IEnumerable
     {
+        private const int MIN_FIELD_SIZE = 2;
+        private const int MAX_FIELD_SIZE = 10;
+
         private static Playfield PlayfieldInstance;
 
         private ICell[,] cells;
@@ -56,11 +59,20 @@
 
         public void SetFieldSize(int size)
         {
+            if (size < MIN_FIELD_SIZE || size > MAX_FIELD_SIZE)
+            {
+                throw new ArgumentException(string.Format("Error: field size must be between {0} and {1}", MIN_FIELD_SIZE, MAX_FIELD_SIZE));
+            }
             this.cells = new Cell[size, size];
         }
 
         public void InitializeEmptyField()
         {
+            if (cells == null)
+            {
+                throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
+            }
+
             for (int i = 0; i < this.cells.GetLength(0); i++)
             {
                 for (int j = 0; j < this.cells.GetLength(1); j++)
@@ -75,6 +87,11 @@
 
         public override string ToString()
         {
+            if (cells == null)
+            {
+                throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
+            }
+
             StringBuilder builder = new StringBuilder();
 
             for (int i = 0; i < this.PlayfieldSize; i++)
@@ -93,6 +110,11 @@
 
         public void PlaceMines()
         {
+            if (cells == null)
+            {
+                throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
+            }
+
             //TODO find why all mines are displayed with white color, but not magenda and fix it
             int totalCellsCount = this.PlayfieldSize * this.PlayfieldSize;
             
@@ -125,7 +147,12 @@
         /// </summary>
         /// <returns></returns>
         public MementoField Save()
-        { 
+        {
+            if (cells == null)
+            {
+                throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
+            }
+
             MementoField memento = new MementoField();
 
             memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.cells as Cell[,]);
