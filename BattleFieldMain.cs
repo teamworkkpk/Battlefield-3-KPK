@@ -9,7 +9,7 @@
         static void Main()
         {
             Engine gameEngine = Engine.Instance;
-            gameEngine.Start();               
+            gameEngine.Start(); 
         }
     }
 }

@@ -1,24 +1,48 @@
 ﻿namespace BattleFiled
 {
+    using System;
+    using SaveLoad;
     public class Player
     {
+        private string name;
         private int detonatedMines;
         private int movesCount;
 
         public Player(string name)
         {
-            this.Name = name;
-            this.detonatedMines = 0;
-            this.movesCount = 0;
+            this.Name = name;            
         }
 
-        public string Name { get; protected set; }
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException("Error: Memento player name cannot be null or empty!");
+                }
+                this.name = value;
+            }
+        }
 
         public int DetonatedMines
         {
             get
             {
                 return this.detonatedMines;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Error: Memento detonated mines count cannot less than zero!");
+                }
+                this.detonatedMines = value;
             }
         }
 
@@ -27,6 +51,14 @@
             get
             {
                 return this.movesCount;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Error: Memento moves count cannot less than zero!");
+                }
+                this.movesCount = value;
             }
         }
 
@@ -43,6 +75,27 @@
         public override string ToString()
         {
             return string.Format("Player: {0}, Detonated mines: {1}, Moves: {2}", this.Name, this.DetonatedMines, this.MovesCount);
+        }
+
+        public MementoPlayer SaveMemento()
+        {
+            return new MementoPlayer()
+            {
+                Name = this.Name,
+                DetonatedMines = this.DetonatedMines,
+                MovesCount = this.MovesCount
+            };
+        }
+
+        public void RestoreMemento(MementoPlayer memento)
+        {
+            if (memento == null)
+            {
+                throw new ArgumentNullException("Error: Loaded memento player cannot be null!");
+            }
+            this.Name = memento.Name;
+            this.DetonatedMines = memento.DetonatedMines;
+            this.MovesCount = memento.MovesCount;
         }
     }
 }
