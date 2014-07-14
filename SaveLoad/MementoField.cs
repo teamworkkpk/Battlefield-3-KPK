@@ -9,6 +9,9 @@
     /// </summary>
     public class MementoField
     {
+        private const int MIN_FIELD_SIZE = 2;
+        private const int MAX_FIELD_SIZE = 10;
+
         private Cell[] zeroBasedPlayField;
         
         private int fieldDimension;        
@@ -31,7 +34,7 @@
             get { return this.fieldDimension; }
             set
             {
-                if (value == 0)
+                if (value < MIN_FIELD_SIZE || value > MAX_FIELD_SIZE)
                 {
                     throw new ArgumentException("Field dimensions cannot be 0");
                 }

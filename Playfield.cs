@@ -6,6 +6,8 @@
     using Interfaces;
     using System.Collections;
     using SaveLoad;
+    using System.Windows.Forms;
+    using System.Drawing;
 
     /// <summary>
     /// Playfield.Cs implements Singleton design pattern, because the game needs only one 
@@ -73,14 +75,15 @@
                 throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
             }
 
+            Console.WriteLine("                   {0}", Cursor.Position);
             for (int i = 0; i < this.cells.GetLength(0); i++)
             {
                 for (int j = 0; j < this.cells.GetLength(1); j++)
                 {
-                    ICell cell  = CellFactory.CreateCell(CellType.EmptyCell);
+                    ICell cell  = CellFactory.CreateCell(CellType.EmptyCell);                    
                     cell.X = i;
                     cell.Y = j;
-                    this.cells[i, j] = cell;
+                    this.cells[i, j] = cell;                    
                 }
             }
         }
@@ -97,7 +100,7 @@
             for (int i = 0; i < this.PlayfieldSize; i++)
             {
                 for (int j = 0; j < this.PlayfieldSize; j++)
-                {
+                {                    
                     builder.Append(this.cells[i, j]);
                 }
 
@@ -155,7 +158,8 @@
 
             MementoField memento = new MementoField();
 
-            memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.cells as Cell[,]);
+            memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.cells as Cell[,]);            
+
             memento.FieldDimension = this.PlayfieldSize;
 
             return memento;
@@ -167,6 +171,11 @@
         /// <param name="memento"></param>
         public void Load(MementoField memento)
         {
+            if (memento == null)
+            {
+                throw new ArgumentNullException("Error: loaded memento object cannot be null!");
+            }
+
             this.cells = this.CloneToMultiDimArray(memento.ZeroBasedPlayField, memento.FieldDimension);
         }
 
@@ -178,7 +187,7 @@
         /// <param name="fieldToCopy"></param>
         /// <returns></returns>
         private Cell[] CloneToZeroBasedArray(Cell[,] fieldToCopy)
-        {
+        {            
             int backupArrayLength = fieldToCopy.GetLength(0) * fieldToCopy.GetLength(0);
 
             Cell[] copy = new Cell[backupArrayLength];           
