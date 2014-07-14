@@ -104,6 +104,7 @@
                 this.renderer = new ConsoleRenderer(this);
             }
 
+            //why the same value is given as in Start() method ?
             this.isRunning = true;
             while (keepRunning)
             {
@@ -182,6 +183,9 @@
             {
                 newPosY = currPosY + deltaY;
             }
+
+            //Console.WriteLine("X " + newPosX+ "Y "+newPosY);
+            Console.SetCursorPosition(newPosX, newPosY);
 
             if (currPosX != newPosX || currPosY != newPosY) 
             {

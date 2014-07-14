@@ -6,6 +6,7 @@ namespace BattleFiled.CellViews
 
     class ConsoleView:ICellView
     {
+        private const int ConsolePadding = 5;
         public ConsoleView(int x, int y, ConsoleColor foreground, ConsoleColor background, char symbol)
         {
             this.X = x;
@@ -23,10 +24,13 @@ namespace BattleFiled.CellViews
         
         public void Draw(RenderingContext context)
         {
-            Console.SetCursorPosition(this.X, this.Y);
+           // Console.Write("front");
+            Console.SetCursorPosition(this.X + ConsolePadding, this.Y + ConsolePadding);
             Console.ForegroundColor = this.Foreground;
             Console.BackgroundColor = this.Background;
             Console.Write(this.Symbol);
+            Console.ResetColor();
+            //Console.Write("back");
         }
     }
 }

@@ -21,7 +21,9 @@ namespace BattleFiled.Renderer
             if (engine.PlayField != null)
             {
                 this.cellViews = this.CreateCellViews(engine.PlayField);
+                
                 this.DrawAll();
+
             }
 
             //Register event handlers.
@@ -41,11 +43,20 @@ namespace BattleFiled.Renderer
             int fieldSize = playfield.PlayfieldSize;
             ICellView[,] cellViews = new ICellView[fieldSize, fieldSize];
 
-            foreach (ICell cell in playfield)
-            {
-                cellViews[cell.X, cell.Y] = CreateCellView(cell);
-            }
+            //foreach (ICell cell in playfield)
+            //{
+            //    Console.WriteLine("                   " + cell.X + " " + cell.Y);
+            //    cellViews[cell.X-1, cell.Y] = CreateCellView(cell);
+            //}
 
+            for (int i = 0; i < playfield.PlayfieldSize; i++)
+            {
+                for (int j = 0; j < playfield.PlayfieldSize; j++)
+                {
+                    cellViews[i, j] = CreateCellView(playfield[i,j]);
+                }
+                
+            }
             return cellViews;
         }
 
@@ -53,6 +64,7 @@ namespace BattleFiled.Renderer
 
         private void DrawAll()
         {
+            Console.Clear();
             foreach (ICellView view in this.cellViews)
             {
                 view.Draw(this);

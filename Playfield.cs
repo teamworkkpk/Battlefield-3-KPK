@@ -6,7 +6,14 @@
     using Interfaces;
     using System.Collections;
     using SaveLoad;
-    
+    using System.Windows.Forms;
+    using System.Drawing;
+
+    /// <summary>
+    /// Playfield.Cs implements Singleton design pattern, because the game needs only one 
+    /// instance for the playfield.
+    /// Playfield.Cs implements Iterator pattern. Using foreach over Playfield.Instance is avaliable
+    /// </summary>    
     public sealed class Playfield : IGameObject, IEnumerable
     {
         private static Playfield PlayfieldInstance;
@@ -37,6 +44,7 @@
             }
         }
 
+
         public ICell this[int posX, int posY]
         {
             get
@@ -52,18 +60,21 @@
         public void SetFieldSize(int size)
         {
             this.cells = new Cell[size, size];
+            
         }
 
         public void InitializeEmptyField()
         {
+            
             for (int i = 0; i < this.cells.GetLength(0); i++)
             {
                 for (int j = 0; j < this.cells.GetLength(1); j++)
                 {
                     ICell cell  = CellFactory.CreateCell(CellType.EmptyCell);
-                    cell.X = i;
-                    cell.Y = j;
+                    cell.X = i*2;
+                    cell.Y = j*2;
                     this.cells[i, j] = cell;
+                    //Console.WriteLine("                   " +i+" "+j);
                 }
             }
         }
@@ -77,7 +88,6 @@
                 for (int j = 0; j < this.PlayfieldSize; j++)
                 {
                     builder.Append(this.cells[i, j]);
-                    //Console.WriteLine(this.playfield[i,j].CellView);
                 }
 
                 builder.AppendLine();
@@ -100,13 +110,13 @@
 
             for (int i = 0; i < minesCount; i++)
             {
-                int mineRowPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
-                int mineColPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
+                int mineRowPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize)*2;
+                int mineColPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize)*2;
 
                 ICell bombCell = CellFactory.CreateCell(CellType.Bomb);
                 bombCell.X = mineRowPosition;
                 bombCell.Y = mineColPosition;
-                this.cells[mineRowPosition, mineColPosition] = bombCell;
+                this.cells[mineRowPosition/2, mineColPosition/2] = bombCell;
                 //Console.WriteLine(this.playfield[mineRowPosition, mineColPosition].CellView);
             }
         }
@@ -116,6 +126,10 @@
             return this.cells.GetEnumerator();
         }
 
+        /// <summary>
+        /// Returns MementoField instance that keeps the current state of the Playfield.Instance
+        /// </summary>
+        /// <returns></returns>
         public MementoField Save()
         { 
             MementoField memento = new MementoField();
@@ -126,11 +140,22 @@
             return memento;
         }
 
+        /// <summary>
+        /// Restore previously state of PlayField.Instance 
+        /// </summary>
+        /// <param name="memento"></param>
         public void Load(MementoField memento)
         {
             this.cells = this.CloneToMultiDimArray(memento.ZeroBasedPlayField, memento.FieldDimension);
         }
 
+        /// <summary>
+        /// Two-dimensional playfield array is cloned as zero-based array for the needs of XML serialization.
+        /// XML Serializator cannot serialize multi-dimensional arrays. 
+        /// XML Serializator cannot work with interfaces, that's why is used Cell.cs, but not ICell interface
+        /// </summary>
+        /// <param name="fieldToCopy"></param>
+        /// <returns></returns>
         private Cell[] CloneToZeroBasedArray(Cell[,] fieldToCopy)
         {
             int backupArrayLength = fieldToCopy.GetLength(0) * fieldToCopy.GetLength(0);
@@ -146,6 +171,13 @@
 
             return copy;
         }
+
+        /// <summary>
+        /// Restores the multidimensional array from the zero-based one comming from the serialization.
+        /// </summary>
+        /// <param name="zeroBasedArray"></param>
+        /// <param name="fieldDimensions"></param>
+        /// <returns></returns>
 
         private Cell[,] CloneToMultiDimArray(Cell[] zeroBasedArray, int fieldDimensions)
         {

@@ -5,6 +5,11 @@
     using System.Xml.Serialization;
     using System.Runtime.Serialization;
 
+    /// <summary>
+    /// The class is used like interface for saving state of game objects.
+    /// The class is used together with MementoField.cs and MementoPlayer.cs
+    /// The class is used for serialization of the game state.
+    /// </summary>
     public class SaveLoadInterface 
     {
         private const string SavePath = @"..\..\saveGameState.xml";
@@ -13,6 +18,9 @@
 
         public MementoPlayer MementoPlayer { get; set; }
         
+        /// <summary>
+        /// Serialize the game state on the hard drive
+        /// </summary>
         public void SaveGame()
         {
             using(StreamWriter writer = new StreamWriter(SavePath))
@@ -24,6 +32,9 @@
             Console.WriteLine("Game successfully saved!");
         }
 
+        /// <summary>
+        /// Deserialize the game state from the hard drive
+        /// </summary>
         public void LoadGame()
         {   
             SaveLoadInterface gameState;
