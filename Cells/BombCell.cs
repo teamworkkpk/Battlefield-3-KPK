@@ -15,12 +15,12 @@ namespace BattleFiled.Cells
         /// <summary>
         /// The minimum impact area size a bomb can have
         /// </summary>
-        private static const int MinimalBombSize = 1;
+        private const int MinimalBombSize = 1;
 
         /// <summary>
         /// The maximum impact area size a bomb can have
         /// </summary>
-        private static const int MaximumBombSize = 5;
+        private const int MaximumBombSize = 5;
 
         /// <summary>
         /// Private variable used to set size of a BombCell, when a new BombCell is created
