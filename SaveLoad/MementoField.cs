@@ -2,7 +2,11 @@
 {
     using System;
     using BattleFiled.Cells;
-
+    
+    /// <summary>
+    /// Instance of this class saves the state of Field.cs instance.
+    /// The class is used together with SaveLoadInterface.cs.
+    /// </summary>
     public class MementoField
     {
         private Cell[] zeroBasedPlayField;
