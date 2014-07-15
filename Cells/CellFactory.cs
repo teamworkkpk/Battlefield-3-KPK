@@ -35,7 +35,7 @@ namespace BattleFiled.Cells
                     case CellType.Bomb:
                         int bombSize = RandomGenerator.GetRandomNumber(1, 6);
                         cell = new BombCell(bombSize);
-                        cell.CellView = (CellView)bombSize;
+                        cell.CellView = (CellView)bombSize+48;
                         break;
 
                     case CellType.BlownCell:

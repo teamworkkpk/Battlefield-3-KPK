@@ -17,7 +17,7 @@
             switch (cell.CellType)
             { 
                 case CellType.Bomb:
-                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Red, ConsoleColor.Cyan, '@');
+                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Red, ConsoleColor.Cyan,(char)cell.CellView);
                     break;
                 case CellType.BlownCell:
                     view = new ConsoleView(cell.X, cell.Y, ConsoleColor.DarkGray, ConsoleColor.Cyan, '*');

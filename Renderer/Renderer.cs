@@ -81,10 +81,21 @@ namespace BattleFiled.Renderer
 
         private void DrawPointer()
         {
-            Console.SetCursorPosition(engine.Pointer.X + ConsolePadding, this.engine.Pointer.Y + ConsolePadding);
-            Console.BackgroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(this.engine.Pointer.X + ConsolePadding, this.engine.Pointer.Y + ConsolePadding);
+            Console.BackgroundColor = ConsoleColor.Green;
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("!");
+
+            char symbol = (char)engine.PlayField[this.engine.Pointer.X, this.engine.Pointer.Y].CellView;
+
+            if(symbol != '0')
+            {
+                Console.Write(symbol);
+            }
+            else
+            {
+                Console.Write(" ");
+            }
+
             Console.ResetColor();
         }
 
