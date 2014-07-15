@@ -25,12 +25,12 @@ namespace BattleFiled.CellViews
         public void Draw(RenderingContext context)
         {
            // Console.Write("front");
+            Console.ResetColor();
             Console.SetCursorPosition(this.X + ConsolePadding, this.Y + ConsolePadding);
             Console.ForegroundColor = this.Foreground;
             Console.BackgroundColor = this.Background;
             Console.Write(this.Symbol);
             Console.ResetColor();
-            //Console.Write("back");
         }
     }
 }

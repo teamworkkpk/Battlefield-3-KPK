@@ -25,7 +25,7 @@
         
         private ICell currentCell;
         private Renderer renderer;
-
+        private Pointer pointer;
         private bool keepRunning;
         private bool isRunning;
         private Playfield playField;
@@ -39,6 +39,23 @@
             private set
             {
                 this.currentCell = value;
+            }
+        }
+
+        public Pointer Pointer
+        {
+            get
+            {
+                return this.pointer;
+            }
+            set
+            {
+                if(value.X < 0 || value.Y < 0)
+                {
+                    throw new ArgumentException("Pointer x and y coordinate must be positive integer numbers");
+                }
+
+                this.pointer = value;
             }
         }
 
@@ -81,6 +98,7 @@
             this.PlayField = this.GetNewField();
             this.CurrentCell = this.PlayField[0, 0];
             this.SoundsPlayer = this.GetNewSoundsPlayer();
+            this.Pointer = new Pointer(this.playField[0, 0].X, this.playField[0, 0].Y);
         }
 
         public void Start()
@@ -113,14 +131,17 @@
                 if (Console.KeyAvailable)
                 {
                     pressedKey = Console.ReadKey().Key;
-                    bool keyHandled = this.OnDirectionKeyPressed(pressedKey) &&
+                    bool keyHandled = this.OnDirectionKeyPressed(pressedKey) ||
                         this.OnEnterKeyPressed(pressedKey);
-                    
+
+                    this.renderer.DrawAll();
+
                     //Clear any pending keypresses from the inputstream.
                     while (Console.KeyAvailable)
                     {
                         Console.ReadKey(true);
                     }
+                    
                 }
             }
             this.isRunning = false;
@@ -128,10 +149,14 @@
 
         private bool OnEnterKeyPressed(ConsoleKey key)
         {
+            
             if (key == ConsoleKey.Enter)
-            { 
-                //TODO: Act on event
-                return true;
+            {
+                int cellX = this.Pointer.X;
+                int cellY = this.Pointer.Y;
+
+                ICell currentCell = this.playField[cellX, cellY];
+                //return true;
             }
 
             return false;
@@ -162,37 +187,16 @@
 
         private void ChangeCurrentCell(int deltaX, int deltaY)
         {
-            int currPosX = this.CurrentCell.X;
-            int currPosY = this.CurrentCell.Y;
-            int newPosX, newPosY;
-
-            if (currPosX + deltaX < 0)
+            if (!(this.Pointer.X + deltaX < 0 || this.Pointer.X + deltaX > this.playField.PlayfieldSize-1))
             {
-                newPosX = 0;
-            }
-            else
-            {
-                newPosX = currPosX + deltaX;
+                this.Pointer.X += deltaX;
             }
 
-            if (currPosY + deltaY < 0)
+            if (!(this.Pointer.Y + deltaY < 0 || this.Pointer.Y + deltaY > this.playField.PlayfieldSize - 1))
             {
-                newPosY = 0;
-            }
-            else
-            {
-                newPosY = currPosY + deltaY;
+                this.Pointer.Y += deltaY;
             }
 
-            //Console.WriteLine("X " + newPosX+ "Y "+newPosY);
-            Console.SetCursorPosition(newPosX, newPosY);
-
-            if (currPosX != newPosX || currPosY != newPosY) 
-            {
-                ICell cell = this.PlayField[newPosX, newPosY];
-                CellEventArgs e = new CellEventArgs(cell);
-                this.OnCurrentCellChanged(e);
-            }
         }
 
         private Playfield GetNewField()

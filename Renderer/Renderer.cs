@@ -10,9 +10,13 @@ namespace BattleFiled.Renderer
     abstract class Renderer : RenderingContext
     {
         protected ICellView[,] cellViews;
+        private Engine engine;
+        private const int ConsolePadding = 5;
 
         public Renderer(Engine engine)
         {
+            Console.CursorVisible = false;
+
             if (engine == null)
             {
                 throw new ArgumentNullException("Null Engine provided.");
@@ -20,6 +24,7 @@ namespace BattleFiled.Renderer
 
             if (engine.PlayField != null)
             {
+                this.engine = engine;
                 this.cellViews = this.CreateCellViews(engine.PlayField);
                 
                 this.DrawAll();
@@ -27,9 +32,9 @@ namespace BattleFiled.Renderer
             }
 
             //Register event handlers.
-            engine.CurrentCellChanged += this.OnCurrentCellChangedHandler;
-            engine.CellsInRegionChanged += this.OnCellsInRegionChangedHandler;
-            engine.PlayfieldChanged += this.OnPlayfieldChangedHandler;
+            this.engine.CurrentCellChanged += this.OnCurrentCellChangedHandler;
+            this.engine.CellsInRegionChanged += this.OnCellsInRegionChangedHandler;
+            this.engine.PlayfieldChanged += this.OnPlayfieldChangedHandler;
         }
 
         private void OnPlayfieldChangedHandler(object sender, PlayfieldChangedEventArgs e)
@@ -62,14 +67,25 @@ namespace BattleFiled.Renderer
 
         protected abstract ICellView CreateCellView(ICell cell);
 
-        private void DrawAll()
+        public void DrawAll()
         {
             Console.Clear();
+            
             foreach (ICellView view in this.cellViews)
             {
                 view.Draw(this);
             }
 
+            DrawPointer();
+        }
+
+        private void DrawPointer()
+        {
+            Console.SetCursorPosition(engine.Pointer.X + ConsolePadding, this.engine.Pointer.Y + ConsolePadding);
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("!");
+            Console.ResetColor();
         }
 
         private void OnCellsInRegionChangedHandler(object sender, CellRegionEventArgs e)
