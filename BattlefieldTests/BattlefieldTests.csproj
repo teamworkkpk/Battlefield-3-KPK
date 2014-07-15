@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="MementoFieldTests.cs" />
+    <Compile Include="PlayerTest.cs" />
     <Compile Include="PlayFieldTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

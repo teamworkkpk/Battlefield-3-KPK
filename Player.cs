@@ -10,7 +10,7 @@
 
         public Player(string name)
         {
-            this.Name = name;            
+            this.Name = name;
         }
 
         public string Name
@@ -26,6 +26,11 @@
                 {
                     throw new ArgumentNullException("Error: Memento player name cannot be null or empty!");
                 }
+                else if(string.IsNullOrWhiteSpace(value.Trim()))
+                {
+                    throw new ArgumentNullException ("Error: Memento player name cannot be null or whitespace!");
+                }
+
                 this.name = value;
             }
         }
@@ -40,7 +45,11 @@
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Error: Memento detonated mines count cannot less than zero!");
+                    throw new ArgumentOutOfRangeException("Error: Memento detonated mines count cannot less than zero!");
+                }
+                else if (value > 100)
+                {
+                    throw new ArgumentOutOfRangeException("Error: Memento detonated mines count cannot greater than 100!");
                 }
                 this.detonatedMines = value;
             }
@@ -56,7 +65,7 @@
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Error: Memento moves count cannot less than zero!");
+                    throw new ArgumentOutOfRangeException("Error: Memento moves count cannot less than zero!");
                 }
                 this.movesCount = value;
             }
