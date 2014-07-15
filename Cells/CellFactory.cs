@@ -30,10 +30,12 @@ namespace BattleFiled.Cells
                 {
                     case CellType.EmptyCell:
                         cell = new EmptyCell();
+                        cell.CellView = CellView.Empty;
                         break;
                     case CellType.Bomb:
                         int bombSize = RandomGenerator.GetRandomNumber(1, 6);
                         cell = new BombCell(bombSize);
+                        cell.CellView = (CellView)bombSize;
                         break;
 
                     case CellType.BlownCell:

@@ -7,10 +7,14 @@ namespace BattleFiled.Cells
 {
     using System;
     using BattleFiled;
+    using System.Xml.Serialization;
 
     /// <summary>
     /// Base abstract class for all Cell object
     /// </summary>
+
+    [XmlInclude(typeof(EmptyCell))]
+    [XmlInclude(typeof(BombCell))]
     public abstract class Cell : ICell
     {
         /// <summary>
@@ -36,24 +40,25 @@ namespace BattleFiled.Cells
         {
             this.cellType = celltype;
         }
-        
+
         /// <summary>
         /// Gets the CellType of a Cell
         /// </summary>
         public CellType CellType
         {
-           get { return this.cellType; }
+            get { return this.cellType; }
         }
 
         /// <summary>
         /// Gets or sets the CellView of a Cell
         /// </summary>
+        //[XmlIgnore]
         public CellView CellView
         {
             get;
             set;
         }
-        
+
         /// <summary>
         /// Gets or sets the X coordinate of a Cell
         /// </summary>
