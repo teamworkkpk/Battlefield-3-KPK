@@ -16,6 +16,9 @@
     /// </summary>    
     public sealed class Playfield : IGameObject, IEnumerable
     {
+        private const int MIN_FIELD_SIZE = 2;
+        private const int MAX_FIELD_SIZE = 10;
+
         private static Playfield PlayfieldInstance;
 
         private ICell[,] cells;
@@ -44,7 +47,6 @@
             }
         }
 
-
         public ICell this[int posX, int posY]
         {
             get
@@ -59,34 +61,45 @@
 
         public void SetFieldSize(int size)
         {
+            if (size < MIN_FIELD_SIZE || size > MAX_FIELD_SIZE)
+            {
+                throw new ArgumentException(string.Format("Error: field size must be between {0} and {1}", MIN_FIELD_SIZE, MAX_FIELD_SIZE));
+            }
             this.cells = new Cell[size, size];
-            
         }
 
         public void InitializeEmptyField()
         {
-            
+            if (cells == null)
+            {
+                throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
+            }
+           
             for (int i = 0; i < this.cells.GetLength(0); i++)
             {
                 for (int j = 0; j < this.cells.GetLength(1); j++)
                 {
-                    ICell cell  = CellFactory.CreateCell(CellType.EmptyCell);
-                    cell.X = i*2;
-                    cell.Y = j*2;
-                    this.cells[i, j] = cell;
-                    //Console.WriteLine("                   " +i+" "+j);
+                    ICell cell  = CellFactory.CreateCell(CellType.EmptyCell);                    
+                    cell.X = i;
+                    cell.Y = j;
+                    this.cells[i, j] = cell;                    
                 }
             }
         }
 
         public override string ToString()
         {
+            if (cells == null)
+            {
+                throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
+            }
+
             StringBuilder builder = new StringBuilder();
 
             for (int i = 0; i < this.PlayfieldSize; i++)
             {
                 for (int j = 0; j < this.PlayfieldSize; j++)
-                {
+                {                    
                     builder.Append(this.cells[i, j]);
                 }
 
@@ -99,6 +112,11 @@
 
         public void PlaceMines()
         {
+            if (cells == null)
+            {
+                throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
+            }
+
             //TODO find why all mines are displayed with white color, but not magenda and fix it
             int totalCellsCount = this.PlayfieldSize * this.PlayfieldSize;
             
@@ -110,13 +128,13 @@
 
             for (int i = 0; i < minesCount; i++)
             {
-                int mineRowPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize)*2;
-                int mineColPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize)*2;
+                int mineRowPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
+                int mineColPosition = RandomGenerator.GetRandomNumber(0, PlayfieldSize);
 
                 ICell bombCell = CellFactory.CreateCell(CellType.Bomb);
                 bombCell.X = mineRowPosition;
                 bombCell.Y = mineColPosition;
-                this.cells[mineRowPosition/2, mineColPosition/2] = bombCell;
+                this.cells[mineRowPosition, mineColPosition] = bombCell;
                 //Console.WriteLine(this.playfield[mineRowPosition, mineColPosition].CellView);
             }
         }
@@ -131,10 +149,16 @@
         /// </summary>
         /// <returns></returns>
         public MementoField Save()
-        { 
+        {
+            if (cells == null)
+            {
+                throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
+            }
+
             MementoField memento = new MementoField();
 
-            memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.cells as Cell[,]);
+            memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.cells as Cell[,]);            
+
             memento.FieldDimension = this.PlayfieldSize;
 
             return memento;
@@ -146,6 +170,11 @@
         /// <param name="memento"></param>
         public void Load(MementoField memento)
         {
+            if (memento == null)
+            {
+                throw new ArgumentNullException("Error: loaded memento object cannot be null!");
+            }
+
             this.cells = this.CloneToMultiDimArray(memento.ZeroBasedPlayField, memento.FieldDimension);
         }
 
@@ -157,7 +186,7 @@
         /// <param name="fieldToCopy"></param>
         /// <returns></returns>
         private Cell[] CloneToZeroBasedArray(Cell[,] fieldToCopy)
-        {
+        {            
             int backupArrayLength = fieldToCopy.GetLength(0) * fieldToCopy.GetLength(0);
 
             Cell[] copy = new Cell[backupArrayLength];           
