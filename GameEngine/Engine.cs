@@ -158,9 +158,15 @@
                 ICell currentCell = this.playField[cellX, cellY];
                 SoundsPlayer.PlayDetonatedBomb();
 
-                if(currentCell.CellType == CellType.Bomb)
+                if (currentCell.CellType == CellType.Bomb)
                 {
                     HandleExplosion(currentCell as BombCell);
+                    SoundsPlayer.PlayDetonatedBomb();
+                }
+
+                else if (currentCell.CellType == CellType.BlownCell || currentCell.CellType == CellType.EmptyCell)
+                {
+                    SoundsPlayer.PlayInvalidMove();
                 }
                 return true;
             }
