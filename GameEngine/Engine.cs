@@ -156,10 +156,59 @@
                 int cellY = this.Pointer.Y;
 
                 ICell currentCell = this.playField[cellX, cellY];
+
+                if(currentCell.CellType == CellType.Bomb)
+                {
+                    HandleExplosion(currentCell as BombCell);
+                }
                 //return true;
             }
 
             return false;
+        }
+
+        private void HandleExplosion(BombCell currentCell)
+        {
+            switch (currentCell.BombSize)
+            {
+                case 1:
+                    ExplosionOneRadius(currentCell);
+                    break;
+                //case 2:
+                //    ExplosionTwoRadius();
+                //    break;
+                //case 3:
+                //    ExplosionThreeRadius();
+                //    break;
+                //case 4:
+                //    ExplosionFourRadius();
+                //    break;
+                //case 5:
+                //    ExplosionFiveRadius();
+                //    break;
+
+            }
+        }
+
+        private void ExplosionOneRadius(BombCell cell)
+        {
+            if (cell.X - 1 >= 0 && cell.Y - 1 >= 0)
+            {
+                this.PlayField[cell.X - 1, cell.Y - 1] = CellFactory.CreateCell(CellType.BlownCell);
+            }
+            if (cell.X - 1 >= 0 && cell.Y < this.playField.PlayfieldSize - 1)
+            {
+                this.PlayField[cell.X - 1, cell.Y + 1] = CellFactory.CreateCell(CellType.BlownCell); ;
+            }
+            if (cell.X < this.playField.PlayfieldSize - 1 && cell.Y - 1 > 0)
+            {
+                this.PlayField[cell.X + 1, cell.Y - 1] = CellFactory.CreateCell(CellType.BlownCell); ;
+            }
+            if (cell.X < this.playField.PlayfieldSize - 1 && cell.Y < this.playField.PlayfieldSize - 1)
+            {
+                this.PlayField[cell.X + 1, cell.Y + 1] = CellFactory.CreateCell(CellType.BlownCell); ;
+            }
+
         }
 
         private bool OnDirectionKeyPressed(ConsoleKey key)

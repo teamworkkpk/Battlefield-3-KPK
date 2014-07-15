@@ -65,6 +65,21 @@ namespace BattleFiled.Renderer
             return cellViews;
         }
 
+        public void ChangeCellView(Playfield playfield)
+        {
+            int fieldSize = playfield.PlayfieldSize;
+            cellViews = new ICellView[fieldSize, fieldSize];
+
+            for (int i = 0; i < playfield.PlayfieldSize; i++)
+            {
+                for (int j = 0; j < playfield.PlayfieldSize; j++)
+                {
+                    cellViews[i, j] = CreateCellView(playfield[i, j]);
+                }
+
+            }
+        }
+
         protected abstract ICellView CreateCellView(ICell cell);
 
         public void DrawAll()

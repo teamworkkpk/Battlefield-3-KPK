@@ -20,7 +20,7 @@
                     view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Red, ConsoleColor.Cyan,(char)cell.CellView);
                     break;
                 case CellType.BlownCell:
-                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.DarkGray, ConsoleColor.Cyan, '*');
+                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Red, ConsoleColor.Cyan, '*');
                     break;
                 case CellType.EmptyCell:
                     view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Cyan, ConsoleColor.Cyan, ' ');

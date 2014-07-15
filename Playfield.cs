@@ -55,7 +55,7 @@
             }
             set
             {
-                throw new InvalidOperationException("Playfield indexer is read-only.");
+                this.cells[posX, posY] = value;
             }
         }
 
