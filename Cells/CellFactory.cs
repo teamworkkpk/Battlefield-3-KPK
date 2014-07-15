@@ -39,8 +39,8 @@ namespace BattleFiled.Cells
                         break;
 
                     case CellType.BlownCell:
-                        cell = new BlownCell();
-                        //cell.CellView = CellView.Blown;
+                        cell = new BlownCell(); 
+                        cell.CellView = CellView.Blown;
                         break;
                     default:
                         throw new NotImplementedException();

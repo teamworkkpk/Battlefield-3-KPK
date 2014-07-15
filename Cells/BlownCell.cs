@@ -16,7 +16,7 @@ namespace BattleFiled.Cells
         /// Initializes a new instance of the BlownCell class
         /// </summary>
         public BlownCell() : base(CellType.BlownCell)
-        {
+        {            
         }
 
         // maybe should be implemented in the parent class

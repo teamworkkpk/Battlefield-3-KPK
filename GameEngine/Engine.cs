@@ -156,12 +156,11 @@
                 int cellY = this.Pointer.Y;
 
                 ICell currentCell = this.playField[cellX, cellY];
-                SoundsPlayer.PlayDetonatedBomb();
 
                 if (currentCell.CellType == CellType.Bomb)
                 {
                     HandleExplosion(currentCell as BombCell);
-                    SoundsPlayer.PlayDetonatedBomb();
+                    SoundsPlayer.PlayDetonatedBomb();                    
                 }
 
                 else if (currentCell.CellType == CellType.BlownCell || currentCell.CellType == CellType.EmptyCell)
@@ -199,24 +198,40 @@
 
         private void ExplosionOneRadius(BombCell cell)
         {
-            if (cell.X - 1 >= 0 && cell.Y - 1 >= 0)
-            {
-                this.PlayField[cell.X - 1, cell.Y - 1] = CellFactory.CreateCell(CellType.BlownCell);
-            }
-            if (cell.X - 1 >= 0 && cell.Y < this.playField.PlayfieldSize - 1)
-            {
-                this.PlayField[cell.X - 1, cell.Y + 1] = CellFactory.CreateCell(CellType.BlownCell); ;
-            }
-            if (cell.X < this.playField.PlayfieldSize - 1 && cell.Y - 1 > 0)
-            {
-                this.PlayField[cell.X + 1, cell.Y - 1] = CellFactory.CreateCell(CellType.BlownCell); ;
-            }
-            if (cell.X < this.playField.PlayfieldSize - 1 && cell.Y < this.playField.PlayfieldSize - 1)
-            {
-                this.PlayField[cell.X + 1, cell.Y + 1] = CellFactory.CreateCell(CellType.BlownCell); ;
-            }
+            int bombX = cell.X;
+            int bombY = cell.Y;
 
+            this.playField[bombX, bombY] = CellFactory.CreateCell(CellType.BlownCell);
+            SetBlownCellPosition(bombX, bombY);
+
+            if (bombX - 1 >= 0 && bombY - 1 >= 0)
+            {                
+                this.PlayField[bombX - 1, bombY - 1] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX -1 , bombY - 1);
+            }
+            if (bombX - 1 >= 0 && bombY < this.playField.PlayfieldSize - 1)
+            {
+                this.PlayField[bombX - 1, bombY + 1] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX -1, bombY + 1);
+            }
+            if (bombX < this.playField.PlayfieldSize - 1 && bombY - 1 > 0)
+            {
+                this.PlayField[bombX + 1, bombY - 1] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX + 1, bombY -1);
+            }
+            if (bombX < this.playField.PlayfieldSize - 1 && bombY < this.playField.PlayfieldSize - 1)
+            {
+                this.PlayField[bombX + 1, bombY + 1] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX + 1, bombY + 1);
+            }
+            
             renderer.ChangeCellView(this.playField);
+        }
+
+        private void SetBlownCellPosition(int oldX, int oldY)
+        {
+            this.PlayField[oldX, oldY].X = oldX;
+            this.PlayField[oldX, oldY].Y = oldY;
         }
 
         private bool OnDirectionKeyPressed(ConsoleKey key)
