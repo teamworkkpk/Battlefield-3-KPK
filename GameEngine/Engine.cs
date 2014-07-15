@@ -9,12 +9,12 @@
     class Engine
     {
         private static Engine instance;
-        
+
         public static Engine Instance
         {
             get
-            { 
-                if(Engine.instance == null)
+            {
+                if (Engine.instance == null)
                 {
                     Engine.instance = new Engine();
                 }
@@ -22,7 +22,7 @@
                 return Engine.instance;
             }
         }
-        
+
         private ICell currentCell;
         private Renderer renderer;
         private Pointer pointer;
@@ -32,7 +32,8 @@
 
         protected ICell CurrentCell
         {
-            get {
+            get
+            {
                 return this.currentCell;
             }
 
@@ -50,7 +51,7 @@
             }
             set
             {
-                if(value.X < 0 || value.Y < 0)
+                if (value.X < 0 || value.Y < 0)
                 {
                     throw new ArgumentException("Pointer x and y coordinate must be positive integer numbers");
                 }
@@ -59,7 +60,7 @@
             }
         }
 
-        public Playfield PlayField 
+        public Playfield PlayField
         {
             private set
             {
@@ -93,7 +94,7 @@
         }
 
         public void Initialize()
-        { 
+        {
             //TODO: Read last playfield.
             this.PlayField = this.GetNewField();
             this.CurrentCell = this.PlayField[0, 0];
@@ -110,12 +111,12 @@
             }
         }
 
-        public void Stop() 
+        public void Stop()
         {
             this.keepRunning = false;
         }
 
-        private void Run() 
+        private void Run()
         {
             if (this.renderer == null)
             {
@@ -141,7 +142,7 @@
                     {
                         Console.ReadKey(true);
                     }
-                    
+
                 }
             }
             this.isRunning = false;
@@ -149,7 +150,7 @@
 
         private bool OnEnterKeyPressed(ConsoleKey key)
         {
-            
+
             if (key == ConsoleKey.Enter)
             {
                 int cellX = this.Pointer.X;
@@ -160,7 +161,7 @@
                 if (currentCell.CellType == CellType.Bomb)
                 {
                     HandleExplosion(currentCell as BombCell);
-                    SoundsPlayer.PlayDetonatedBomb();                    
+                    SoundsPlayer.PlayDetonatedBomb();
                 }
 
                 else if (currentCell.CellType == CellType.BlownCell || currentCell.CellType == CellType.EmptyCell)
@@ -180,18 +181,18 @@
                 case 1:
                     ExplosionOneRadius(currentCell);
                     break;
-                //case 2:
-                //    ExplosionTwoRadius();
-                //    break;
-                //case 3:
-                //    ExplosionThreeRadius();
-                //    break;
-                //case 4:
-                //    ExplosionFourRadius();
-                //    break;
-                //case 5:
-                //    ExplosionFiveRadius();
-                //    break;
+                case 2:
+                    ExplosionTwoRadius(currentCell);
+                    break;
+                case 3:
+                    ExplosionThreeRadius(currentCell);
+                    break;
+                case 4:
+                    ExplosionFourRadius(currentCell);
+                    break;
+                case 5:
+                    ExplosionFiveRadius(currentCell);
+                    break;
 
             }
         }
@@ -205,26 +206,205 @@
             SetBlownCellPosition(bombX, bombY);
 
             if (bombX - 1 >= 0 && bombY - 1 >= 0)
-            {                
+            {
                 this.PlayField[bombX - 1, bombY - 1] = CellFactory.CreateCell(CellType.BlownCell);
-                SetBlownCellPosition(bombX -1 , bombY - 1);
+                SetBlownCellPosition(bombX - 1, bombY - 1);
             }
-            if (bombX - 1 >= 0 && bombY < this.playField.PlayfieldSize - 1)
+
+            if (bombX - 1 >= 0 && bombY + 1 < this.playField.PlayfieldSize)
             {
                 this.PlayField[bombX - 1, bombY + 1] = CellFactory.CreateCell(CellType.BlownCell);
-                SetBlownCellPosition(bombX -1, bombY + 1);
+                SetBlownCellPosition(bombX - 1, bombY + 1);
             }
-            if (bombX < this.playField.PlayfieldSize - 1 && bombY - 1 > 0)
-            {
-                this.PlayField[bombX + 1, bombY - 1] = CellFactory.CreateCell(CellType.BlownCell);
-                SetBlownCellPosition(bombX + 1, bombY -1);
-            }
-            if (bombX < this.playField.PlayfieldSize - 1 && bombY < this.playField.PlayfieldSize - 1)
+
+            if (bombX + 1 < this.playField.PlayfieldSize && bombY + 1 < this.playField.PlayfieldSize)
             {
                 this.PlayField[bombX + 1, bombY + 1] = CellFactory.CreateCell(CellType.BlownCell);
                 SetBlownCellPosition(bombX + 1, bombY + 1);
             }
-            
+
+            if (bombX + 1 < this.playField.PlayfieldSize && bombY - 1 >= 0)
+            {
+                this.PlayField[bombX + 1, bombY - 1] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX + 1, bombY - 1);
+            }
+
+            renderer.ChangeCellView(this.playField);
+        }
+
+        private void ExplosionTwoRadius(BombCell cell)
+        {
+            ExplosionOneRadius(cell);
+
+            int bombX = cell.X;
+            int bombY = cell.Y;
+
+            if (bombX - 1 >= 0)
+            {
+                this.PlayField[bombX - 1, bombY] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX - 1, bombY);
+            }
+
+            if (bombY + 1 < this.playField.PlayfieldSize)
+            {
+                this.PlayField[bombX, bombY + 1] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX, bombY + 1);
+            }
+
+            if (bombX + 1 < this.playField.PlayfieldSize)
+            {
+                this.PlayField[bombX + 1, bombY] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX + 1, bombY);
+            }
+
+            if (bombY - 1 >= 0)
+            {
+                this.PlayField[bombX, bombY - 1] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX, bombY - 1);
+            }
+
+            renderer.ChangeCellView(this.playField);
+        }
+
+        private void ExplosionThreeRadius(BombCell cell)
+        {
+            ExplosionTwoRadius(cell);
+
+            int bombX = cell.X;
+            int bombY = cell.Y;
+
+            if (bombX - 2 >= 0)
+            {
+                this.PlayField[bombX - 2, bombY] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX - 2, bombY);
+            }
+
+            if (bombY + 2 < this.playField.PlayfieldSize)
+            {
+                this.PlayField[bombX, bombY + 2] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX, bombY + 2);
+            }
+
+            if (bombX + 2 < this.playField.PlayfieldSize)
+            {
+                this.PlayField[bombX + 2, bombY] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX + 2, bombY);
+            }
+
+            if (bombY - 2 >= 0)
+            {
+                this.PlayField[bombX, bombY - 2] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX, bombY - 2);
+            }
+
+            renderer.ChangeCellView(this.playField);
+        }
+
+        private void ExplosionFourRadius(BombCell cell)
+        {
+            ExplosionThreeRadius(cell);
+
+            int bombX = cell.X;
+            int bombY = cell.Y;
+
+            if (bombX - 2 >= 0)
+            {
+                if (bombY - 1 >= 0)
+                {
+                    this.PlayField[bombX - 2, bombY - 1] = CellFactory.CreateCell(CellType.BlownCell);
+                    SetBlownCellPosition(bombX - 2, bombY - 1);
+                }
+
+                if (bombY + 1 < this.playField.PlayfieldSize)
+                {
+                    this.PlayField[bombX - 2, bombY + 1] = CellFactory.CreateCell(CellType.BlownCell);
+                    SetBlownCellPosition(bombX - 2, bombY + 1);
+                }
+                
+            }
+
+            if (bombY + 2 < this.playField.PlayfieldSize)
+            {
+                if (bombX - 1 >= 0)
+                {
+                    this.PlayField[bombX - 1, bombY + 2] = CellFactory.CreateCell(CellType.BlownCell);
+                    SetBlownCellPosition(bombX - 1, bombY + 2);
+                }
+
+                if (bombX + 1 < this.playField.PlayfieldSize)
+                {
+                    this.PlayField[bombX + 1, bombY + 2] = CellFactory.CreateCell(CellType.BlownCell);
+                    SetBlownCellPosition(bombX + 1, bombY + 2);
+                }
+               
+            }
+
+            if (bombX + 2 < this.playField.PlayfieldSize)
+            {
+                if (bombY - 1 >= 0)
+                {
+                    this.PlayField[bombX + 2, bombY - 1] = CellFactory.CreateCell(CellType.BlownCell);
+                    SetBlownCellPosition(bombX + 2, bombY - 1);
+                }
+
+                if (bombY + 1 < this.playField.PlayfieldSize)
+                {
+                    this.PlayField[bombX + 2, bombY + 1] = CellFactory.CreateCell(CellType.BlownCell);
+                    SetBlownCellPosition(bombX + 2, bombY + 1);
+                }
+                
+            }
+
+            if (bombY - 2 >= 0)
+            {
+                if (bombX - 1 >= 0)
+                {
+                    this.PlayField[bombX - 1, bombY - 2] = CellFactory.CreateCell(CellType.BlownCell);
+                    SetBlownCellPosition(bombX - 1, bombY - 2);
+                }
+
+                if (bombX + 1 < this.playField.PlayfieldSize)
+                {
+                    this.PlayField[bombX + 1, bombY - 2] = CellFactory.CreateCell(CellType.BlownCell);
+                    SetBlownCellPosition(bombX + 1, bombY - 2);
+                }
+                
+            }
+
+            renderer.ChangeCellView(this.playField);
+        }
+
+        private void ExplosionFiveRadius(BombCell cell)
+        {
+            ExplosionFourRadius(cell);
+
+            int bombX = cell.X;
+            int bombY = cell.Y;
+
+            if (bombX - 2 >= 0 && bombY - 2 >= 0)
+            {
+                this.PlayField[bombX - 2, bombY - 2] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX - 2, bombY - 2);
+            }
+
+            if (bombX - 2 >= 0 && bombY + 2 < this.playField.PlayfieldSize)
+            {
+                this.PlayField[bombX - 2, bombY + 2] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX - 2, bombY + 2);
+            }
+
+            if (bombX + 2 < this.playField.PlayfieldSize && bombY + 2 < this.playField.PlayfieldSize)
+            {
+                this.PlayField[bombX + 2, bombY + 2] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX + 2, bombY + 2);
+            }
+
+            if (bombX + 2 < this.playField.PlayfieldSize && bombY - 2 >= 0)
+            {
+                this.PlayField[bombX + 2, bombY - 2] = CellFactory.CreateCell(CellType.BlownCell);
+                SetBlownCellPosition(bombX + 2, bombY - 2);
+            }
+
             renderer.ChangeCellView(this.playField);
         }
 
@@ -258,7 +438,7 @@
 
         private void ChangeCurrentCell(int deltaX, int deltaY)
         {
-            if (!(this.Pointer.X + deltaX < 0 || this.Pointer.X + deltaX > this.playField.PlayfieldSize-1))
+            if (!(this.Pointer.X + deltaX < 0 || this.Pointer.X + deltaX > this.playField.PlayfieldSize - 1))
             {
                 this.Pointer.X += deltaX;
             }
@@ -271,7 +451,7 @@
         }
 
         private Playfield GetNewField()
-        { 
+        {
             int sizeOfField = this.ReadSize();
             Playfield field = InitializeField(sizeOfField);
             return field;
@@ -319,7 +499,7 @@
             Console.Write("Enter the size of the battle field: n = ");
 
             int sizeOfField;
-            if(Int32.TryParse(Console.ReadLine(), out sizeOfField))
+            if (Int32.TryParse(Console.ReadLine(), out sizeOfField))
             {
                 return sizeOfField;
             }
