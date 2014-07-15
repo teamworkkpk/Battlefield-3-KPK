@@ -156,12 +156,13 @@
                 int cellY = this.Pointer.Y;
 
                 ICell currentCell = this.playField[cellX, cellY];
+                SoundsPlayer.PlayDetonatedBomb();
 
                 if(currentCell.CellType == CellType.Bomb)
                 {
                     HandleExplosion(currentCell as BombCell);
                 }
-                //return true;
+                return true;
             }
 
             return false;
@@ -209,6 +210,7 @@
                 this.PlayField[cell.X + 1, cell.Y + 1] = CellFactory.CreateCell(CellType.BlownCell); ;
             }
 
+            renderer.ChangeCellView(this.playField);
         }
 
         private bool OnDirectionKeyPressed(ConsoleKey key)
@@ -230,7 +232,6 @@
                 default:
                     return false;
             }
-
             return true;
         }
 
