@@ -22,8 +22,13 @@ namespace BattleFiled.Cells
         // maybe should be implemented in the parent class
         public override ICell Clone()
         {
-            // TODO: Implement this method
-            throw new NotImplementedException();
+            return new BlownCell()
+            {                
+                CellView = this.CellView,
+                Color = this.Color,
+                X = this.X,
+                Y = this.Y
+            };
         }
     }
 }

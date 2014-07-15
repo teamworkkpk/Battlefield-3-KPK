@@ -2,132 +2,166 @@
 <SaveLoadInterface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <MementoField>
     <ZeroBasedPlayField>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>0</X>
+        <Y>0</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>0</X>
+        <Y>1</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>0</X>
+        <Y>2</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>0</X>
+        <Y>3</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>0</X>
+        <Y>4</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>1</X>
+        <Y>0</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>1</X>
+        <Y>1</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>1</X>
+        <Y>2</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>1</X>
+        <Y>3</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BombCell">
+        <CellView>Bomb5</CellView>
+        <X>1</X>
+        <Y>4</Y>
+        <Color>Red</Color>
+        <BombSize>5</BombSize>
+      </Cell>
+      <Cell xsi:type="BombCell">
         <CellView>Bomb1</CellView>
-        <Color>Magenda</Color>
+        <X>2</X>
+        <Y>0</Y>
+        <Color>Red</Color>
+        <BombSize>1</BombSize>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>2</X>
+        <Y>1</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>2</X>
+        <Y>2</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="BombCell">
+        <CellView>Bomb3</CellView>
+        <X>2</X>
+        <Y>3</Y>
+        <Color>Red</Color>
+        <BombSize>3</BombSize>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>2</X>
+        <Y>4</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="BombCell">
+        <CellView>Bomb2</CellView>
+        <X>3</X>
+        <Y>0</Y>
+        <Color>Red</Color>
+        <BombSize>2</BombSize>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>3</X>
+        <Y>1</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Bomb1</CellView>
-        <Color>Magenda</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>3</X>
+        <Y>2</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>3</X>
+        <Y>3</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Bomb1</CellView>
-        <Color>Magenda</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>3</X>
+        <Y>4</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>4</X>
+        <Y>0</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Bomb4</CellView>
-        <Color>Magenda</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>4</X>
+        <Y>1</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>4</X>
+        <Y>2</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>4</X>
+        <Y>3</Y>
+        <Color>Red</Color>
       </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
+      <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <Color>White</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Empty</CellView>
-        <Color>White</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Empty</CellView>
-        <Color>White</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Bomb4</CellView>
-        <Color>Magenda</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Empty</CellView>
-        <Color>White</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Empty</CellView>
-        <Color>White</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Bomb1</CellView>
-        <Color>Magenda</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Empty</CellView>
-        <Color>White</Color>
-      </Cell>
-      <Cell>
-        <CellType>EmptyCell</CellType>
-        <CellView>Empty</CellView>
-        <Color>White</Color>
+        <X>4</X>
+        <Y>4</Y>
+        <Color>Red</Color>
       </Cell>
     </ZeroBasedPlayField>
     <FieldDimension>5</FieldDimension>
   </MementoField>
+  <MementoPlayer>
+    <Name>pesho</Name>
+    <DetonatedMines>13</DetonatedMines>
+    <MovesCount>12</MovesCount>
+  </MementoPlayer>
 </SaveLoadInterface>

@@ -25,21 +25,22 @@ namespace BattleFiled.Cells
         /// <summary>
         /// Private variable used to set size of a BombCell, when a new BombCell is created
         /// </summary>
-        private readonly int bombSize;
+        private int bombSize;
 
         /// <summary>
         /// Initializes a new instance of the BombCell class
+        /// Empty constructor is done for the needs of XML seriazlization
         /// </summary>
-        /// <param name="bombSize">The size of a bomb by given integer value</param>
+        /// <param name="bombSize">The size of a bomb by given integer value</param>        
+        public BombCell()
+            : base(CellType.Bomb)
+        {
+
+        }
         public BombCell(int bombSize) 
             : base(CellType.Bomb)
         {
-            if (bombSize < MinimalBombSize || bombSize > MaximumBombSize)
-            {
-                throw new ArgumentOutOfRangeException("Bomb sie must be between 1 and 5.");
-            }
-
-            this.bombSize = bombSize;
+            this.BombSize = bombSize;
         }
 
         /// <summary>
@@ -48,12 +49,26 @@ namespace BattleFiled.Cells
         public int BombSize
         {
             get { return this.bombSize; }
+            set
+            {
+                if (value < MinimalBombSize || value > MaximumBombSize)
+                {
+                    throw new ArgumentOutOfRangeException("Bomb sie must be between 1 and 5.");
+                }
+                this.bombSize = value;
+            }
         }
 
         // maybe it should be implemented in  the parent class
         public override ICell Clone()
-        {
-            throw new NotImplementedException();
+        {            
+            return new BombCell(this.BombSize)
+            {
+                CellView = this.CellView,
+                Color = this.Color,                
+                X = this.X,
+                Y = this.Y
+            };
         }
     }
 }

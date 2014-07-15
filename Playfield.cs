@@ -141,7 +141,14 @@
 
         public IEnumerator GetEnumerator()
         {
-            return this.cells.GetEnumerator();
+            for (int i = 0; i < this.PlayfieldSize; i++)
+            {
+                for (int j = 0; j < this.PlayfieldSize; j++)
+                {
+                    yield return this[i, j];
+                }   
+            }
+            //return this.cells.GetEnumerator();
         }
 
         /// <summary>
