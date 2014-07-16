@@ -6,11 +6,13 @@
     {
         private string pathToInvalidMoveSound;
         private string pathToDetonatedBombSound;
+        private string pathToPositionChangedSound;
 
-        public Sounds(string pathToInvalidMoveSound, string pathToDetonatedBombSound)
+        public Sounds(string pathToInvalidMoveSound, string pathToDetonatedBombSound, string pathToPositionChangedSound)
         {
             this.PathToInvalidMoveSound = pathToInvalidMoveSound;
             this.PathToDetonatedBombSound = pathToDetonatedBombSound;
+            this.PathToPositionChangedSound = pathToPositionChangedSound;
         }
         public string PathToInvalidMoveSound
         {
@@ -48,6 +50,24 @@
             }
         }
 
+        public string PathToPositionChangedSound
+        {
+            get
+            {
+                return this.pathToPositionChangedSound;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("Cannot set null path.");
+                }
+
+                this.pathToPositionChangedSound = value;
+            }
+        }
+
         private void PlaySound(string pathToFile)
         {
             SoundPlayer player = new SoundPlayer(pathToFile);
@@ -62,6 +82,11 @@
         public void PlayDetonatedBomb()
         {
             PlaySound(this.PathToDetonatedBombSound);
+        }
+
+        public void PlayPositionChanged()
+        {
+            PlaySound(this.PathToPositionChangedSound);
         }
     }
 }

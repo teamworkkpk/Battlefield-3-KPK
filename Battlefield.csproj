@@ -123,6 +123,7 @@
   <ItemGroup>
     <Content Include="Sounds\Resources\boom.wav" />
     <Content Include="Sounds\Resources\invalid.wav" />
+    <Content Include="Sounds\Resources\move.wav" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BattleFieldDiagram.cd" />

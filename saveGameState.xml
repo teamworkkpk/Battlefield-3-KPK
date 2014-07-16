@@ -2,21 +2,20 @@
 <SaveLoadAPI xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <MementoField>
     <ZeroBasedPlayField>
-      <Cell xsi:type="BombCell">
-        <CellView>Bomb5</CellView>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
         <X>0</X>
         <Y>0</Y>
         <Color>Red</Color>
-        <BombSize>5</BombSize>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
         <X>0</X>
         <Y>1</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
         <X>0</X>
         <Y>2</Y>
         <Color>Red</Color>
@@ -35,20 +34,20 @@
         <Color>Red</Color>
         <BombSize>1</BombSize>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
         <X>1</X>
         <Y>0</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
         <X>1</X>
         <Y>1</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
         <X>1</X>
         <Y>2</Y>
         <Color>Red</Color>
@@ -65,20 +64,20 @@
         <Y>4</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
         <X>2</X>
         <Y>0</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
         <X>2</X>
         <Y>1</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
         <X>2</X>
         <Y>2</Y>
         <Color>Red</Color>

@@ -410,6 +410,9 @@
                 default:
                     return false;
             }
+
+            this.SoundsPlayer.PlayPositionChanged();
+
             return true;
         }
 
@@ -438,7 +441,8 @@
         {
             string pathToInvalidMoveSound = "../../Sounds/Resources/invalid.wav";
             string pathToDetonatedBombSound = "../../Sounds/Resources/boom.wav";
-            Sounds player = new Sounds(pathToInvalidMoveSound, pathToDetonatedBombSound);
+            string pathToPositionChangedSound = "../../Sounds/Resources/move.wav";
+            Sounds player = new Sounds(pathToInvalidMoveSound, pathToDetonatedBombSound, pathToPositionChangedSound);
 
             return player;
         }
