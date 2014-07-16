@@ -30,7 +30,7 @@ namespace BattleFieldTests
         public void SaveThrowsExeptionIfCellsIsNull()
         {
             Playfield testField = Playfield.Instance;
-            testField.Save();
+            testField.SaveMemento();
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace BattleFieldTests
             testField.SetFieldSize(5);
             testField.InitializeEmptyField();
 
-            testField.Load(null);
+            testField.LoadMemento(null);
         }        
 
         [TestMethod]
@@ -93,7 +93,7 @@ namespace BattleFieldTests
             testField.InitializeEmptyField();
             testField.PlaceMines();                    
 
-            Assert.IsNotNull(testField.Save(), "Zero-based playfield backup cannot be null");
+            Assert.IsNotNull(testField.SaveMemento(), "Zero-based playfield backup cannot be null");
         }
 
         [TestMethod]        
@@ -105,7 +105,7 @@ namespace BattleFieldTests
             testField.PlaceMines();
 
             MementoField memento = new MementoField();
-            memento = testField.Save();
+            memento = testField.SaveMemento();
             
             Assert.IsNotNull(memento.ZeroBasedPlayField, "Zero-based playfield backup cannot be null");
         }
