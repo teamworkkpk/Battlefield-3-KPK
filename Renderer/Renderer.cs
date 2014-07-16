@@ -35,6 +35,43 @@ namespace BattleFiled.Renderer
             this.engine.CurrentCellChanged += this.OnCurrentCellChangedHandler;
             this.engine.CellsInRegionChanged += this.OnCellsInRegionChangedHandler;
             this.engine.PlayfieldChanged += this.OnPlayfieldChangedHandler;
+            this.engine.CellsInRegionRedefined += this.OnCellsInRegionRedefinedHandler;
+            this.engine.CellRedefined += this.OnCellRedefinedHandler;
+            this.engine.CellChanged += this.OnCellChangedHandler;
+        }
+  
+        public void DrawAll()
+        {
+            Console.Clear();
+            
+            foreach (ICellView view in this.cellViews)
+            {
+                view.Draw(this);
+            }
+
+            DrawPointer();
+        }
+
+        protected abstract ICellView CreateCellView(ICell cell);
+
+        private void DrawPointer()
+        {
+            Console.SetCursorPosition(this.engine.Pointer.X + ConsolePadding, this.engine.Pointer.Y + ConsolePadding);
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            char symbol = (char)engine.PlayField[this.engine.Pointer.X, this.engine.Pointer.Y].CellView;
+
+            if(symbol != '0')
+            {
+                Console.Write(symbol);
+            }
+            else
+            {
+                Console.Write(" ");
+            }
+
+            Console.ResetColor();
         }
 
         private void OnPlayfieldChangedHandler(object sender, PlayfieldChangedEventArgs e)
@@ -65,53 +102,35 @@ namespace BattleFiled.Renderer
             return cellViews;
         }
 
-        public void ChangeCellView(Playfield playfieldToCreateCellView)
+        private void OnCellChangedHandler(object sender, CellEventArgs e)
         {
-            int fieldSize = playfieldToCreateCellView.PlayfieldSize;
-           // cellViews = new ICellView[fieldSize, fieldSize];
+            this.cellViews[e.Target.X, e.Target.Y].Draw(this);
+        }
+  
+        private void OnCellRedefinedHandler(object sender, CellEventArgs e)
+        {
+            ICellView view = this.CreateCellView(e.Target);
+            this.cellViews[e.Target.X, e.Target.Y] = view;
+            view.Draw(this);
+        }
 
-            for (int i = 0; i < playfieldToCreateCellView.PlayfieldSize; i++)
-            {
-                for (int j = 0; j < playfieldToCreateCellView.PlayfieldSize; j++)
+        private void OnCellsInRegionRedefinedHandler(object sender, CellRegionEventArgs e)
+        {
+            int startX = e.RegionStartX;
+            int startY = e.RegionStartY;
+            int endX = e.RegionEndX;
+            int endY = e.RegionEndY;
+            Playfield playfield = this.engine.PlayField;
+
+            for (int indexX = startX; indexX < endX; indexX++)
+            { 
+                for (int indexY = startY; indexY < endY; indexY++)
                 {
-                    cellViews[i, j] = CreateCellView(playfieldToCreateCellView[i, j]);
+                    ICellView view = this.CreateCellView(playfield[indexX, indexY]);
+                    this.cellViews[indexX, indexY] = view;
+                    view.Draw(this);
                 }
-
             }
-        }
-
-        protected abstract ICellView CreateCellView(ICell cell);
-
-        public void DrawAll()
-        {
-            Console.Clear();
-            
-            foreach (ICellView view in this.cellViews)
-            {
-                view.Draw(this);
-            }
-
-            DrawPointer();
-        }
-
-        private void DrawPointer()
-        {
-            Console.SetCursorPosition(this.engine.Pointer.X + ConsolePadding, this.engine.Pointer.Y + ConsolePadding);
-            Console.BackgroundColor = ConsoleColor.Green;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-
-            char symbol = (char)engine.PlayField[this.engine.Pointer.X, this.engine.Pointer.Y].CellView;
-
-            if(symbol != '0')
-            {
-                Console.Write(symbol);
-            }
-            else
-            {
-                Console.Write(" ");
-            }
-
-            Console.ResetColor();
         }
 
         private void OnCellsInRegionChangedHandler(object sender, CellRegionEventArgs e)
@@ -132,7 +151,7 @@ namespace BattleFiled.Renderer
 
         private void OnCurrentCellChangedHandler(object sender, GameEngine.CellEventArgs e)
         {
-            //TODO: add functionality to draw cursor
+           
         }
     }
 }
