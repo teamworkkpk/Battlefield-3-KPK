@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Xml.Serialization;
+    using System.Xml;
     using System.Runtime.Serialization;
 
     /// <summary>
@@ -36,13 +37,17 @@
         /// Deserialize the game state from the hard drive
         /// </summary>
         public void LoadGame()
-        {   
+        {
+            if (!File.Exists(SavePath))
+            {
+                throw new FileNotFoundException("Error: saveGameState.xml not found!");
+            }
+
             SaveLoadAPI gameState;
 
             using(StreamReader reader = new StreamReader(SavePath))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SaveLoadAPI));
-
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SaveLoadAPI));                
                 gameState = xmlSerializer.Deserialize(reader) as SaveLoadAPI;
             }
 

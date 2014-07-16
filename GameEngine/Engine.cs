@@ -33,6 +33,7 @@
         private bool keepRunning;
         private bool isRunning;
         private Playfield playField;
+        private SaveLoadAPI gameSaver;
 
         protected ICell CurrentCell
         {
@@ -107,6 +108,7 @@
             this.CurrentCell = this.PlayField[0, 0];
             this.SoundsPlayer = this.GetNewSoundsPlayer();
             this.Pointer = new Pointer(this.playField[0, 0].X, this.playField[0, 0].Y);
+            this.gameSaver = new SaveLoadAPI();
         }
 
         public void Start()
@@ -522,24 +524,17 @@
             switch (key)
             {
                 case SAVE_BUTTON:
-                    {
-                        SaveLoadAPI saver = new SaveLoadAPI();
-                        
-                        MementoField mementoField = this.PlayField.SaveMemento();
-                        MementoPlayer mementoPlayer = new Player("Pesho").SaveMemento();
-
-                        saver.MementoField = mementoField;
-                        saver.MementoPlayer = mementoPlayer;
-                        saver.SaveGame();                        
+                    {   
+                        this.gameSaver.MementoField = this.PlayField.SaveMemento();
+                        this.gameSaver.MementoPlayer = new Player("Pesho").SaveMemento();
+                        this.gameSaver.SaveGame();                        
                         return true;
                     }
 
                 case LOAD_BUTTON:
                     {
-                        SaveLoadAPI saver = new SaveLoadAPI();
-                        saver.LoadGame();
-
-                        this.PlayField.LoadMemento(saver.MementoField);
+                        this.gameSaver.LoadGame();
+                        this.PlayField.LoadMemento(this.gameSaver.MementoField);                        
                         return true;
                     }
                 default:
