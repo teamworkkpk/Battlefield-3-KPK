@@ -534,7 +534,10 @@
                 case LOAD_BUTTON:
                     {
                         this.gameSaver.LoadGame();
-                        this.PlayField.LoadMemento(this.gameSaver.MementoField);                        
+                        this.PlayField.LoadMemento(this.gameSaver.MementoField);
+                        CellRegionEventArgs e = new CellRegionEventArgs(0, 0, 
+                            this.PlayField.PlayfieldSize, this.PlayField.PlayfieldSize);
+                        this.OnCellsInRegionRedefined(e);
                         return true;
                     }
                 default:
