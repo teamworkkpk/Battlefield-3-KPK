@@ -15,6 +15,7 @@ namespace BattleFiled.Cells
 
     [XmlInclude(typeof(EmptyCell))]
     [XmlInclude(typeof(BombCell))]
+    [XmlInclude(typeof(BlownCell))]
     public abstract class Cell : ICell
     {
         /// <summary>

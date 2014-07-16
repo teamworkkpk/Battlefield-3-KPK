@@ -5,9 +5,13 @@
     using BattleFiled.Cells;
     using BattleFiled.Renderer;
     using BattleFiled.Sounds;
+    using BattleFiled.SaveLoad;
 
     class Engine
     {
+        private const ConsoleKey SAVE_BUTTON = ConsoleKey.F5;
+        private const ConsoleKey LOAD_BUTTON = ConsoleKey.F6;
+
         private static Engine instance;
 
         public static Engine Instance
@@ -136,7 +140,7 @@
                 {
                     pressedKey = Console.ReadKey().Key;
                     bool keyHandled = this.OnDirectionKeyPressed(pressedKey) ||
-                        this.OnEnterKeyPressed(pressedKey);
+                        this.OnEnterKeyPressed(pressedKey) || this.OnSaveLoadButtonPressed(pressedKey);
 
                     this.renderer.DrawAll();
 
@@ -511,6 +515,36 @@
             field.PlaceMines();
 
             return field;
+        }
+
+        private bool OnSaveLoadButtonPressed(ConsoleKey key)
+        {            
+            switch (key)
+            {
+                case SAVE_BUTTON:
+                    {
+                        SaveLoadAPI saver = new SaveLoadAPI();
+                        
+                        MementoField mementoField = this.PlayField.SaveMemento();
+                        MementoPlayer mementoPlayer = new Player("Pesho").SaveMemento();
+
+                        saver.MementoField = mementoField;
+                        saver.MementoPlayer = mementoPlayer;
+                        saver.SaveGame();                        
+                        return true;
+                    }
+
+                case LOAD_BUTTON:
+                    {
+                        SaveLoadAPI saver = new SaveLoadAPI();
+                        saver.LoadGame();
+
+                        this.PlayField.LoadMemento(saver.MementoField);
+                        return true;
+                    }
+                default:
+                    return false;
+            }
         }
     }
 }

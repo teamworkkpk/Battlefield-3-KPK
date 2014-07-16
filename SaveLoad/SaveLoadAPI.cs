@@ -10,7 +10,7 @@
     /// The class is used together with MementoField.cs and MementoPlayer.cs
     /// The class is used for serialization of the game state.
     /// </summary>
-    public class SaveLoadInterface 
+    public class SaveLoadAPI 
     {
         private const string SavePath = @"..\..\saveGameState.xml";
                
@@ -25,7 +25,7 @@
         {
             using(StreamWriter writer = new StreamWriter(SavePath))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SaveLoadInterface));
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SaveLoadAPI));
 
                 xmlSerializer.Serialize(writer, this);
             }
@@ -37,13 +37,13 @@
         /// </summary>
         public void LoadGame()
         {   
-            SaveLoadInterface gameState;
+            SaveLoadAPI gameState;
 
             using(StreamReader reader = new StreamReader(SavePath))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SaveLoadInterface));
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SaveLoadAPI));
 
-                gameState = xmlSerializer.Deserialize(reader) as SaveLoadInterface;
+                gameState = xmlSerializer.Deserialize(reader) as SaveLoadAPI;
             }
 
             if (gameState == null)

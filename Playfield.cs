@@ -155,7 +155,7 @@
         /// Returns MementoField instance that keeps the current state of the Playfield.Instance
         /// </summary>
         /// <returns></returns>
-        public MementoField Save()
+        public MementoField SaveMemento()
         {
             if (cells == null)
             {
@@ -175,7 +175,7 @@
         /// Restore previously state of PlayField.Instance 
         /// </summary>
         /// <param name="memento"></param>
-        public void Load(MementoField memento)
+        public void LoadMemento(MementoField memento)
         {
             if (memento == null)
             {

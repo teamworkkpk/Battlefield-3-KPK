@@ -10,7 +10,7 @@ namespace BattleFiled.Cells
     /// <summary>
     /// Class that inherits Cell base class and represents destroyed cell on the field
     /// </summary>
-    internal class BlownCell : Cell
+    public class BlownCell : Cell
     {
         /// <summary>
         /// Initializes a new instance of the BlownCell class
