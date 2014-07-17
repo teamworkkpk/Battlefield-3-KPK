@@ -47,7 +47,7 @@
                 {
                     throw new ArgumentOutOfRangeException("Error: Memento detonated mines count cannot less than zero!");
                 }
-                else if (value > 100)
+                if (value > 100)
                 {
                     throw new ArgumentOutOfRangeException("Error: Memento detonated mines count cannot greater than 100!");
                 }
