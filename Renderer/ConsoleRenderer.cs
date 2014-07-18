@@ -11,19 +11,19 @@
         {
         }
         
-        protected override ICellView CreateCellView(ICell cell)
+        protected override ICellView CreateCellView(ICell cell, bool isBackgroundChanged)
         {
             ICellView view;
             switch (cell.CellType)
             { 
                 case CellType.Bomb:
-                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Red, ConsoleColor.Cyan,(char)cell.CellView);
+                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Red, isBackgroundChanged?ConsoleColor.Green:ConsoleColor.Blue, (char)cell.CellView);
                     break;
                 case CellType.BlownCell:
-                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Red, ConsoleColor.Cyan, '*');
+                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Red, ConsoleColor.Gray, '*');
                     break;
                 case CellType.EmptyCell:
-                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Cyan, ConsoleColor.Cyan, ' ');
+                    view = new ConsoleView(cell.X, cell.Y, ConsoleColor.Cyan, isBackgroundChanged ? ConsoleColor.Green : ConsoleColor.Blue, ' ');
                     break;
                 default:
                     throw new NotImplementedException();

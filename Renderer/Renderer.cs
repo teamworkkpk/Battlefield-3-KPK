@@ -52,12 +52,12 @@ namespace BattleFiled.Renderer
             DrawPointer();
         }
 
-        protected abstract ICellView CreateCellView(ICell cell);
+        protected abstract ICellView CreateCellView(ICell cell, bool shouldChangeColor);
 
         private void DrawPointer()
         {
             Console.SetCursorPosition(this.engine.Pointer.X + ConsolePadding, this.engine.Pointer.Y + ConsolePadding);
-            Console.BackgroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.DarkYellow;
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             char symbol = (char)engine.PlayField[this.engine.Pointer.X, this.engine.Pointer.Y].CellView;
@@ -83,6 +83,7 @@ namespace BattleFiled.Renderer
         private ICellView[,] CreateCellViews(Playfield playfield)
         { 
             int fieldSize = playfield.PlayfieldSize;
+            bool shouldChangeColor = false;
             ICellView[,] cellViews = new ICellView[fieldSize, fieldSize];
 
             //foreach (ICell cell in playfield)
@@ -93,9 +94,12 @@ namespace BattleFiled.Renderer
 
             for (int i = 0; i < playfield.PlayfieldSize; i++)
             {
+                shouldChangeColor = !shouldChangeColor;
+
                 for (int j = 0; j < playfield.PlayfieldSize; j++)
                 {
-                    cellViews[i, j] = CreateCellView(playfield[i,j]);
+                    cellViews[i, j] = CreateCellView(playfield[i, j], shouldChangeColor);
+                    shouldChangeColor = !shouldChangeColor;
                 }
                 
             }
@@ -109,7 +113,7 @@ namespace BattleFiled.Renderer
   
         private void OnCellRedefinedHandler(object sender, CellEventArgs e)
         {
-            ICellView view = this.CreateCellView(e.Target);
+            ICellView view = this.CreateCellView(e.Target,false);
             this.cellViews[e.Target.X, e.Target.Y] = view;
             view.Draw(this);
         }
@@ -121,14 +125,18 @@ namespace BattleFiled.Renderer
             int endX = e.RegionEndX;
             int endY = e.RegionEndY;
             Playfield playfield = this.engine.PlayField;
+            bool shouldChangeColor = false;
 
             for (int indexX = startX; indexX < endX; indexX++)
-            { 
+            {
+                shouldChangeColor = !shouldChangeColor;
+
                 for (int indexY = startY; indexY < endY; indexY++)
                 {
-                    ICellView view = this.CreateCellView(playfield[indexX, indexY]);
+                    ICellView view = this.CreateCellView(playfield[indexX, indexY], shouldChangeColor);
                     this.cellViews[indexX, indexY] = view;
                     view.Draw(this);
+                    shouldChangeColor = !shouldChangeColor;
                 }
             }
         }
