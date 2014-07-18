@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BattleFiled;
 using BattleFiled.Cells;
 using BattleFiled.SaveLoad;
+using System.Text;
 
 namespace BattleFieldTests
 {
@@ -129,7 +130,40 @@ namespace BattleFieldTests
             Assert.IsFalse(nonEmptyCellTypeFound, "Initializedfield must contain only empty cells");
         }
 
+        [TestMethod]
+        public void CheckIfPlayfieldCellCanBeSetWithNewValue()
+        {
+            var playField = Playfield.Instance;
+            playField.SetFieldSize(5);
+            playField.InitializeEmptyField();
+            BombCell bombCell = new BombCell(5);
 
+            playField[0, 0] = bombCell;
+
+            Assert.AreEqual(playField[0, 0].Equals(bombCell), true, string.Format("Exprected that cell in position 0,0 in the field is set as bombcell with size 5. Received {0}", playField[0, 0].Equals(bombCell)));
+        }
+
+        [TestMethod]
+        public void CheckIfFieldToStringMethodReturnsCorrectString()
+        {
+            var playField = Playfield.Instance;
+            playField.SetFieldSize(5);
+            playField.InitializeEmptyField();
+            BombCell bombCellOne = new BombCell(1);
+            BombCell bombCellTwo = new BombCell(2);
+            BombCell bombCellThree = new BombCell(3);
+            BombCell bombCellFour = new BombCell(4);
+            BombCell bombCellFive = new BombCell(5);
+
+            playField[0, 0] = bombCellOne;
+            playField[1, 1] = bombCellTwo;
+            playField[2, 2] = bombCellThree;
+            playField[3, 3] = bombCellFour;
+            playField[4, 4] = bombCellFive;
+            string playfieldStringExpected = playField.ToString();
+
+            Assert.AreEqual(playfieldStringExpected.Equals(playField.ToString()), true, string.Format("Exprected that cell in position 0,0 in the field is set as bombcell with size 5. Received {0} ",playfieldStringExpected));
+        }
 
         
     }

@@ -104,7 +104,6 @@
                 }
 
                 builder.AppendLine();
-                builder.AppendLine();
             }
 
             return builder.ToString();
@@ -117,7 +116,6 @@
                 throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
             }
 
-            //TODO find why all mines are displayed with white color, but not magenda and fix it
             int totalCellsCount = this.PlayfieldSize * this.PlayfieldSize;
             
             //CellView cellView;
