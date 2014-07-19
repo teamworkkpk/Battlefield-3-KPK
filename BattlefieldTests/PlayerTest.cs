@@ -3,7 +3,6 @@
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using BattleFiled;
-    using BattleFiled.Cells;
     using BattleFiled.SaveLoad;
 
     [TestClass]
@@ -164,8 +163,51 @@
         {
             Player player = new Player("Ivan");
             player.DetonatedMines = 12;
+            player.AddDetonatedMines(1);
             player.AddMove();
-            Assert.AreEqual("Player: Ivan, Detonated mines: 12, Moves: 1", player.ToString(), "Equals");
+            Assert.AreEqual("Player: Ivan, Detonated mines: 13, Moves: 1", player.ToString(), "Equals");
+        }
+
+        [TestMethod]
+        public void PlayerAddDetonatedMines()
+        {
+            Player player = new Player("Ivan");
+            player.DetonatedMines = 12;
+            player.AddDetonatedMines(1);
+            Assert.AreEqual(13, player.DetonatedMines);
+        }
+
+        [TestMethod]
+        public void PlayerAddMove()
+        {
+            Player player = new Player("Ivan");
+            player.AddMove();
+            Assert.AreEqual(1, player.MovesCount);
+        }
+
+        [TestMethod]
+        public void PlayerSaveMemento()
+        {
+            Player player = new Player("Ivan");
+            player.DetonatedMines = 12;
+            player.MovesCount = 11;
+            MementoPlayer mementoPlayer = player.SaveMemento();
+
+            Assert.AreEqual("Ivan", mementoPlayer.Name);
+            Assert.AreEqual(12, mementoPlayer.DetonatedMines);
+            Assert.AreEqual(11, mementoPlayer.MovesCount);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void PlayerRestoreMemento()
+        {
+            Player player = new Player("Ivan");
+            player.DetonatedMines = 12;
+            player.MovesCount = 11;
+            MementoPlayer mementoPlayer = new MementoPlayer();
+
+            player.RestoreMemento(mementoPlayer);
         }
     }
 }

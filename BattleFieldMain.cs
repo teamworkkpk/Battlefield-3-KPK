@@ -2,8 +2,6 @@
 {
     using System;
     using BattleFiled.GameEngine;
-    using BattleFiled.SaveLoad;
-    using BattleFiled.Cells;
 
     class BattleFieldMain
     {

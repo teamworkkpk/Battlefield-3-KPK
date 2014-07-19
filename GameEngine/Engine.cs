@@ -175,7 +175,7 @@
 
                 else if (currentCell.CellType == CellType.BlownCell || currentCell.CellType == CellType.EmptyCell)
                 {
-                    SoundsPlayer.PlayInvalidMove();
+                    SoundsPlayer.PlayInvalidSelection();
                 }
                 return true;
             }

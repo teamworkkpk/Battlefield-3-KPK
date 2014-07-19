@@ -5,31 +5,31 @@
     using System.Media;
     public class Sounds : ISounds
     {
-        private string pathToInvalidMoveSound;
+        private string pathToInvalidSelectionSound;
         private string pathToDetonatedBombSound;
         private string pathToPositionChangedSound;
 
-        public Sounds(string pathToInvalidMoveSound, string pathToDetonatedBombSound, string pathToPositionChangedSound)
+        public Sounds(string pathToInvalidSelectionSound, string pathToDetonatedBombSound, string pathToPositionChangedSound)
         {
-            this.PathToInvalidMoveSound = pathToInvalidMoveSound;
+            this.PathToInvalidSelectionSound = pathToInvalidSelectionSound;
             this.PathToDetonatedBombSound = pathToDetonatedBombSound;
             this.PathToPositionChangedSound = pathToPositionChangedSound;
         }
-        public string PathToInvalidMoveSound
+        public string PathToInvalidSelectionSound
         {
             get
             {
-                return this.pathToInvalidMoveSound;
+                return this.pathToInvalidSelectionSound;
             }
 
             set
             {
-                if (value == null)
+                if (value == null || value == "" || value == string.Empty)
                 {
                     throw new ArgumentNullException("Cannot set null path.");
                 }
 
-                this.pathToInvalidMoveSound = value;
+                this.pathToInvalidSelectionSound = value;
             }
         }
 
@@ -42,7 +42,7 @@
 
             set
             {
-                if (value == null)
+                if (value == null || value == "" || value == string.Empty)
                 {
                     throw new ArgumentNullException("Cannot set null path.");
                 }
@@ -60,7 +60,7 @@
 
             set
             {
-                if (value == null)
+                if (value == null || value == "" || value == string.Empty)
                 {
                     throw new ArgumentNullException("Cannot set null path.");
                 }
@@ -83,9 +83,9 @@
             }
         }
 
-        public void PlayInvalidMove()
+        public void PlayInvalidSelection()
         {
-            PlaySound(this.PathToInvalidMoveSound);
+            PlaySound(this.PathToInvalidSelectionSound);
         }
 
         public void PlayDetonatedBomb()

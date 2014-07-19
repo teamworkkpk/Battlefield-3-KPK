@@ -3,12 +3,14 @@
     using System;
     public interface ISounds
     {
-        string PathToInvalidMoveSound { get; set; }
+        string PathToInvalidSelectionSound { get; set; }
 
         string PathToDetonatedBombSound { get; set; }
 
-        void PlayInvalidMove();
+        void PlayInvalidSelection();
 
         void PlayDetonatedBomb();
+
+        void PlayPositionChanged();
     }
 }
