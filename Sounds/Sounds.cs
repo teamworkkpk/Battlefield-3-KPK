@@ -1,8 +1,9 @@
 ﻿namespace BattleFiled.Sounds
 {
     using System;
+    using System.IO;
     using System.Media;
-    class Sounds : ISounds
+    public class Sounds : ISounds
     {
         private string pathToInvalidMoveSound;
         private string pathToDetonatedBombSound;
@@ -70,8 +71,16 @@
 
         private void PlaySound(string pathToFile)
         {
-            SoundPlayer player = new SoundPlayer(pathToFile);
-            player.Play();
+            try
+            {
+                SoundPlayer player = new SoundPlayer(pathToFile);
+                player.Play();
+            }
+
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException("File at path: " + pathToFile + " is not found.");
+            }
         }
 
         public void PlayInvalidMove()
