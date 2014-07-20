@@ -6,6 +6,7 @@
     using BattleFiled.Renderer;
     using BattleFiled.Sounds;
     using BattleFiled.SaveLoad;
+    using BattleFiled.StartMenu;
 
     class Engine
     {
@@ -34,6 +35,7 @@
         private bool isRunning;
         private Playfield playField;
         private SaveLoadAPI gameSaver;
+        private StartScreen startMenu = StartScreen.Instance;
 
         protected ICell CurrentCell
         {
@@ -97,24 +99,34 @@
         public event EventHandler<CellRegionEventArgs> CellsInRegionRedefined;
 
         public Engine()
-        {
-            this.Initialize();
+        {            
+            startMenu.SetChoise();
+            this.HandleUserChoise();            
         }
 
-        public void Initialize()
-        {
-            //TODO: Read last playfield.
-            this.PlayField = this.GetNewField();
+        public void Initialize(bool isLoadGameChosen)
+        {            
+            this.gameSaver = new SaveLoadAPI();
+            
+            if (isLoadGameChosen)
+            {
+                gameSaver.LoadGame();    
+                this.PlayField = InitializeField(gameSaver.MementoField.FieldDimension);       
+                this.PlayField.LoadMemento(gameSaver.MementoField);
+            }
+            else
+            {
+                this.PlayField = this.GetNewField();
+            }            
             this.CurrentCell = this.PlayField[0, 0];
             this.SoundsPlayer = this.GetNewSoundsPlayer();
-            this.Pointer = new Pointer(this.playField[0, 0].X, this.playField[0, 0].Y);
-            this.gameSaver = new SaveLoadAPI();
+            this.Pointer = new Pointer(this.playField[0, 0].X, this.playField[0, 0].Y);            
         }
 
         public void Start()
-        {
+        {            
             if (!isRunning)
-            {
+            {               
                 this.keepRunning = true;
                 this.Run();
             }
@@ -538,6 +550,7 @@
                 case LOAD_BUTTON:
                     {
                         this.gameSaver.LoadGame();
+                        this.PlayField = InitializeField(gameSaver.MementoField.FieldDimension);
                         this.PlayField.LoadMemento(this.gameSaver.MementoField);
                         CellRegionEventArgs e = new CellRegionEventArgs(0, 0, 
                             this.PlayField.PlayfieldSize, this.PlayField.PlayfieldSize);
@@ -546,6 +559,23 @@
                     }
                 default:
                     return false;
+            }
+        }
+
+        private void HandleUserChoise()
+        {
+            if (startMenu.IsStartGameChosen)
+            {
+                this.Initialize(false);
+            } 
+            else if(startMenu.IsQuitGameChosen)
+            {
+                Console.WriteLine("Goodbye...");
+                this.isRunning = true;
+            }
+            else if (startMenu.IsLoadGameChosen)
+            {
+                this.Initialize(true);                
             }
         }
     }

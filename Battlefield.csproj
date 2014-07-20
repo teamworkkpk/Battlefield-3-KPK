@@ -94,6 +94,7 @@
     <Compile Include="SaveLoad\MementoPlayer.cs" />
     <Compile Include="Sounds\ISounds.cs" />
     <Compile Include="Sounds\Sounds.cs" />
+    <Compile Include="StartMenu\StartScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
