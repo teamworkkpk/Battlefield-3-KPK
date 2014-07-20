@@ -96,7 +96,7 @@
             };
         }
 
-        public void RestoreMemento(MementoPlayer memento)
+        public void LoadMemento(MementoPlayer memento)
         {
             if (memento == null)
             {

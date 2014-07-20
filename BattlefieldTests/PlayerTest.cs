@@ -207,7 +207,7 @@
             player.MovesCount = 11;
             MementoPlayer mementoPlayer = new MementoPlayer();
 
-            player.RestoreMemento(mementoPlayer);
+            player.LoadMemento(mementoPlayer);
         }
     }
 }

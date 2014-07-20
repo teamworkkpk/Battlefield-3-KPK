@@ -7,11 +7,13 @@
     using BattleFiled.Sounds;
     using BattleFiled.SaveLoad;
     using BattleFiled.StartMenu;
+    using System.Threading;
 
     class Engine
     {
         private const ConsoleKey SAVE_BUTTON = ConsoleKey.F5;
         private const ConsoleKey LOAD_BUTTON = ConsoleKey.F6;
+        private const int IZCHAKAI_MUZIKATA_DA_SA_IZSVIRI_BE = 700; //Magic constant DON'T TOUCH!
 
         private static Engine instance;
 
@@ -36,6 +38,7 @@
         private Playfield playField;
         private SaveLoadAPI gameSaver;
         private StartScreen startMenu = StartScreen.Instance;
+        private Player gamePlayer;
 
         protected ICell CurrentCell
         {
@@ -99,25 +102,28 @@
         public event EventHandler<CellRegionEventArgs> CellsInRegionRedefined;
 
         public Engine()
-        {            
-            startMenu.SetChoise();
-            this.HandleUserChoise();            
+        {
+            this.startMenu.SetChoise();
+            this.HandleUserChoise();
+            //this.Initialize(false);
         }
 
-        public void Initialize(bool isLoadGameChosen)
-        {            
+        private void Initialize(bool isLoadGameChosen)
+        {
             this.gameSaver = new SaveLoadAPI();
-            
+            this.gamePlayer = new Player("Pesho");
+
             if (isLoadGameChosen)
             {
-                gameSaver.LoadGame();    
-                this.PlayField = InitializeField(gameSaver.MementoField.FieldDimension);       
+                gameSaver.LoadGame();
+                this.PlayField = InitializeField(gameSaver.MementoField.FieldDimension);
                 this.PlayField.LoadMemento(gameSaver.MementoField);
             }
             else
             {
                 this.PlayField = this.GetNewField();
-            }            
+            }
+            
             this.CurrentCell = this.PlayField[0, 0];
             this.SoundsPlayer = this.GetNewSoundsPlayer();
             this.Pointer = new Pointer(this.playField[0, 0].X, this.playField[0, 0].Y);            
@@ -134,7 +140,8 @@
 
         public void Stop()
         {
-            this.keepRunning = false;
+            Thread.Sleep(IZCHAKAI_MUZIKATA_DA_SA_IZSVIRI_BE);
+            this.keepRunning = false;            
         }
 
         private void Run()
@@ -143,12 +150,11 @@
             {
                 this.renderer = new ConsoleRenderer(this);
             }
-
-            //why the same value is given as in Start() method ?
+           
             this.isRunning = true;
             while (keepRunning)
             {
-                //Check if any keys where pressed
+                
                 ConsoleKey pressedKey;
                 if (Console.KeyAvailable)
                 {
@@ -157,13 +163,13 @@
                         this.OnEnterKeyPressed(pressedKey) || this.OnSaveLoadButtonPressed(pressedKey);
 
                     this.renderer.DrawAll();
+                    this.IsGameOver();
 
                     //Clear any pending keypresses from the inputstream.
                     while (Console.KeyAvailable)
                     {
                         Console.ReadKey(true);
-                    }
-
+                    }                    
                 }
             }
             this.isRunning = false;
@@ -181,8 +187,8 @@
 
                 if (currentCell.CellType == CellType.Bomb)
                 {
-                    HandleExplosion(currentCell as BombCell);
                     SoundsPlayer.PlayDetonatedBomb();
+                    HandleExplosion(currentCell as BombCell);                    
                 }
 
                 else if (currentCell.CellType == CellType.BlownCell || currentCell.CellType == CellType.EmptyCell)
@@ -197,6 +203,8 @@
 
         private void HandleExplosion(BombCell currentCell)
         {
+            this.gamePlayer.DetonatedMines++;
+
             switch (currentCell.BombSize)
             {
                 case 1:
@@ -542,7 +550,7 @@
                 case SAVE_BUTTON:
                     {   
                         this.gameSaver.MementoField = this.PlayField.SaveMemento();
-                        this.gameSaver.MementoPlayer = new Player("Pesho").SaveMemento();
+                        this.gameSaver.MementoPlayer = this.gamePlayer.SaveMemento();
                         this.gameSaver.SaveGame();                        
                         return true;
                     }
@@ -552,6 +560,7 @@
                         this.gameSaver.LoadGame();
                         this.PlayField = InitializeField(gameSaver.MementoField.FieldDimension);
                         this.PlayField.LoadMemento(this.gameSaver.MementoField);
+                        this.gamePlayer.LoadMemento(this.gameSaver.MementoPlayer);
                         CellRegionEventArgs e = new CellRegionEventArgs(0, 0, 
                             this.PlayField.PlayfieldSize, this.PlayField.PlayfieldSize);
                         this.OnCellsInRegionRedefined(e);
@@ -577,6 +586,20 @@
             {
                 this.Initialize(true);                
             }
+        }
+
+        private void IsGameOver()
+        {            
+            foreach (ICell item in this.PlayField)
+            {
+                if (item.CellType == CellType.Bomb)
+                {
+                    return; 
+                }
+            }
+
+            renderer.DrawGameOver(this.gamePlayer.DetonatedMines);            
+            this.Stop();
         }
     }
 }

@@ -52,6 +52,12 @@ namespace BattleFiled.Renderer
             DrawPointer();
         }
 
+        public void DrawGameOver(int totalMoves)
+        {
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("Game over, score {0}", totalMoves);
+        }
+
         protected abstract ICellView CreateCellView(ICell cell, bool shouldChangeColor);
 
         private void DrawPointer()

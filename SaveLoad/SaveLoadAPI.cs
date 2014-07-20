@@ -5,6 +5,7 @@
     using System.Xml.Serialization;
     using System.Xml;
     using System.Runtime.Serialization;
+    using System.Threading;
 
     /// <summary>
     /// The class is used like interface for saving state of game objects.
@@ -30,7 +31,9 @@
 
                 xmlSerializer.Serialize(writer, this);
             }
+            Console.SetCursorPosition(0, 0);
             Console.WriteLine("Game successfully saved!");
+            Thread.Sleep(1000);
         }
 
         /// <summary>
@@ -66,7 +69,10 @@
             this.MementoField = gameState.MementoField;
             this.MementoPlayer = gameState.MementoPlayer;
 
+            
+            Console.SetCursorPosition(0, 0);
             Console.WriteLine("Game successfully loaded!");
+            Thread.Sleep(500);
         }
     }
 }
