@@ -45,9 +45,9 @@
 
             SaveLoadAPI gameState;
 
-            using(StreamReader reader = new StreamReader(SavePath))
+            using (StreamReader reader = new StreamReader(SavePath))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SaveLoadAPI));                
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(SaveLoadAPI));
                 gameState = xmlSerializer.Deserialize(reader) as SaveLoadAPI;
             }
 
@@ -56,11 +56,17 @@
                 throw new ArgumentNullException("Saved state cannot be null");
             }
 
+            //Mementofield can only be initialized if the size of the current playfield equals the size of the saved one.
+            if (gameState.MementoField.FieldDimension != Playfield.Instance.PlayfieldSize)
+            {
+                throw new InvalidOperationException("Current PlayField size is different than the size of the saved object and it cannot be initialized.");
+
+            }
+
             this.MementoField = gameState.MementoField;
             this.MementoPlayer = gameState.MementoPlayer;
-            
+
             Console.WriteLine("Game successfully loaded!");
         }
-        
     }
 }
