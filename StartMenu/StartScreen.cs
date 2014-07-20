@@ -1,12 +1,14 @@
 ﻿namespace BattleFiled.StartMenu
 {
     using System;
+    using System.IO;
     
     public class StartScreen
     {
+        private const string gameLogoPath = @"..\..\StartMenu\gameLogo.txt";
         private static StartScreen startScreenInstance;
         private const int CONSOLE_PADDING_LEFT = 10;
-        private const int CONSOLE_PADDING_TOP = 2;
+        private const int CONSOLE_PADDING_TOP = 8;
 
         private StartScreen()
         {            
@@ -78,6 +80,9 @@
 
         private void RenderStartUpScreen()
         {
+            string gameLogo = LoadGameLogo(gameLogoPath);
+            Console.WriteLine(gameLogo); 
+
             Console.SetCursorPosition(CONSOLE_PADDING_LEFT, CONSOLE_PADDING_TOP);
             int cursorLeft = CONSOLE_PADDING_LEFT;
             int cursorTop = CONSOLE_PADDING_TOP;
@@ -91,6 +96,18 @@
 
             Console.SetCursorPosition(cursorLeft, cursorTop);
             Console.WriteLine("3. Quit");            
+        }
+
+        private string LoadGameLogo(string logoPath)
+        {
+            string logo = string.Empty;
+
+            using (StreamReader reader = new StreamReader(logoPath))
+            {
+                logo = reader.ReadToEnd();
+            }
+
+            return logo;
         }
     }
 }
