@@ -100,7 +100,10 @@ namespace BattleFiled.Renderer
 
             for (int i = 0; i < playfield.PlayfieldSize; i++)
             {
-                shouldChangeColor = !shouldChangeColor;
+                if (playfield.PlayfieldSize % 2 == 0)
+                {
+                    shouldChangeColor = !shouldChangeColor;
+                }
 
                 for (int j = 0; j < playfield.PlayfieldSize; j++)
                 {
@@ -135,7 +138,10 @@ namespace BattleFiled.Renderer
 
             for (int indexX = startX; indexX < endX; indexX++)
             {
-                shouldChangeColor = !shouldChangeColor;
+                if (endX % 2 == 0)
+                {
+                    shouldChangeColor = !shouldChangeColor;
+                }
 
                 for (int indexY = startY; indexY < endY; indexY++)
                 {

@@ -13,7 +13,7 @@
     {
         private const ConsoleKey SAVE_BUTTON = ConsoleKey.F5;
         private const ConsoleKey LOAD_BUTTON = ConsoleKey.F6;
-        private const int IZCHAKAI_MUZIKATA_DA_SA_IZSVIRI_BE = 700; //Magic constant DON'T TOUCH!
+        private const int IZCHAKAI_MUZIKATA_DA_SA_IZSVIRI_BE = 1200; //Magic constant DON'T TOUCH!
 
         private static Engine instance;
 
