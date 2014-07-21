@@ -4,7 +4,7 @@ namespace BattleFiled.CellViews
     using System;
     using BattleFiled.Renderer.Context;
 
-    class ConsoleView:ICellView
+    public class ConsoleView:ICellView
     {
         private const int CONSOLE_PADDING = 5;
         public ConsoleView(int x, int y, ConsoleColor foreground, ConsoleColor background, char symbol)
@@ -22,7 +22,7 @@ namespace BattleFiled.CellViews
         public ConsoleColor Background { get; set; }
         public char Symbol { get; set; }
         
-        public void Draw(RenderingContext context)
+        public void Draw()
         {
            // Console.Write("front");
             Console.ResetColor();

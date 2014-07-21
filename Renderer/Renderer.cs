@@ -7,7 +7,7 @@ using BattleFiled.Renderer.Context;
 
 namespace BattleFiled.Renderer
 {
-    abstract class Renderer : RenderingContext
+    public abstract class Renderer : RenderingContext
     {
         protected ICellView[,] cellViews;
         private Engine engine;
@@ -46,7 +46,7 @@ namespace BattleFiled.Renderer
             
             foreach (ICellView view in this.cellViews)
             {
-                view.Draw(this);
+                view.Draw();
             }
 
             DrawPointer();
@@ -117,14 +117,14 @@ namespace BattleFiled.Renderer
 
         private void OnCellChangedHandler(object sender, CellEventArgs e)
         {
-            this.cellViews[e.Target.X, e.Target.Y].Draw(this);
+            this.cellViews[e.Target.X, e.Target.Y].Draw();
         }
   
         private void OnCellRedefinedHandler(object sender, CellEventArgs e)
         {
             ICellView view = this.CreateCellView(e.Target,false);
             this.cellViews[e.Target.X, e.Target.Y] = view;
-            view.Draw(this);
+            view.Draw();
         }
 
         private void OnCellsInRegionRedefinedHandler(object sender, CellRegionEventArgs e)
@@ -147,7 +147,7 @@ namespace BattleFiled.Renderer
                 {
                     ICellView view = this.CreateCellView(playfield[indexX, indexY], shouldChangeColor);
                     this.cellViews[indexX, indexY] = view;
-                    view.Draw(this);
+                    view.Draw();
                     shouldChangeColor = !shouldChangeColor;
                 }
             }
@@ -164,7 +164,7 @@ namespace BattleFiled.Renderer
             { 
                 for (int indexY = startY; indexY < endY; indexY++)
                 {
-                    this.cellViews[indexX, indexY].Draw(this);
+                    this.cellViews[indexX, indexY].Draw();
                 }
             }
         }

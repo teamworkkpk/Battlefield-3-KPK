@@ -2,7 +2,7 @@
 {
     using System;
     
-    class RenderingContext
+    public class RenderingContext
     {
     }
 }

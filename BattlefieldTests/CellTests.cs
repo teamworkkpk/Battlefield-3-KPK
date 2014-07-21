@@ -123,5 +123,36 @@
             Assert.AreEqual(blownCell.Color, clonedBlownCell.Color, "Cell Color has not cloned.");
             Assert.AreEqual(blownCell.CellView, clonedBlownCell.CellView, "CellView Color has not cloned.");
         }
+
+        [TestMethod]
+        public void TestIfCellMagendaColorIsCorrectlySetDisplayed()
+        {
+            BlownCell blownCell = new BlownCell();
+            blownCell.X = 2;
+            blownCell.Y = 3;
+            blownCell.Color = Color.Magenda;
+            blownCell.CellView = CellView.Bomb1;
+
+            string cellToString = blownCell.ToString();
+
+
+            Assert.AreEqual(cellToString, " 1 ", string.Format("!{0}!", cellToString));
+        }
+
+        [TestMethod]
+        public void TestIfCellWhiteColorIsCorrectlySetDisplayed()
+        {
+            BlownCell blownCell = new BlownCell();
+            blownCell.X = 2;
+            blownCell.Y = 3;
+            blownCell.Color = Color.White;
+            blownCell.CellView = CellView.Bomb1;
+
+            string cellToString = blownCell.ToString();
+
+
+            Assert.AreEqual(cellToString, " 1 ", string.Format("!{0}!", cellToString));
+        }
+
     }
 }

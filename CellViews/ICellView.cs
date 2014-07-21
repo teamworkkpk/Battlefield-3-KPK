@@ -3,8 +3,8 @@
     using BattleFiled.Renderer.Context;
     using System;
 
-    interface ICellView
+    public interface ICellView
     {
-        void Draw(RenderingContext context);
+        void Draw();
     }
 }

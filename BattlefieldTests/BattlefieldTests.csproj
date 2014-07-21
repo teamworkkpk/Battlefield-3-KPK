@@ -59,6 +59,8 @@
     <Compile Include="CellTests.cs" />
     <Compile Include="ReandomGeneratorTests.cs" />
     <Compile Include="SaveLoadAPITests.cs" />
+    <Compile Include="CellViewTests.cs" />
+    <Compile Include="ConsoleRendererTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Battlefield.csproj">

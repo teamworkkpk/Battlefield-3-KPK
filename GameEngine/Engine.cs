@@ -8,8 +8,9 @@
     using BattleFiled.SaveLoad;
     using BattleFiled.StartMenu;
     using System.Threading;
+    using Interfaces;
 
-    class Engine
+    public class Engine : IEngine
     {
         private const ConsoleKey SAVE_BUTTON = ConsoleKey.F5;
         private const ConsoleKey LOAD_BUTTON = ConsoleKey.F6;

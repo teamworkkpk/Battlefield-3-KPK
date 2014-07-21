@@ -5,7 +5,7 @@
     using BattleFiled.Cells;
     using BattleFiled.GameEngine;
 
-    class ConsoleRenderer : Renderer
+    public class ConsoleRenderer : Renderer
     {
         public ConsoleRenderer(Engine engine) : base(engine)
         {

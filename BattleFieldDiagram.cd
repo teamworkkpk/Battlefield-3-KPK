@@ -17,14 +17,14 @@
   <Class Name="BattleFiled.Player" Collapsed="true">
     <Position X="7.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAGAAAAEAQAAAAEAAACAEAAAgBAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAEAAAAEAQAIAAEAAACAEAAAgBAAAA=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BattleFiled.Playfield" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="9.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAgJABAAAAABAECABQAAQCAAAEAAAAQAACAAAAAAA=</HashCode>
+      <HashCode>gAAAABABAAAAABAECABQAAQCIAAEAAACQAACAAAAAAA=</HashCode>
       <FileName>Playfield.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -119,9 +119,10 @@
   <Class Name="BattleFiled.GameEngine.Engine" Collapsed="true">
     <Position X="9.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAARIEACEDQQBIAGAAUQBghANgQgAAaFAAAAAQhAI=</HashCode>
+      <HashCode>gEAgARIEICMCQQBJBEAASaFghANgQAAAYECCAACQhAI=</HashCode>
       <FileName>GameEngine\Engine.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="BattleFiled.GameEngine.PlayfieldChangedEventArgs" Collapsed="true">
     <Position X="11.25" Y="2.5" Width="1.5" />
@@ -140,15 +141,8 @@
   <Class Name="BattleFiled.Renderer.Renderer" Collapsed="true">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEEAAoAAAAAABAAAAAAAAABAAEAEAAAAAABAAQAAAA=</HashCode>
+      <HashCode>AAEEAAoAAAAAABAgMAAAAAAIAAEAEAAAAAABAAQAAAA=</HashCode>
       <FileName>Renderer\Renderer.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="BattleFiled.Renderer.Context.RenderingContext" Collapsed="true">
-    <Position X="0.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Renderer\Context\RenderingContext.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BattleFiled.SaveLoad.MementoField" Collapsed="true">
@@ -175,10 +169,17 @@
   <Class Name="BattleFiled.Sounds.Sounds" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="11.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAgAAAAAAAIAAwAAAAAAgAAAAAAAAAgAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACBCAIAIAAwAAAAAACAABAAAAAAgAAA=</HashCode>
       <FileName>Sounds\Sounds.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BattleFiled.Renderer.Context.RenderingContext" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Renderer\Context\RenderingContext.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Interface Name="BattleFiled.Cells.ICell" Collapsed="true">
     <Position X="7.75" Y="4.75" Width="1.5" />
@@ -208,18 +209,18 @@
       <FileName>Interfaces\IRender.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="BattleFiled.Sounds.ISounds" Collapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABCAIAIAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Sounds\ISounds.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Interface Name="BattleFiled.Renderer.Context.IRenderingContext" Collapsed="true">
     <Position X="14.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Renderer\Context\IRenderingContext.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="BattleFiled.Sounds.ISounds" Collapsed="true">
-    <Position X="7.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAIAAQAAAAAAgAAAAAAAAAAAAA=</HashCode>
-      <FileName>Sounds\ISounds.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="BattleFiled.CellView" Collapsed="true">

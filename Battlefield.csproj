@@ -66,13 +66,13 @@
     <Compile Include="Cells\BombCell.cs" />
     <Compile Include="Cells\EmptyCell.cs" />
     <Compile Include="Cells\CellType.cs" />
-    <Compile Include="CellViews\BombConsoleView.cs" />
     <Compile Include="CellViews\ConsoleView.cs" />
     <Compile Include="CellViews\ICellView.cs" />
     <Compile Include="GameEngine\CellEventArgs.cs" />
     <Compile Include="Cells\CellFactory.cs" />
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="Enumerations.cs" />
+    <Compile Include="Interfaces\IEngine.cs" />
     <Compile Include="Playfield.cs" />
     <Compile Include="GameEngine\CellRegionEventArgs.cs" />
     <Compile Include="GameEngine\PlayfieldChangedEventArgs.cs" />
@@ -84,11 +84,10 @@
     <Compile Include="Pointer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="RandomGenerator.cs" />
-    <Compile Include="Render.cs" />
     <Compile Include="Renderer\ConsoleRenderer.cs" />
-    <Compile Include="Renderer\Renderer.cs" />
     <Compile Include="Renderer\Context\IRenderingContext.cs" />
     <Compile Include="Renderer\Context\RenderingContext.cs" />
+    <Compile Include="Renderer\Renderer.cs" />
     <Compile Include="SaveLoad\SaveLoadAPI.cs" />
     <Compile Include="SaveLoad\MementoField.cs" />
     <Compile Include="SaveLoad\MementoPlayer.cs" />

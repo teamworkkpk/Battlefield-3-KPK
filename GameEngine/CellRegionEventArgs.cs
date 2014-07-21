@@ -2,7 +2,7 @@
 {
     using System;
 
-    class CellRegionEventArgs : EventArgs
+    public class CellRegionEventArgs : EventArgs
     {
         private int regionStartX;
         private int regionStartY;

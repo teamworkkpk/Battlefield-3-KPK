@@ -3,7 +3,7 @@
     using System;
     using BattleFiled;
     
-    class PlayfieldChangedEventArgs : EventArgs
+    public class PlayfieldChangedEventArgs : EventArgs
     {
         private Playfield newPlayField;
         private int playfieldSize;

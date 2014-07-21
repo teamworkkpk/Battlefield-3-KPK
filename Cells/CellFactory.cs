@@ -23,9 +23,6 @@ namespace BattleFiled.Cells
             //// Uses "lazy initialization"
             ICell cell;
 
-            // Check if cell of CellType is already created and if it's not of type CellType.Bomb
-            // if already created makes it point to the reference of the already created cell
-            // if not created new Cell of type CellType
                 switch (cellType)
                 {
                     case CellType.EmptyCell:
@@ -43,7 +40,7 @@ namespace BattleFiled.Cells
                         cell.CellView = CellView.Blown;
                         break;
                     default:
-                        throw new NotImplementedException();
+                        throw new ArgumentException("Invalid cell type give to the cell factory");
                 }
 
             return cell;
