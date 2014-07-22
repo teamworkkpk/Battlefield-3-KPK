@@ -38,7 +38,7 @@
         private bool isRunning;
         private Playfield playField;
         private SaveLoadAPI gameSaver;
-        private StartScreen startMenu = StartScreen.Instance;
+        private static StartScreen startMenu = StartScreen.Instance;
         private Player gamePlayer;
 
         protected ICell CurrentCell
@@ -104,7 +104,7 @@
 
         public Engine()
         {
-            this.startMenu.SetChoise(ConsoleKey.Enter);
+            startMenu.SetChoise(ConsoleKey.Enter);
             this.HandleUserChoise();
             //this.Initialize(false);
         }
