@@ -65,6 +65,7 @@
     <Compile Include="KeyEventsTests.cs" />
     <Compile Include="CellEventsTests.cs" />
     <Compile Include="CellRegionEventTests.cs" />
+    <Compile Include="PlayFieldChangeEventArgsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Battlefield.csproj">
