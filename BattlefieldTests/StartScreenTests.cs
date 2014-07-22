@@ -37,5 +37,93 @@ namespace BattlefieldTests
             
             Assert.AreEqual(retVal, true);
         }
+
+        [TestMethod]
+        public void TestIfD3KeyIsHandledByStartScreenHandleD2Key()
+        {
+            ConsoleKey key = ConsoleKey.D2;
+            StartScreen startscreen = StartScreen.Instance;
+            PrivateObject obj = new PrivateObject(startscreen);
+            var retVal = obj.Invoke("HandleD2Key", key);
+
+            Assert.AreEqual(retVal, true);
+        }
+
+        [TestMethod]
+        public void TestIfD3KeyIsHandledByStartScreenHandleD1Key()
+        {
+            ConsoleKey key = ConsoleKey.D1;
+            StartScreen startscreen = StartScreen.Instance;
+            PrivateObject obj = new PrivateObject(startscreen);
+            var retVal = obj.Invoke("HandleD1Key", key);
+
+            Assert.AreEqual(retVal, true);
+        }
+
+        [TestMethod]
+        public void TestIfNumpad3KeyIsHandledByStartScreenHandleD3Key()
+        {
+            ConsoleKey key = ConsoleKey.NumPad3;
+            StartScreen startscreen = StartScreen.Instance;
+            PrivateObject obj = new PrivateObject(startscreen);
+            var retVal = obj.Invoke("HandleD3Key", key);
+
+            Assert.AreEqual(retVal, true);
+        }
+
+        [TestMethod]
+        public void TestIfNumpad2KeyIsHandledByStartScreenHandleD2Key()
+        {
+            ConsoleKey key = ConsoleKey.NumPad2;
+            StartScreen startscreen = StartScreen.Instance;
+            PrivateObject obj = new PrivateObject(startscreen);
+            var retVal = obj.Invoke("HandleD2Key", key);
+
+            Assert.AreEqual(retVal, true);
+        }
+
+        [TestMethod]
+        public void TestIfNumpad1KeyIsHandledByStartScreenHandleD1Key()
+        {
+            ConsoleKey key = ConsoleKey.NumPad1;
+            StartScreen startscreen = StartScreen.Instance;
+            PrivateObject obj = new PrivateObject(startscreen);
+            var retVal = obj.Invoke("HandleD1Key", key);
+
+            Assert.AreEqual(retVal, true);
+        }
+
+        [TestMethod]
+        public void TestIfStartScreenHandleD3KeyRerunsFalseWhenSomeOtherKeyThanD3OrNumPad3IsChosen()
+        {
+            ConsoleKey key = ConsoleKey.NumPad1;
+            StartScreen startscreen = StartScreen.Instance;
+            PrivateObject obj = new PrivateObject(startscreen);
+            var retVal = obj.Invoke("HandleD3Key", key);
+
+            Assert.AreEqual(retVal, false);
+        }
+
+        [TestMethod]
+        public void TestIfStartScreenHandleD2KeyRerunsFalseWhenSomeOtherKeyThanD2OrNumPad2IsChosen()
+        {
+            ConsoleKey key = ConsoleKey.NumPad1;
+            StartScreen startscreen = StartScreen.Instance;
+            PrivateObject obj = new PrivateObject(startscreen);
+            var retVal = obj.Invoke("HandleD2Key", key);
+
+            Assert.AreEqual(retVal, false);
+        }
+
+        [TestMethod]
+        public void TestIfStartScreenHandleD1KeyRerunsFalseWhenSomeOtherKeyThanD1OrNumPad1IsChosen()
+        {
+            ConsoleKey key = ConsoleKey.NumPad2;
+            StartScreen startscreen = StartScreen.Instance;
+            PrivateObject obj = new PrivateObject(startscreen);
+            var retVal = obj.Invoke("HandleD1Key", key);
+
+            Assert.AreEqual(retVal, false);
+        }
     }
 }
