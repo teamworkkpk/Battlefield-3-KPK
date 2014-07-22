@@ -11,8 +11,8 @@
 
         public CellRegionEventArgs(int regionStartX, int regionStartY, int regionEndX, int regionEndY)
         {
-            this.regionStartX = regionStartX;
-            this.regionStartY = regionStartY;
+            this.RegionStartX = regionStartX;
+            this.RegionStartY = regionStartY;
             this.RegionEndX = regionEndX;
             this.RegionEndY = regionEndY;
         }
