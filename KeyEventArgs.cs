@@ -2,7 +2,7 @@
 {
     using System;
 
-    class KeyEventArgs : EventArgs
+    public class KeyEventArgs : EventArgs
     {
         private readonly ConsoleKey pressedKey;
 

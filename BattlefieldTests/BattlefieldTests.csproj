@@ -62,6 +62,7 @@
     <Compile Include="CellViewTests.cs" />
     <Compile Include="ConsoleRendererTests.cs" />
     <Compile Include="StartScreenTests.cs" />
+    <Compile Include="KeyEventsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Battlefield.csproj">

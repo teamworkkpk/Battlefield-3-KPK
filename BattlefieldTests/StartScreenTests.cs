@@ -34,8 +34,8 @@ namespace BattlefieldTests
             StartScreen startscreen = StartScreen.Instance;
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD3Key",key);
-            
-            Assert.AreEqual(retVal, true);
+
+            Assert.AreEqual(retVal, true, "Expected result true when StartScreen.HandleD3Key is called with D3 key. Returned false");
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ namespace BattlefieldTests
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD2Key", key);
 
-            Assert.AreEqual(retVal, true);
+            Assert.AreEqual(retVal, true, "Expected result true when StartScreen.HandleD2Key is called with D2 key. Returned false");
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace BattlefieldTests
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD1Key", key);
 
-            Assert.AreEqual(retVal, true);
+            Assert.AreEqual(retVal, true, "Expected result true when StartScreen.HandleD1Key is called with D1 key. Returned false");
         }
 
         [TestMethod]
@@ -68,7 +68,7 @@ namespace BattlefieldTests
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD3Key", key);
 
-            Assert.AreEqual(retVal, true);
+            Assert.AreEqual(retVal, true, "Expected result true when StartScreen.HandleD3Key is called with NumPad3. Returned false");
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace BattlefieldTests
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD2Key", key);
 
-            Assert.AreEqual(retVal, true);
+            Assert.AreEqual(retVal, true, "Expected result true when StartScreen.HandleD2Key is called with NumPad2. Returned false");
         }
 
         [TestMethod]
@@ -90,7 +90,7 @@ namespace BattlefieldTests
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD1Key", key);
 
-            Assert.AreEqual(retVal, true);
+            Assert.AreEqual(retVal, true, "Expected result true when StartScreen.HandleD1Key is called with NumPad1. Returned false");
         }
 
         [TestMethod]
@@ -101,7 +101,7 @@ namespace BattlefieldTests
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD3Key", key);
 
-            Assert.AreEqual(retVal, false);
+            Assert.AreEqual(retVal, false, "Expected result false when StartScreen.HandleD3Key is called with different key than D3 or NumPad3. Returned true");
         }
 
         [TestMethod]
@@ -112,7 +112,7 @@ namespace BattlefieldTests
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD2Key", key);
 
-            Assert.AreEqual(retVal, false);
+            Assert.AreEqual(retVal, false,"Expected result false when StartScreen.HandleD2Key is called with different key than D2 or NumPad2. Returned true");
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@ namespace BattlefieldTests
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD1Key", key);
 
-            Assert.AreEqual(retVal, false);
+            Assert.AreEqual(retVal, false, "Expected result false when StartScreen.HandleD1Key is called with different key than D1 or NumPad1. Returned true");
         }
 
         [TestMethod]
