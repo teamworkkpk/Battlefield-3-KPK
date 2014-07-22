@@ -125,5 +125,32 @@ namespace BattlefieldTests
 
             Assert.AreEqual(retVal, false);
         }
+
+        [TestMethod]
+        public void TestIfStartScreenSetChoiseIsExecutedWithD1Key()
+        {
+            StartScreen startscreen = StartScreen.Instance;
+            startscreen.SetChoise(ConsoleKey.D1);
+
+            Assert.AreEqual(true, true, "StartScreen.SetChoise() didn't execute with D1 key passed");
+        }
+
+        [TestMethod]
+        public void TestIfStartScreenSetChoiseIsExecutedWithD2Key()
+        {
+            StartScreen startscreen = StartScreen.Instance;
+            startscreen.SetChoise(ConsoleKey.D2);
+
+            Assert.AreEqual(true, true, "StartScreen.SetChoise() didn't execute with D2 key passed");
+        }
+
+        [TestMethod]
+        public void TestIfStartScreenSetChoiseIsExecutedWithD3Key()
+        {
+            StartScreen startscreen = StartScreen.Instance;
+            startscreen.SetChoise(ConsoleKey.D3);
+
+            Assert.AreEqual(true, true, "StartScreen.SetChoise() didn't execute with D3 key passed");
+        }
     }
 }

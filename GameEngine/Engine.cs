@@ -104,7 +104,7 @@
 
         public Engine()
         {
-            this.startMenu.SetChoise();
+            this.startMenu.SetChoise(ConsoleKey.Enter);
             this.HandleUserChoise();
             //this.Initialize(false);
         }

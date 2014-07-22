@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
 
-namespace BattleFiled.Interfaces
-{
-    interface IStartScreen
-    {
-    }
-}
+//namespace BattleFiled.Interfaces
+//{
+//    public interface IStartScreen
+//    {
+//        void SetChoise();
+//        bool IsStartGameChosen{get;set;}
+//    }
+//}

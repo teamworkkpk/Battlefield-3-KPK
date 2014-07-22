@@ -4,14 +4,14 @@
     using System;
     using System.IO;
     
-    public class StartScreen : IStartScreen
+    public class StartScreen
     {
         private const string gameLogoPath = @"..\..\StartMenu\gameLogo.txt";
         private static StartScreen startScreenInstance;
         private const int CONSOLE_PADDING_LEFT = 10;
         private const int CONSOLE_PADDING_TOP = 8;
 
-        private StartScreen()
+        protected StartScreen()
         {            
         }
 
@@ -33,17 +33,23 @@
 
         public bool IsLoadGameChosen { get; set; }
 
-        public void SetChoise()
+        public void SetChoise(ConsoleKey pressedKey)
         {
-            ConsoleKey pressedKey;
+            //ConsoleKey pressedKey;
             bool keyHandled = false;
 
             while (!keyHandled)
             {
                 RenderStartUpScreen();
-                pressedKey = Console.ReadKey().Key;
-                keyHandled = this.HandleD1Key(pressedKey) || this.HandleD2Key(pressedKey) || this.HandleD3Key(pressedKey);               
+                
+                keyHandled = this.HandleD1Key(pressedKey) || this.HandleD2Key(pressedKey) || this.HandleD3Key(pressedKey);
+                
+                if(!keyHandled)
+                {
+                    pressedKey = Console.ReadKey().Key;
+                }
             }
+            
         }
 
         private bool HandleD1Key(ConsoleKey key)
