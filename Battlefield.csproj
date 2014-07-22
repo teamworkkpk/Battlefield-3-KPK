@@ -73,6 +73,7 @@
     <Compile Include="GameEngine\Engine.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Interfaces\IEngine.cs" />
+    <Compile Include="Interfaces\IStartScreen.cs" />
     <Compile Include="Playfield.cs" />
     <Compile Include="GameEngine\CellRegionEventArgs.cs" />
     <Compile Include="GameEngine\PlayfieldChangedEventArgs.cs" />

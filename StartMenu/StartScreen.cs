@@ -1,9 +1,10 @@
 ﻿namespace BattleFiled.StartMenu
 {
+    using BattleFiled.Interfaces;
     using System;
     using System.IO;
     
-    public class StartScreen
+    public class StartScreen : IStartScreen
     {
         private const string gameLogoPath = @"..\..\StartMenu\gameLogo.txt";
         private static StartScreen startScreenInstance;

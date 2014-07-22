@@ -61,6 +61,7 @@
     <Compile Include="SaveLoadAPITests.cs" />
     <Compile Include="CellViewTests.cs" />
     <Compile Include="ConsoleRendererTests.cs" />
+    <Compile Include="StartScreenTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Battlefield.csproj">

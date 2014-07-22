@@ -130,8 +130,6 @@ namespace BattleFiled.Cells
                 case Color.Magenda:
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     break;
-                default:
-                    throw new ArgumentException("Ivalid color");
             }
             //// edit to cast char instead of int, so the symbol is returned
             return " " + ((char)this.CellView).ToString() + " ";
