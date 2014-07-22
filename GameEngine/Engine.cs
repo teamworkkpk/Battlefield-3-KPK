@@ -9,6 +9,7 @@
     using BattleFiled.StartMenu;
     using System.Threading;
     using Interfaces;
+    using System.IO;
 
     public class Engine : IEngine
     {
@@ -16,8 +17,9 @@
         private const ConsoleKey LOAD_BUTTON = ConsoleKey.F6;
         private const int IZCHAKAI_MUZIKATA_DA_SA_IZSVIRI_BE = 1200; //Magic constant DON'T TOUCH!
 
-        private static Engine instance;
-
+        private static Engine instance;       
+        public static StartScreen startMenu = StartScreen.Instance;
+        public static StringReader fieldSizeUnitTestSetter;
         public static Engine Instance
         {
             get
@@ -37,8 +39,7 @@
         private bool keepRunning;
         private bool isRunning;
         private Playfield playField;
-        private SaveLoadAPI gameSaver;
-        private static StartScreen startMenu = StartScreen.Instance;
+        private SaveLoadAPI gameSaver;        
         private Player gamePlayer;
 
         protected ICell CurrentCell
@@ -519,6 +520,11 @@
         private int ReadSize()
         {
             Console.Write("Enter the size of the battle field: n = ");
+
+            if (fieldSizeUnitTestSetter != null)
+            {
+                Console.SetIn(fieldSizeUnitTestSetter);
+            }
 
             int sizeOfField;
             if (Int32.TryParse(Console.ReadLine(), out sizeOfField))

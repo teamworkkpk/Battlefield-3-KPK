@@ -38,6 +38,12 @@
             //ConsoleKey pressedKey;
             bool keyHandled = false;
 
+            //Added as workaround for unit tests
+            if (IsStartGameChosen == true || IsQuitGameChosen == true || IsLoadGameChosen == true)
+            {
+                return;
+            }
+
             while (!keyHandled)
             {
                 RenderStartUpScreen();
