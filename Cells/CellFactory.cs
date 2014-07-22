@@ -8,19 +8,19 @@ namespace BattleFiled.Cells
     using System;
 
     /// <summary>
-    /// Creates and returns new Cell depending on CellType
+    /// Creates and returns new Cell depending on CellType.
     /// </summary>
     internal static class CellFactory
     {
         /// <summary>
-        /// Checks if cell of CellType is already created and returns it's reference. If not created, 
-        /// creates new cell of type CellType and adds it to the dictionary
+        /// Checks if cell of CellType is already created and returns it's reference, If not created,
+        /// creates new cell of type CellType and adds it to the dictionary.
         /// </summary>
-        /// <param name="cellType">CellTypes cellType</param>
-        /// <returns>ICell cell</returns>
+        /// <param name="cellType">CellTypes cellType.</param>
+        /// <returns>ICell cell.</returns>
         public static ICell CreateCell(CellType cellType)
         {
-            //// Uses "lazy initialization"
+            //// Uses "lazy initialization".
             ICell cell;
 
                 switch (cellType)
@@ -32,7 +32,7 @@ namespace BattleFiled.Cells
                     case CellType.Bomb:
                         int bombSize = RandomGenerator.GetRandomNumber(1, 6);
                         cell = new BombCell(bombSize);
-                        cell.CellView = (CellView)bombSize+48;
+                        cell.CellView = (CellView)bombSize + 48;
                         break;
 
                     case CellType.BlownCell:
