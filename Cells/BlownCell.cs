@@ -8,18 +8,21 @@ namespace BattleFiled.Cells
     using System;
 
     /// <summary>
-    /// Class that inherits Cell base class and represents destroyed cell on the field
+    /// Class that inherits Cell base class and represents destroyed cell on the field.
     /// </summary>
     public class BlownCell : Cell
     {
         /// <summary>
-        /// Initializes a new instance of the BlownCell class
+        /// Initializes a new instance of the BlownCell class.
         /// </summary>
         public BlownCell() : base(CellType.BlownCell)
         {            
         }
 
-        // maybe should be implemented in the parent class
+        /// <summary>
+        /// Makes deep copy of the object.
+        /// </summary>
+        /// <returns>Returns BlownCell.</returns>
         public override ICell Clone()
         {
             return new BlownCell()
