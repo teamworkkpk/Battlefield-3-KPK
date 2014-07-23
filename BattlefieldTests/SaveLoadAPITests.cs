@@ -16,7 +16,6 @@
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
         public void SaveLoadApiLoadGameTest()
         {
             var saveLoadApi = new SaveLoadAPI();

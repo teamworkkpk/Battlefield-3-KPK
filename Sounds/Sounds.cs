@@ -3,6 +3,9 @@
     using System;
     using System.IO;
     using System.Media;
+    /// <summary>
+    /// Contains methods for playing sounds.
+    /// </summary>
     public class Sounds : ISounds
     {
         private string pathToInvalidSelectionSound;
@@ -15,6 +18,10 @@
             this.PathToDetonatedBombSound = pathToDetonatedBombSound;
             this.PathToPositionChangedSound = pathToPositionChangedSound;
         }
+
+        /// <summary>
+        /// Sets path to a wave file to be played when invalid selection occurs
+        /// </summary>
         public string PathToInvalidSelectionSound
         {
             get
@@ -33,6 +40,9 @@
             }
         }
 
+        /// <summary>
+        /// Sets path to a wave file to be played when a bomb is detonated
+        /// </summary>
         public string PathToDetonatedBombSound
         {
             get
@@ -51,6 +61,9 @@
             }
         }
 
+        /// <summary>
+        /// Sets path to a wave file to be played when the position on the field is changed
+        /// </summary>
         public string PathToPositionChangedSound
         {
             get
@@ -69,6 +82,10 @@
             }
         }
 
+        /// <summary>
+        /// Gets new instance of <see cref="System.Media.SoundPlayer"/> class to play the sound at <see cref="string pathToFile"/>.
+        /// </summary>
+        /// <param name="pathToFile">>Sets path at which <see cref="System.Media.SoundPlayer"/> instance searches for the file</param>
         private void PlaySound(string pathToFile)
         {
             try
@@ -83,16 +100,25 @@
             }
         }
 
+        /// <summary>
+        /// Plays a sound when the selection is invalid, the method internally initializes <see cref="System.Media.SoundPlayer"/> class
+        /// </summary>
         public void PlayInvalidSelection()
         {
             PlaySound(this.PathToInvalidSelectionSound);
         }
 
+        /// <summary>
+        /// Plays a sound when a bomb is detonated, the method internally initializes <see cref="System.Media.SoundPlayer"/> class
+        /// </summary>
         public void PlayDetonatedBomb()
         {
             PlaySound(this.PathToDetonatedBombSound);
         }
 
+        /// <summary>
+        /// Plays a sound when the the position on the field has changed, the method internally initializes <see cref="System.Media.SoundPlayer"/> class
+        /// </summary>
         public void PlayPositionChanged()
         {
             PlaySound(this.PathToPositionChangedSound);
