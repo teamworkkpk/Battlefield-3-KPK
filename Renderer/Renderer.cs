@@ -1,22 +1,39 @@
-﻿using System;
-using BattleFiled;
-using BattleFiled.Cells;
-using BattleFiled.GameEngine;
-using BattleFiled.CellViews;
-using BattleFiled.Renderer.Context;
-
-namespace BattleFiled.Renderer
+﻿namespace BattleFiled.Renderer
 {
+    using System;
+    using BattleFiled.Cells;
+    using BattleFiled.GameEngine;
+    using BattleFiled.CellViews;
+    using BattleFiled.Renderer.Context;
+    
+    /// <summary>
+    /// Abstract class defining the behavior and interaction with an 
+    /// <see cref="GameEngine" />class.
+    /// Renderer-derived classes respond to events fired by the Engine object they are
+    /// explicitly attached by changing the state of <see cref="ICellView" /> objects they control.
+    /// This class only binds event handlers and some common behavior, concrete classes
+    /// should provide implementation or redefine it according to the rendering context 
+    /// (Console, Windows Forms, WPF, OpenGL, DirectX and etc.)
+    /// </summary>
     public abstract class Renderer : RenderingContext
     {
+        /// <summary>
+        /// A reference to the <see cref="BattleFiled.GameEngine.GameEngine"/> object this Renderer is attached to.
+        /// </summary>
+        protected readonly Engine engine;
+
+        /// <summary>
+        /// A container for holding and accessing all controlled ICellView objects.
+        /// </summary>
         protected ICellView[,] cellViews;
-        private Engine engine;
-        private const int ConsolePadding = 5;
 
-        public Renderer(Engine engine)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Renderer" /> class.
+        /// </summary>
+        /// <param name="engine">The engine.</param>
+        protected Renderer(Engine engine)
         {
-            Console.CursorVisible = false;
-
+            
             if (engine == null)
             {
                 throw new ArgumentNullException("Null Engine provided.");
@@ -28,7 +45,6 @@ namespace BattleFiled.Renderer
                 this.cellViews = this.CreateCellViews(engine.PlayField);
                 
                 this.DrawAll();
-
             }
 
             //Register event handlers.
@@ -40,94 +56,84 @@ namespace BattleFiled.Renderer
             this.engine.CellChanged += this.OnCellChangedHandler;
         }
   
-        public void DrawAll()
+
+        /// <summary>
+        /// Initiates a draw procedure on controlled <see cref="ICellView"/> ibjects.
+        /// </summary>
+        public virtual void DrawAll()
         {
-            Console.Clear();
-            
             foreach (ICellView view in this.cellViews)
             {
                 view.Draw();
             }
 
-            DrawPointer();
+            this.DrawPointer();
         }
 
-        public void DrawGameOver(int totalMoves)
-        {
-            Console.SetCursorPosition(0, 0);
-            Console.WriteLine("Game over, score {0}", totalMoves);
-        }
+        /// <summary>
+        /// Initiates a procedure defined by conrete classes for drawing a game over screen.
+        /// </summary>
+        /// <param name="totalMoves">The total moves a player has made up to this moment.</param>
+        public abstract void DrawGameOver(int totalMoves);
 
+        /// <summary>
+        /// A method for creating new <see cref="ICellView"/> derived classes. Concrete implementations should
+        /// implement this method and return the proper type of object for their rendering environment.
+        /// This method is used by <see cref="Renderer.CreateCellViews"/> to get the right type of object needed.
+        /// </summary>
+        /// <param name="cell">The <see cref="ICell" object that will get displayed by returned object./></param>
+        /// <param name="shouldChangeColor">Color of the should change.</param>
+        /// <returns>CellView object to be added to Renderer's list of controlled objects</returns>
         protected abstract ICellView CreateCellView(ICell cell, bool shouldChangeColor);
 
-        private void DrawPointer()
-        {
-            Console.SetCursorPosition(this.engine.Pointer.X + ConsolePadding, this.engine.Pointer.Y + ConsolePadding);
-            Console.BackgroundColor = ConsoleColor.DarkYellow;
-            Console.ForegroundColor = ConsoleColor.Yellow;
-
-            char symbol = (char)engine.PlayField[this.engine.Pointer.X, this.engine.Pointer.Y].CellView;
-
-            if(symbol != '0')
-            {
-                Console.Write(symbol);
-            }
-            else
-            {
-                Console.Write(" ");
-            }
-
-            Console.ResetColor();
-        }
-
-        private void OnPlayfieldChangedHandler(object sender, PlayfieldChangedEventArgs e)
+        /// <summary>
+        /// Concrete implementations should
+        /// implement this method according to their rendering environment.
+        /// </summary>
+        protected abstract void DrawPointer();
+        
+        /// <summary>
+        /// Called when a new <see cref="BattleFiled.PlayField"/> object is inserted to the attached GameEngine object.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="BattleFiled.PlayfieldChangedEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnPlayfieldChangedHandler(object sender, PlayfieldChangedEventArgs e)
         {
             this.cellViews = this.CreateCellViews(e.NewPlayField);
             this.DrawAll();
         }
 
-        private ICellView[,] CreateCellViews(Playfield playfield)
-        { 
-            int fieldSize = playfield.PlayfieldSize;
-            bool shouldChangeColor = false;
-            ICellView[,] cellViews = new ICellView[fieldSize, fieldSize];
-
-            //foreach (ICell cell in playfield)
-            //{
-            //    Console.WriteLine("                   " + cell.X + " " + cell.Y);
-            //    cellViews[cell.X-1, cell.Y] = CreateCellView(cell);
-            //}
-
-            for (int i = 0; i < playfield.PlayfieldSize; i++)
-            {
-                if (playfield.PlayfieldSize % 2 == 0)
-                {
-                    shouldChangeColor = !shouldChangeColor;
-                }
-
-                for (int j = 0; j < playfield.PlayfieldSize; j++)
-                {
-                    cellViews[i, j] = CreateCellView(playfield[i, j], shouldChangeColor);
-                    shouldChangeColor = !shouldChangeColor;
-                }
-                
-            }
-            return cellViews;
-        }
-
-        private void OnCellChangedHandler(object sender, CellEventArgs e)
+        /// <summary>
+        /// Called when a ICell object controlled by the attached GameEngine object changes its state. The default behavior is to redraw the 
+        /// corresponding ICellView object maintained by this class.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="BattleFiled.GameEngine.CellEventArgs" />
+        /// instance containing the event data about the changed CellView.</param>
+        protected virtual void OnCellChangedHandler(object sender, CellEventArgs e)
         {
             this.cellViews[e.Target.X, e.Target.Y].Draw();
         }
   
-        private void OnCellRedefinedHandler(object sender, CellEventArgs e)
+        /// <summary>Called when there is a new ICell object being controlled by the attached GameEngine object. The default behavior is to create a new 
+        /// corresponding CellView  and redraw it. 
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="BattleFiled.GameEngine.CellEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnCellRedefinedHandler(object sender, CellEventArgs e)
         {
-            ICellView view = this.CreateCellView(e.Target,false);
+            ICellView view = this.CreateCellView(e.Target, false);
             this.cellViews[e.Target.X, e.Target.Y] = view;
             view.Draw();
         }
 
-        private void OnCellsInRegionRedefinedHandler(object sender, CellRegionEventArgs e)
+        /// <summary>
+        /// Called when a there is a group new ICell objects being controlled by the attached GameEngine object. The default behavior is to create new 
+        /// corresponding CellView objects and redraw them.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="BattleFiled.GameEngine.CellRegionEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnCellsInRegionRedefinedHandler(object sender, CellRegionEventArgs e)
         {
             int startX = e.RegionStartX;
             int startY = e.RegionStartY;
@@ -153,7 +159,14 @@ namespace BattleFiled.Renderer
             }
         }
 
-        private void OnCellsInRegionChangedHandler(object sender, CellRegionEventArgs e)
+
+        /// <summary>
+        /// Called when a group of ICell objects controlled by the attached GameEngine object change their state. The default behavior is to redraw the 
+        /// corresponding ICellView objects maintained by this class.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="BattleFiled.GameEngine.CellRegionEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnCellsInRegionChangedHandler(object sender, CellRegionEventArgs e)
         {
             int startX = e.RegionStartX;
             int startY = e.RegionStartY;
@@ -169,9 +182,40 @@ namespace BattleFiled.Renderer
             }
         }
 
-        private void OnCurrentCellChangedHandler(object sender, GameEngine.CellEventArgs e)
+        /// <summary>
+        /// Called when the Cell object on focus gets changed
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="BattleFiled.GameEngine.CellEventArgs" /> instance containing the event data.</param>
+        protected virtual void OnCurrentCellChangedHandler(object sender, GameEngine.CellEventArgs e)
         {
-           
+        }
+
+        /// <summary>
+        /// Creates the ICellView object instances needed in order to visualize a provided <see cref="Battlefiled.Playfield"/> object.
+        /// </summary>
+        /// <param name="playfield">The playfield.</param>
+        /// <returns></returns>
+        private ICellView[,] CreateCellViews(Playfield playfield)
+        { 
+            int fieldSize = playfield.PlayfieldSize;
+            bool shouldChangeColor = false;
+            ICellView[,] cellViews = new ICellView[fieldSize, fieldSize];
+
+            for (int i = 0; i < playfield.PlayfieldSize; i++)
+            {
+                if (playfield.PlayfieldSize % 2 == 0)
+                {
+                    shouldChangeColor = !shouldChangeColor;
+                }
+
+                for (int j = 0; j < playfield.PlayfieldSize; j++)
+                {
+                    cellViews[i, j] = CreateCellView(playfield[i, j], shouldChangeColor);
+                    shouldChangeColor = !shouldChangeColor;
+                }
+            }
+            return cellViews;
         }
     }
 }
