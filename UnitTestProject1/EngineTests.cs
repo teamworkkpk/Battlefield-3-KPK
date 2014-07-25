@@ -5,6 +5,7 @@ using System.IO;
 using BattleFiled.Cells;
 using System.Collections;
 using System.Collections.Generic;
+using BattleFiled;
 
 namespace BattlefieldTests
 {
@@ -44,7 +45,7 @@ namespace BattlefieldTests
             int currentCellY = (int)engineCurrentCell.GetFieldOrProperty("Y");
             bool isCurrentCellAtX0AndY0 = (currentCellX == 0 && currentCellY == 0);
 
-            Assert.AreEqual(isCurrentCellAtX0AndY0, true, "Expected that current cell is on coordinate 0,0. Received x={0} y={0}", currentCellX, currentCellY);
+            Assert.AreEqual(isCurrentCellAtX0AndY0, true, "Expected that current cell is on coordinate 0,0. Received x={0} y={1}", currentCellX, currentCellY);
         }
 
         [TestMethod]
@@ -63,9 +64,30 @@ namespace BattlefieldTests
             PrivateObject enginePointer = new PrivateObject(pointer);
             int currentPointerX = (int)enginePointer.GetFieldOrProperty("X");
             int currentPointerY = (int)enginePointer.GetFieldOrProperty("Y");
-            bool isCurrentCellAtX0AndY0 = (currentPointerX == 1 && currentPointerY == 1);
+            bool isCurrentCellAtX1AndY1 = (currentPointerX == 1 && currentPointerY == 1);
 
-            Assert.AreEqual(isCurrentCellAtX0AndY0, true, "Expected that current cell is on coordinate 0,0. Received x={0} y={0}", currentPointerX, currentPointerY);
+            Assert.AreEqual(isCurrentCellAtX1AndY1, true, "Expected that current cell is on coordinate 1,1. Received x={0} y={1}", currentPointerX, currentPointerY);
+        }
+
+        //Doesn't work as expected. Neighbour cells are not blown
+        [TestMethod]
+        public void TestIfBombWithSizeFiveExplodesAsExpected()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+            testField[4, 4] = new BombCell(5);
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("HandleExplosion", testField[4, 4]);
+
+            Assert.AreEqual(testField[4, 5].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 4,5 is CellType.BlownCell. Received {0} ", testField[4, 5].CellType);
         }
     }
 }

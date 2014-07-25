@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battlefield", "Battlefield.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattlefieldTests", "BattlefieldTests\BattlefieldTests.csproj", "{EC0CCD30-C5F8-415E-850B-73A905307202}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{16EAF8D0-A2B7-4109-A897-01D48FFC8DDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineTestsOnly", "UnitTestProject1\EngineTestsOnly.csproj", "{16EAF8D0-A2B7-4109-A897-01D48FFC8DDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
