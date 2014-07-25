@@ -4,9 +4,12 @@ using BattleFiled;
 using BattleFiled.Cells;
 using BattleFiled.SaveLoad;
 using System.Text;
+using BattleFiled.GameEngine;
 
 namespace BattleFieldTests
 {
+    
+
     [TestClass]
     public class PlayFieldTest
     {
@@ -14,6 +17,9 @@ namespace BattleFieldTests
         [ExpectedException(typeof(ArgumentNullException), "Cells array cannot be null")]
         public void InitializeEmptyFieldThrowsExeptionIfCellsIsNull()
         {
+            //Engine.startMenu.IsQuitGameChosen = false;
+            //Engine.startMenu.IsStartGameChosen = true;
+            //Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.InitializeEmptyField();
         }
