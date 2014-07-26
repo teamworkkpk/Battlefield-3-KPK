@@ -190,12 +190,12 @@
                 if (currentCell.CellType == CellType.Bomb)
                 {
                     SoundsPlayer.PlayDetonatedBomb();
-                    HandleExplosion(currentCell as BombCell);                    
+                    this.HandleExplosion(currentCell as BombCell);                    
                 }
 
                 else if (currentCell.CellType == CellType.BlownCell || currentCell.CellType == CellType.EmptyCell)
                 {
-                    SoundsPlayer.PlayInvalidSelection();
+                    this.SoundsPlayer.PlayInvalidSelection();
                 }
                 return true;
             }
@@ -271,7 +271,7 @@
 
         private void HandleExplosionTwoRadius(BombCell cell)
         {
-            HandleExplosionOneRadius(cell);
+            this.HandleExplosionOneRadius(cell);
 
             int bombX = cell.X;
             int bombY = cell.Y;
@@ -299,7 +299,7 @@
 
         private void HandleExplosionThreeRadius(BombCell cell)
         {
-            HandleExplosionTwoRadius(cell);
+            this.HandleExplosionTwoRadius(cell);
 
             int bombX = cell.X;
             int bombY = cell.Y;
@@ -327,7 +327,7 @@
 
         private void HandleExplosionFourRadius(BombCell cell)
         {
-            HandleExplosionThreeRadius(cell);
+            this.HandleExplosionThreeRadius(cell);
 
             int bombX = cell.X;
             int bombY = cell.Y;
@@ -387,7 +387,7 @@
 
         private void HandleExplosionFiveRadius(BombCell cell)
         {
-            HandleExplosionFourRadius(cell);
+            this.HandleExplosionFourRadius(cell);
 
             int bombX = cell.X;
             int bombY = cell.Y;

@@ -1,14 +1,13 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BattleFiled.GameEngine;
-using System.IO;
-using BattleFiled.Cells;
-using System.Collections;
-using System.Collections.Generic;
-using BattleFiled;
-
-namespace BattlefieldTests
+﻿namespace BattlefieldTests
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using BattleFiled.GameEngine;
+    using System.IO;
+    using BattleFiled.Cells;
+    using BattleFiled.Renderer;
+    using BattleFiled;
+
     [TestClass]
     public class EngineTests
     {
@@ -88,7 +87,7 @@ namespace BattlefieldTests
             enginePrivateInstance.Invoke("HandleExplosion", testField[4, 4]);
 
             Assert.AreEqual(testField[4, 5].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 4,5 is CellType.BlownCell. Received {0} ", testField[4, 5].CellType);
-        }        
+        }
 
         [TestMethod]
         public void TestIfOnDirectionKeyPressedReturnsTrue()
@@ -108,7 +107,7 @@ namespace BattlefieldTests
             var output = enginePrivateInstance.Invoke("OnDirectionKeyPressed", ConsoleKey.UpArrow);
 
             Assert.IsTrue((bool)output, "When left key arrow is pressed should return true");
-            
+
             output = enginePrivateInstance.Invoke("OnDirectionKeyPressed", ConsoleKey.LeftArrow);
 
             Assert.IsTrue((bool)output, "When left key arrow is pressed should return true");
@@ -189,7 +188,7 @@ namespace BattlefieldTests
 
 
             PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
-            enginePrivateInstance.Invoke("OnCellChanged", new CellEventArgs(new BombCell(1)));  
+            enginePrivateInstance.Invoke("OnCellChanged", new CellEventArgs(new BombCell(1)));
         }
 
         [TestMethod]
@@ -207,9 +206,9 @@ namespace BattlefieldTests
 
 
             PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
-            enginePrivateInstance.Invoke("OnCellsInRegionChanged", new CellRegionEventArgs (0,0,0,0) );
+            enginePrivateInstance.Invoke("OnCellsInRegionChanged", new CellRegionEventArgs(0, 0, 0, 0));
         }
-        
+
 
         [TestMethod]
         public void TestOnCurrentCellChangedDontRiseEvent()
@@ -227,6 +226,50 @@ namespace BattlefieldTests
 
             PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
             enginePrivateInstance.Invoke("OnCurrentCellChanged", new CellEventArgs(new EmptyCell()));
+        }
+
+        [TestMethod]
+        public void TestIfDrawGameOver()
+        {
+            int moves = 6;
+            string testFieldSize = "6";
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = Engine.Instance;
+            ConsoleRenderer cr = new ConsoleRenderer(gameEngine);
+
+            cr.DrawGameOver(moves);
+        }
+
+        [TestMethod]
+        public void TestIfEngineRun()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+
+            enginePrivateInstance.Invoke("Run");
+        }
+
+        [TestMethod]
+        public void TestIfEngineStop()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+
+            enginePrivateInstance.Invoke("Stop");
         }
     }
 }
