@@ -52,12 +52,19 @@
   <ItemGroup>
     <Compile Include="EngineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sounds\ISounds.cs" />
+    <Compile Include="Sounds\Sounds.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Battlefield.csproj">
       <Project>{35870605-20e7-4668-a5a7-a3926e6d61ce}</Project>
       <Name>Battlefield</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Sounds\Resources\boom.wav" />
+    <Content Include="Sounds\Resources\invalid.wav" />
+    <Content Include="Sounds\Resources\move.wav" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
