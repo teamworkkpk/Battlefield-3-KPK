@@ -68,7 +68,6 @@
             Assert.AreEqual(isCurrentCellAtX1AndY1, true, "Expected that current cell is on coordinate 1,1. Received x={0} y={1}", currentPointerX, currentPointerY);
         }
 
-        //Doesn't work as expected. Neighbour cells are not blown
         [TestMethod]
         public void TestIfBombWithSizeFiveExplodesAsExpected()
         {
@@ -85,8 +84,184 @@
 
             PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
             enginePrivateInstance.Invoke("HandleExplosion", testField[4, 4]);
+            Playfield engineField = (Playfield)enginePrivateInstance.GetFieldOrProperty("playField");
+            BombCell bomb = new BombCell(5);
+            bomb.X = 4;
+            bomb.Y = 4;
+            engineField[4, 4] = bomb;
+            
+            enginePrivateInstance.Invoke("ChangeCurrentCell", 4, 4);
+            enginePrivateInstance.Invoke("HandleExplosion", engineField[4, 4]);
 
-            Assert.AreEqual(testField[4, 5].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 4,5 is CellType.BlownCell. Received {0} ", testField[4, 5].CellType);
+            Assert.AreEqual(engineField[4, 4].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 4,5 is CellType.BlownCell. Received {0} ", engineField[4, 4].CellType);
+        }
+
+        [TestMethod]
+        public void TestIfBombWithSizeFiveExplodesAsExpectedWhenTheBombIsNearTheTopLeftFieldCorner()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+            testField[1, 1] = new BombCell(5);
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("HandleExplosion", testField[1, 1]);
+            Playfield engineField = (Playfield)enginePrivateInstance.GetFieldOrProperty("playField");
+            BombCell bomb = new BombCell(5);
+            bomb.X = 4;
+            bomb.Y = 4;
+            engineField[1, 1] = bomb;
+
+            enginePrivateInstance.Invoke("ChangeCurrentCell", 1, 1);
+            enginePrivateInstance.Invoke("HandleExplosion", engineField[1, 1]);
+
+            Assert.AreEqual(engineField[1, 2].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 1,2 is CellType.BlownCell. Received {0} ", engineField.ToString());
+        }
+
+        [TestMethod]
+        public void TestIfBombWithSizeFiveExplodesAsExpectedWhenTheBombIsNearTheBottompLeftFieldCorner()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+            testField[1, 5] = new BombCell(5);
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("HandleExplosion", testField[1, 5]);
+            Playfield engineField = (Playfield)enginePrivateInstance.GetFieldOrProperty("playField");
+            BombCell bomb = new BombCell(5);
+            bomb.X = 4;
+            bomb.Y = 4;
+            engineField[1, 5] = bomb;
+
+            enginePrivateInstance.Invoke("ChangeCurrentCell", 1, 5);
+            enginePrivateInstance.Invoke("HandleExplosion", engineField[1, 5]);
+
+            Assert.AreEqual(engineField[2, 5].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 2,5 is CellType.BlownCell. Received {0} ", engineField.ToString());
+        }
+
+        [TestMethod]
+        public void TestIfBombWithSizeFourExplodesAsExpectedWhenTheBombIsNearTheBottompLeftFieldCorner()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+            testField[1, 5] = new BombCell(4);
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("HandleExplosion", testField[1, 5]);
+            Playfield engineField = (Playfield)enginePrivateInstance.GetFieldOrProperty("playField");
+            BombCell bomb = new BombCell(4);
+            bomb.X = 4;
+            bomb.Y = 4;
+            engineField[1, 5] = bomb;
+
+            enginePrivateInstance.Invoke("ChangeCurrentCell", 1, 5);
+            enginePrivateInstance.Invoke("HandleExplosion", engineField[1, 5]);
+
+            Assert.AreEqual(engineField[2, 5].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 2,5 is CellType.BlownCell. Received {0} ", engineField.ToString());
+        }
+
+        [TestMethod]
+        public void TestIfBombWithSizeFourExplodesAsExpectedWhenTheBombIsNearTheTopLeftFieldCorner()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+            testField[1, 1] = new BombCell(4);
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("HandleExplosion", testField[1, 1]);
+            Playfield engineField = (Playfield)enginePrivateInstance.GetFieldOrProperty("playField");
+            BombCell bomb = new BombCell(4);
+            bomb.X = 4;
+            bomb.Y = 4;
+            engineField[1, 1] = bomb;
+
+            enginePrivateInstance.Invoke("ChangeCurrentCell", 1, 1);
+            enginePrivateInstance.Invoke("HandleExplosion", engineField[1, 1]);
+
+            Assert.AreEqual(engineField[1, 2].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 1,2 is CellType.BlownCell. Received {0} ", engineField.ToString());
+        }
+
+        [TestMethod]
+        public void TestIfBombWithSizeFourExplodesAsExpected()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+            testField[4, 4] = new BombCell(4);
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("HandleExplosion", testField[4, 4]);
+            Playfield engineField = (Playfield)enginePrivateInstance.GetFieldOrProperty("playField");
+            BombCell bomb = new BombCell(4);
+            bomb.X = 4;
+            bomb.Y = 4;
+            engineField[4, 4] = bomb;
+
+            enginePrivateInstance.Invoke("ChangeCurrentCell", 4, 4);
+            enginePrivateInstance.Invoke("HandleExplosion", engineField[4, 4]);
+
+            Assert.AreEqual(engineField[4, 4].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 4,5 is CellType.BlownCell. Received {0} ", engineField[4, 4].CellType);
+        }
+
+        [TestMethod]
+        public void TestIfBombWithSizeFiveExplodesAsExpectedWhenOnTheTopLeft()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+            testField[0, 0] = new BombCell(5);
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("HandleExplosion", testField[0, 0]);
+            Playfield engineField = (Playfield)enginePrivateInstance.GetFieldOrProperty("playField");
+            BombCell bomb = new BombCell(5);
+            bomb.X = 0;
+            bomb.Y = 0;
+            engineField[0, 0] = bomb;
+
+            enginePrivateInstance.Invoke("ChangeCurrentCell", 1, 1);
+            enginePrivateInstance.Invoke("HandleExplosion", engineField[0, 0]);
+
+            Assert.AreEqual(engineField[0, 1].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 4,5 is CellType.BlownCell. Received {0} ", engineField[4, 4].CellType);
         }
 
         [TestMethod]
@@ -271,5 +446,60 @@
 
             enginePrivateInstance.Invoke("Stop");
         }
+        [TestMethod]
+        public void TestIfEngineHandlesLoadGameCommandOnStartScreen()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsLoadGameChosen = true;
+            Engine gameEngine = new Engine();
+            PrivateObject obj = new PrivateObject(gameEngine);
+            var isRunning = obj.GetFieldOrProperty("isRunning");
+            var retVal = obj.Invoke("HandleUserChoise");
+
+            Assert.AreEqual(isRunning, false, "Set user choice to quit game. Expected isRunning property true. Received false");
+        }
+
+        [TestMethod]
+        public void TestIfEngineInitializeHandlesLoadGameCommandOnStartScreen()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsLoadGameChosen = true;
+            Engine gameEngine = new Engine();
+            PrivateObject obj = new PrivateObject(gameEngine);
+            obj.Invoke("Initialize", true);
+            var isRunning = obj.GetFieldOrProperty("isRunning");
+            var retVal = obj.Invoke("HandleUserChoise");
+
+            Assert.AreEqual(isRunning, false, "Set user choice to quit game. Expected isRunning property true. Received false");
+        }
+
+        [TestMethod]
+        public void TestIfEngineGameOverWorks()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+
+            PrivateObject testPrivateEngine = new PrivateObject(gameEngine);
+            testPrivateEngine.Invoke("Run");
+            testPrivateEngine.Invoke("IsGameOver");
+            bool keepRunning = (bool)testPrivateEngine.GetFieldOrProperty("keepRunning");
+
+            Assert.AreEqual(keepRunning, false, "Check if keepRunning variable in Engine is set to false after GameOver is called with field full with empty cells only. Expected keepRunning property false. Received true");
+        }
+
     }
 }
