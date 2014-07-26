@@ -446,6 +446,7 @@
 
             enginePrivateInstance.Invoke("Stop");
         }
+
         [TestMethod]
         public void TestIfEngineHandlesLoadGameCommandOnStartScreen()
         {
