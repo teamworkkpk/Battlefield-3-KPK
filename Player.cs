@@ -2,6 +2,10 @@
 {
     using System;
     using SaveLoad;
+
+/// <summary>
+/// Class Player hold statistics about the player.
+/// </summary>
     public class Player
     {
         private string name;
@@ -26,9 +30,9 @@
                 {
                     throw new ArgumentNullException("Error: Memento player name cannot be null or empty!");
                 }
-                else if(string.IsNullOrWhiteSpace(value.Trim()))
+                else if (string.IsNullOrWhiteSpace(value.Trim()))
                 {
-                    throw new ArgumentNullException ("Error: Memento player name cannot be null or whitespace!");
+                    throw new ArgumentNullException("Error: Memento player name cannot be null or whitespace!");
                 }
 
                 this.name = value;
@@ -41,16 +45,19 @@
             {
                 return this.detonatedMines;
             }
+
             set
             {
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("Error: Memento detonated mines count cannot less than zero!");
                 }
+
                 if (value > 100)
                 {
                     throw new ArgumentOutOfRangeException("Error: Memento detonated mines count cannot greater than 100!");
                 }
+
                 this.detonatedMines = value;
             }
         }
@@ -61,21 +68,30 @@
             {
                 return this.movesCount;
             }
+
             set
             {
                 if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException("Error: Memento moves count cannot less than zero!");
                 }
+
                 this.movesCount = value;
             }
         }
 
+        /// <summary>
+        /// Adds detonated mines
+        /// </summary>
+        /// <param name="mines"></param>
         public void AddDetonatedMines(int mines)
         {
             this.detonatedMines += mines;
         }
 
+        /// <summary>
+        /// Increase the move counter
+        /// </summary>
         public void AddMove()
         {
             this.movesCount++;
@@ -86,6 +102,10 @@
             return string.Format("Player: {0}, Detonated mines: {1}, Moves: {2}", this.Name, this.DetonatedMines, this.MovesCount);
         }
 
+        /// <summary>
+        /// Saves the players statistics
+        /// </summary>
+        /// <returns></returns>
         public MementoPlayer SaveMemento()
         {
             return new MementoPlayer()
@@ -96,12 +116,17 @@
             };
         }
 
+        /// <summary>
+        /// Loads player statistics
+        /// </summary>
+        /// <param name="memento"></param>
         public void LoadMemento(MementoPlayer memento)
         {
             if (memento == null)
             {
                 throw new ArgumentNullException("Error: Loaded memento player cannot be null!");
             }
+
             this.Name = memento.Name;
             this.DetonatedMines = memento.DetonatedMines;
             this.MovesCount = memento.MovesCount;
