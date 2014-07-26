@@ -88,6 +88,145 @@ namespace BattlefieldTests
             enginePrivateInstance.Invoke("HandleExplosion", testField[4, 4]);
 
             Assert.AreEqual(testField[4, 5].CellType == CellType.BlownCell, true, "Expected that the cell on coordinates 4,5 is CellType.BlownCell. Received {0} ", testField[4, 5].CellType);
+        }        
+
+        [TestMethod]
+        public void TestIfOnDirectionKeyPressedReturnsTrue()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            var output = enginePrivateInstance.Invoke("OnDirectionKeyPressed", ConsoleKey.UpArrow);
+
+            Assert.IsTrue((bool)output, "When left key arrow is pressed should return true");
+            
+            output = enginePrivateInstance.Invoke("OnDirectionKeyPressed", ConsoleKey.LeftArrow);
+
+            Assert.IsTrue((bool)output, "When left key arrow is pressed should return true");
+
+            output = enginePrivateInstance.Invoke("OnDirectionKeyPressed", ConsoleKey.RightArrow);
+
+            Assert.IsTrue((bool)output, "When left key arrow is pressed should return true");
+
+            output = enginePrivateInstance.Invoke("OnDirectionKeyPressed", ConsoleKey.DownArrow);
+
+            Assert.IsTrue((bool)output, "When left key arrow is pressed should return true");
+
+            output = enginePrivateInstance.Invoke("OnDirectionKeyPressed", ConsoleKey.E);
+
+            Assert.IsFalse((bool)output, "When left key arrow is pressed should return true");
+
+        }
+
+        [TestMethod]
+        public void TestIfOnSaveLoadButtonPressedReturnsTrue()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            var output = enginePrivateInstance.Invoke("OnSaveLoadButtonPressed", ConsoleKey.F5);
+
+            Assert.IsTrue((bool)output, "When save key is pressed should return true");
+
+            output = enginePrivateInstance.Invoke("OnSaveLoadButtonPressed", ConsoleKey.F6);
+
+            Assert.IsTrue((bool)output, "When load button is pressed should return true");
+        }
+
+
+        [TestMethod]
+        public void TestIfHandleExplosionHandleAllCases()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("HandleExplosion", new BombCell(1));
+            enginePrivateInstance.Invoke("HandleExplosion", new BombCell(2));
+            enginePrivateInstance.Invoke("HandleExplosion", new BombCell(3));
+            enginePrivateInstance.Invoke("HandleExplosion", new BombCell(4));
+
+        }
+
+        [TestMethod]
+        public void TestOnCellChangedDontRiseEvent()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("OnCellChanged", new CellEventArgs(new BombCell(1)));  
+        }
+
+        [TestMethod]
+        public void TestOnCellsInRegionChangedDontRiseEvent()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("OnCellsInRegionChanged", new CellRegionEventArgs (0,0,0,0) );
+        }
+        
+
+        [TestMethod]
+        public void TestOnCurrentCellChangedDontRiseEvent()
+        {
+            string testFieldSize = "6";
+
+
+            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.startMenu.IsStartGameChosen = true;
+            Engine gameEngine = new Engine();
+            Playfield testField = Playfield.Instance;
+            testField.SetFieldSize(6);
+            testField.InitializeEmptyField();
+
+
+            PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
+            enginePrivateInstance.Invoke("OnCurrentCellChanged", new CellEventArgs(new EmptyCell()));
         }
     }
 }
