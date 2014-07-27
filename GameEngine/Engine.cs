@@ -22,6 +22,16 @@ namespace BattleFiled.GameEngine
     public class Engine : IEngine
     {
         /// <summary>
+        /// The start screen of the game, which is singleton.
+        /// </summary>
+        public static StartScreen StartMenu = StartScreen.Instance;
+
+        /// <summary>
+        /// Holds a size of a field, which serves for unit tests only.
+        /// </summary>
+        public static StringReader FieldSizeUnitTestSetter;
+
+        /// <summary>
         /// Constant key value for saving the game.
         /// </summary>
         private const ConsoleKey SAVE_BUTTON = ConsoleKey.F5;
@@ -34,17 +44,7 @@ namespace BattleFiled.GameEngine
         /// <summary>
         /// Constant value for waiting the last bomb to explode, when the game ends.
         /// </summary>
-        private const int IZCHAKAI_MUZIKATA_DA_SA_IZSVIRI_BE = 1200; ////Magic constant DON'T TOUCH!   
-  
-        /// <summary>
-        /// The start screen of the game, which is singleton.
-        /// </summary>
-        private static StartScreen startMenu = StartScreen.Instance;
-
-        /// <summary>
-        /// Holds a size of a field, which serves for unit tests only.
-        /// </summary>
-        private static StringReader fieldSizeUnitTestSetter;
+        private const int IZCHAKAI_MUZIKATA_DA_SA_IZSVIRI_BE = 1200; ////Magic constant DON'T TOUCH! 
 
         /// <summary>
         /// Object of Engine type, which will serve for the single implementation.
@@ -96,7 +96,7 @@ namespace BattleFiled.GameEngine
         /// </summary>
         public Engine()
         {
-            startMenu.SetChoise(ConsoleKey.Enter);
+            StartMenu.SetChoise(ConsoleKey.Enter);
             this.HandleUserChoise();
         }
 
@@ -718,9 +718,9 @@ namespace BattleFiled.GameEngine
         {
             Console.Write("Enter the size of the battle field: n = ");
 
-            if (fieldSizeUnitTestSetter != null)
+            if (FieldSizeUnitTestSetter != null)
             {
-                Console.SetIn(fieldSizeUnitTestSetter);
+                Console.SetIn(FieldSizeUnitTestSetter);
             }
 
             int sizeOfField;
@@ -788,16 +788,16 @@ namespace BattleFiled.GameEngine
         /// </summary>
         private void HandleUserChoise()
         {
-            if (startMenu.IsStartGameChosen)
+            if (StartMenu.IsStartGameChosen)
             {
                 this.Initialize(false);
             } 
-            else if (startMenu.IsQuitGameChosen)
+            else if (StartMenu.IsQuitGameChosen)
             {
                 Console.WriteLine("Goodbye...");
                 this.isRunning = true;
             }
-            else if (startMenu.IsLoadGameChosen)
+            else if (StartMenu.IsLoadGameChosen)
             {
                 this.Initialize(true);                
             }

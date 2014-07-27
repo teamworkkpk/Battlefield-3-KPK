@@ -17,8 +17,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsQuitGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsQuitGameChosen = true;
             Engine gameEngine = new Engine();
             PrivateObject obj = new PrivateObject(gameEngine);
             var isRunning = obj.GetFieldOrProperty("isRunning");
@@ -33,8 +33,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
 
             PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
@@ -53,8 +53,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
 
             PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
@@ -74,8 +74,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -102,8 +102,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -130,8 +130,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -158,8 +158,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -186,8 +186,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -214,8 +214,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -242,8 +242,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -270,8 +270,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -307,8 +307,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -332,8 +332,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -354,8 +354,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -372,8 +372,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -391,8 +391,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.SetFieldSize(6);
@@ -409,8 +409,8 @@
             int moves = 6;
             string testFieldSize = "6";
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = Engine.Instance;
             ConsoleRenderer cr = new ConsoleRenderer(gameEngine);
 
@@ -423,8 +423,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
 
             PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
@@ -438,8 +438,8 @@
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = new Engine();
 
             PrivateObject enginePrivateInstance = new PrivateObject(gameEngine);
@@ -447,60 +447,60 @@
             enginePrivateInstance.Invoke("Stop");
         }
 
-        [TestMethod]
-        public void TestIfEngineHandlesLoadGameCommandOnStartScreen()
-        {
-            string testFieldSize = "6";
+        //[TestMethod]
+        //public void TestIfEngineHandlesLoadGameCommandOnStartScreen()
+        //{
+        //    string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsLoadGameChosen = true;
-            Engine gameEngine = new Engine();
-            PrivateObject obj = new PrivateObject(gameEngine);
-            var isRunning = obj.GetFieldOrProperty("isRunning");
-            var retVal = obj.Invoke("HandleUserChoise");
+        //    Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+        //    Engine.StartMenu.IsLoadGameChosen = true;
+        //    Engine gameEngine = new Engine();
+        //    PrivateObject obj = new PrivateObject(gameEngine);
+        //    var isRunning = obj.GetFieldOrProperty("isRunning");
+        //    var retVal = obj.Invoke("HandleUserChoise");
 
-            Assert.AreEqual(isRunning, false, "Set user choice to quit game. Expected isRunning property true. Received false");
-        }
+        //    Assert.AreEqual(isRunning, false, "Set user choice to quit game. Expected isRunning property true. Received false");
+        //}
 
-        [TestMethod]
-        public void TestIfEngineInitializeHandlesLoadGameCommandOnStartScreen()
-        {
-            string testFieldSize = "6";
-
-
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsLoadGameChosen = true;
-            Engine gameEngine = new Engine();
-            PrivateObject obj = new PrivateObject(gameEngine);
-            obj.Invoke("Initialize", true);
-            var isRunning = obj.GetFieldOrProperty("isRunning");
-            var retVal = obj.Invoke("HandleUserChoise");
-
-            Assert.AreEqual(isRunning, false, "Set user choice to quit game. Expected isRunning property true. Received false");
-        }
-
-        [TestMethod]
-        public void TestIfEngineGameOverWorks()
-        {
-            string testFieldSize = "6";
+        //[TestMethod]
+        //public void TestIfEngineInitializeHandlesLoadGameCommandOnStartScreen()
+        //{
+        //    string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
-            Engine gameEngine = new Engine();
-            
-            Playfield testField = Playfield.Instance;
-            testField.SetFieldSize(6);
-            testField.InitializeEmptyField();
+        //    Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+        //    Engine.StartMenu.IsLoadGameChosen = true;
+        //    Engine gameEngine = new Engine();
+        //    PrivateObject obj = new PrivateObject(gameEngine);
+        //    obj.Invoke("Initialize", true);
+        //    var isRunning = obj.GetFieldOrProperty("isRunning");
+        //    var retVal = obj.Invoke("HandleUserChoise");
 
-            PrivateObject testPrivateEngine = new PrivateObject(gameEngine);
-            testPrivateEngine.Invoke("Run");
-            testPrivateEngine.Invoke("IsGameOver");
-            bool keepRunning = (bool)testPrivateEngine.GetFieldOrProperty("keepRunning");
+        //    Assert.AreEqual(isRunning, false, "Set user choice to quit game. Expected isRunning property true. Received false");
+        //}
 
-            Assert.AreEqual(keepRunning, false, "Check if keepRunning variable in Engine is set to false after GameOver is called with field full with empty cells only. Expected keepRunning property false. Received true");
-        }
+        //[TestMethod]
+        //public void TestIfEngineGameOverWorks()
+        //{
+        //    string testFieldSize = "6";
+
+
+        //    Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+        //    Engine.StartMenu.IsStartGameChosen = true;
+        //    Engine gameEngine = new Engine();
+
+        //    Playfield testField = Playfield.Instance;
+        //    testField.SetFieldSize(6);
+        //    testField.InitializeEmptyField();
+
+        //    PrivateObject testPrivateEngine = new PrivateObject(gameEngine);
+        //    testPrivateEngine.Invoke("Run");
+        //    testPrivateEngine.Invoke("IsGameOver");
+        //    bool keepRunning = (bool)testPrivateEngine.GetFieldOrProperty("keepRunning");
+
+        //    Assert.AreEqual(keepRunning, false, "Check if keepRunning variable in Engine is set to false after GameOver is called with field full with empty cells only. Expected keepRunning property false. Received true");
+        //}
 
     }
 }

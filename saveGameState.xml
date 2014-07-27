@@ -14,12 +14,11 @@
         <Y>1</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="BombCell">
-        <CellView>Bomb2</CellView>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
         <X>0</X>
         <Y>2</Y>
         <Color>Red</Color>
-        <BombSize>2</BombSize>
       </Cell>
       <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
@@ -31,205 +30,371 @@
         <CellView>Empty</CellView>
         <X>0</X>
         <Y>4</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>0</X>
+        <Y>5</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="BombCell">
         <CellView>Bomb5</CellView>
         <X>0</X>
-        <Y>5</Y>
+        <Y>6</Y>
         <Color>Red</Color>
         <BombSize>5</BombSize>
       </Cell>
       <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <X>1</X>
-        <Y>0</Y>
+        <X>0</X>
+        <Y>7</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
         <X>1</X>
-        <Y>1</Y>
-        <Color>Red</Color>
-      </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>1</X>
-        <Y>2</Y>
-        <Color>Red</Color>
-      </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>1</X>
-        <Y>3</Y>
-        <Color>Red</Color>
-      </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>1</X>
-        <Y>4</Y>
-        <Color>Red</Color>
-      </Cell>
-      <Cell xsi:type="BombCell">
-        <CellView>Bomb4</CellView>
-        <X>1</X>
-        <Y>5</Y>
-        <Color>Red</Color>
-        <BombSize>4</BombSize>
-      </Cell>
-      <Cell xsi:type="BlownCell">
-        <CellView>Blown</CellView>
-        <X>2</X>
         <Y>0</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="BlownCell">
         <CellView>Blown</CellView>
-        <X>2</X>
+        <X>1</X>
         <Y>1</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="BlownCell">
         <CellView>Blown</CellView>
-        <X>2</X>
+        <X>1</X>
         <Y>2</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>2</X>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>1</X>
         <Y>3</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>2</X>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>1</X>
         <Y>4</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>2</X>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>1</X>
         <Y>5</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="BlownCell">
         <CellView>Blown</CellView>
-        <X>3</X>
+        <X>1</X>
+        <Y>6</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>1</X>
+        <Y>7</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>2</X>
         <Y>0</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="BlownCell">
         <CellView>Blown</CellView>
-        <X>3</X>
+        <X>2</X>
         <Y>1</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="BlownCell">
         <CellView>Blown</CellView>
-        <X>3</X>
+        <X>2</X>
         <Y>2</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>3</X>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>2</X>
         <Y>3</Y>
         <Color>Red</Color>
       </Cell>
-      <Cell xsi:type="BombCell">
-        <CellView>Bomb1</CellView>
-        <X>3</X>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>2</X>
         <Y>4</Y>
         <Color>Red</Color>
-        <BombSize>1</BombSize>
       </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>3</X>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>2</X>
         <Y>5</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="BlownCell">
         <CellView>Blown</CellView>
-        <X>4</X>
-        <Y>0</Y>
-        <Color>Red</Color>
-      </Cell>
-      <Cell xsi:type="BlownCell">
-        <CellView>Blown</CellView>
-        <X>4</X>
-        <Y>1</Y>
-        <Color>Red</Color>
-      </Cell>
-      <Cell xsi:type="BlownCell">
-        <CellView>Blown</CellView>
-        <X>4</X>
-        <Y>2</Y>
-        <Color>Red</Color>
-      </Cell>
-      <Cell xsi:type="BombCell">
-        <CellView>Bomb5</CellView>
-        <X>4</X>
-        <Y>3</Y>
-        <Color>Red</Color>
-        <BombSize>5</BombSize>
-      </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>4</X>
-        <Y>4</Y>
-        <Color>Red</Color>
-      </Cell>
-      <Cell xsi:type="EmptyCell">
-        <CellView>Empty</CellView>
-        <X>4</X>
-        <Y>5</Y>
+        <X>2</X>
+        <Y>6</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="BombCell">
         <CellView>Bomb3</CellView>
-        <X>5</X>
-        <Y>0</Y>
+        <X>2</X>
+        <Y>7</Y>
         <Color>Red</Color>
         <BombSize>3</BombSize>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>3</X>
+        <Y>0</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>3</X>
+        <Y>1</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>3</X>
+        <Y>2</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>3</X>
+        <Y>3</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>3</X>
+        <Y>4</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>3</X>
+        <Y>5</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>3</X>
+        <Y>6</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>3</X>
+        <Y>7</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>4</X>
+        <Y>0</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>4</X>
+        <Y>1</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>4</X>
+        <Y>2</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>4</X>
+        <Y>3</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>4</X>
+        <Y>4</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>4</X>
+        <Y>5</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>4</X>
+        <Y>6</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>4</X>
+        <Y>7</Y>
+        <Color>Red</Color>
       </Cell>
       <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
         <X>5</X>
+        <Y>0</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>5</X>
+        <Y>1</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>5</X>
+        <Y>2</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>5</X>
+        <Y>3</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>5</X>
+        <Y>4</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>5</X>
+        <Y>5</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BlownCell">
+        <CellView>Blown</CellView>
+        <X>5</X>
+        <Y>6</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>5</X>
+        <Y>7</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>6</X>
+        <Y>0</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>6</X>
         <Y>1</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <X>5</X>
+        <X>6</X>
         <Y>2</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <X>5</X>
+        <X>6</X>
         <Y>3</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <X>5</X>
+        <X>6</X>
         <Y>4</Y>
         <Color>Red</Color>
       </Cell>
       <Cell xsi:type="EmptyCell">
         <CellView>Empty</CellView>
-        <X>5</X>
+        <X>6</X>
         <Y>5</Y>
         <Color>Red</Color>
       </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>6</X>
+        <Y>6</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>6</X>
+        <Y>7</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>7</X>
+        <Y>0</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>7</X>
+        <Y>1</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>7</X>
+        <Y>2</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>7</X>
+        <Y>3</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>7</X>
+        <Y>4</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>7</X>
+        <Y>5</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="EmptyCell">
+        <CellView>Empty</CellView>
+        <X>7</X>
+        <Y>6</Y>
+        <Color>Red</Color>
+      </Cell>
+      <Cell xsi:type="BombCell">
+        <CellView>Bomb3</CellView>
+        <X>7</X>
+        <Y>7</Y>
+        <Color>Red</Color>
+        <BombSize>3</BombSize>
+      </Cell>
     </ZeroBasedPlayField>
-    <FieldDimension>6</FieldDimension>
+    <FieldDimension>8</FieldDimension>
   </MementoField>
   <MementoPlayer>
     <Name>Pesho</Name>
-    <DetonatedMines>1</DetonatedMines>
+    <DetonatedMines>2</DetonatedMines>
     <MovesCount>0</MovesCount>
   </MementoPlayer>
 </SaveLoadAPI>

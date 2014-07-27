@@ -17,8 +17,8 @@ namespace BattleFieldTests
         [ExpectedException(typeof(ArgumentNullException), "Cells array cannot be null")]
         public void InitializeEmptyFieldThrowsExeptionIfCellsIsNull()
         {
-            //Engine.startMenu.IsQuitGameChosen = false;
-            //Engine.startMenu.IsStartGameChosen = true;
+            //Engine.StartMenu.IsQuitGameChosen = false;
+            //Engine.StartMenu.IsStartGameChosen = true;
             //Engine gameEngine = new Engine();
             Playfield testField = Playfield.Instance;
             testField.InitializeEmptyField();

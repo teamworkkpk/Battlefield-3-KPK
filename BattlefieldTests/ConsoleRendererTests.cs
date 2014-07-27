@@ -18,8 +18,8 @@ namespace BattlefieldTests
         {
             string testFieldSize = "6";
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;            
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;            
             Engine gameEngine = Engine.Instance;
 
             ConsoleRenderer testRenderer = new ConsoleRenderer(gameEngine);
@@ -32,8 +32,8 @@ namespace BattlefieldTests
             string testFieldSize = "6";
 
 
-            Engine.fieldSizeUnitTestSetter = new StringReader(testFieldSize);
-            Engine.startMenu.IsStartGameChosen = true;
+            Engine.FieldSizeUnitTestSetter = new StringReader(testFieldSize);
+            Engine.StartMenu.IsStartGameChosen = true;
             Engine gameEngine = Engine.Instance;
 
             PrivateObject obj = new PrivateObject(gameEngine);
