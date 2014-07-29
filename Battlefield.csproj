@@ -129,7 +129,7 @@
     <Content Include="Sounds\Resources\move.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BattleFieldDiagram.cd" />
+    <None Include="BattleField3Diagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
