@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BattleFiled.CellViews;
-using BattleFiled;
-using System.IO;
-
-
-namespace BattlefieldTests
+﻿namespace BattlefieldTests
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using BattleFiled.CellViews;
+    using System.IO;
+
     [TestClass]
     public class CellViewTests
     {

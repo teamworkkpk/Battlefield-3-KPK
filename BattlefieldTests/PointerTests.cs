@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BattleFiled;
-
-namespace BattlefieldTests
+﻿namespace BattlefieldTests
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using BattleFiled;
     [TestClass]
     public class PointerTests
     {
@@ -21,7 +20,7 @@ namespace BattlefieldTests
             Pointer pointer = new Pointer(5, 11);
             pointer.X = 7;
 
-            Assert.AreEqual(pointer.X == 7 , true, string.Format("Expected pointer with X=7. Received pointer with X={0}", pointer.X));
+            Assert.AreEqual(pointer.X == 7, true, string.Format("Expected pointer with X=7. Received pointer with X={0}", pointer.X));
         }
 
         [TestMethod]
@@ -29,7 +28,7 @@ namespace BattlefieldTests
         public void CheckIfPointerThrowsCorrectExeptionWhenIncorrectXIsSetAfterPointerCreation()
         {
             Pointer pointer = new Pointer(-5, 11);
-       
+
         }
 
         [TestMethod]

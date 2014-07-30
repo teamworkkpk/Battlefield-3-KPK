@@ -1,8 +1,14 @@
-﻿namespace BattleFiled.Sounds
+﻿// <copyright file="ConsoleView.cs" company="Team Battlefield 3">
+// All rights reserved.
+// </copyright>
+// <author>Team Battlefield 3</author>
+
+namespace BattleFiled.Sounds
 {
     using System;
     using System.IO;
     using System.Media;
+
     /// <summary>
     /// Contains methods for playing sounds.
     /// </summary>

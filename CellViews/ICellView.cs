@@ -6,7 +6,6 @@
 namespace BattleFiled.CellViews
 {
     using System;
-    using BattleFiled.Renderer.Context;    
 
     /// <summary>
     /// Interface that sets the methods for cell rendering.

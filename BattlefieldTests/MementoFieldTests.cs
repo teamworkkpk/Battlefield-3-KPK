@@ -2,8 +2,6 @@
 {
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using BattleFiled;
-    using BattleFiled.Cells;
     using BattleFiled.SaveLoad;
 
     [TestClass]

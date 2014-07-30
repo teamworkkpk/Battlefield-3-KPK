@@ -80,15 +80,13 @@
     <Compile Include="GameEngine\PlayfieldChangedEventArgs.cs" />
     <Compile Include="Cells\ICell.cs" />
     <Compile Include="Interfaces\IGameObject.cs" />
-    <Compile Include="Interfaces\IRender.cs" />
     <Compile Include="KeyEventArgs.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Pointer.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Renderer\ConsoleRenderer.cs" />
     <Compile Include="Renderer\Context\IRenderingContext.cs" />
-    <Compile Include="Renderer\Context\RenderingContext.cs" />
+    <Compile Include="Renderer\RenderingContext.cs" />
     <Compile Include="Renderer\Renderer.cs" />
     <Compile Include="SaveLoad\SaveLoadAPI.cs" />
     <Compile Include="SaveLoad\MementoField.cs" />

@@ -1,7 +1,6 @@
 ﻿namespace BattlefieldTests
 {
     using System;
-    using BattleFiled;
     using BattleFiled.SaveLoad;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 

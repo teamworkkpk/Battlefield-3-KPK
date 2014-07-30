@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BattleFiled;
-using BattleFiled.Cells;
-using BattleFiled.SaveLoad;
-using BattleFiled.GameEngine;
-
-namespace BattlefieldTests
+﻿namespace BattlefieldTests
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using BattleFiled;
+    using BattleFiled.GameEngine;
+
     [TestClass]
     public class PlayFieldChangeEventArgsTests
     {

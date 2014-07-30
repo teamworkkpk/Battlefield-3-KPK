@@ -7,7 +7,7 @@ namespace BattleFiled.Renderer.Context
 {
     using System;
     
-    interface IRenderingContext
+    public class RenderingContext
     {
     }
 }

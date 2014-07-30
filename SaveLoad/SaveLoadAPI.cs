@@ -1,10 +1,13 @@
-﻿namespace BattleFiled.SaveLoad
+﻿// <copyright file="ConsoleView.cs" company="Team Battlefield 3">
+// All rights reserved.
+// </copyright>
+// <author>Team Battlefield 3</author>
+
+namespace BattleFiled.SaveLoad
 {
     using System;
     using System.IO;
     using System.Xml.Serialization;
-    using System.Xml;
-    using System.Runtime.Serialization;
     using System.Threading;
 
     /// <summary>
@@ -15,9 +18,15 @@
     public class SaveLoadAPI 
     {
         private const string SavePath = @"..\..\saveGameState.xml";
-               
+
+        /// <summary>
+        /// Gets and sets MementoField property of a SaveLoadAPT instance
+        /// </summary>    
         public MementoField MementoField { get; set; }
 
+        /// <summary>
+        /// Gets and sets MementoPlayer property of a SaveLoadAPT instance
+        /// </summary>    
         public MementoPlayer MementoPlayer { get; set; }
         
         /// <summary>

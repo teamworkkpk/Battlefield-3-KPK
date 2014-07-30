@@ -1,4 +1,9 @@
-﻿namespace BattleFiled.SaveLoad
+﻿// <copyright file="ConsoleView.cs" company="Team Battlefield 3">
+// All rights reserved.
+// </copyright>
+// <author>Team Battlefield 3</author>
+
+namespace BattleFiled.SaveLoad
 {
     using System;
 
@@ -12,6 +17,10 @@
         private int detonatedMines;
         private int movesCount;
 
+
+        /// <summary>
+        /// Gets and sets Name property of a MementoPlayer instance
+        /// </summary>    
         public string Name
         {
             get { return this.name; }
@@ -26,6 +35,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets and sets DetonatedMines property of a MementoPlayer instance
+        /// </summary>    
         public int DetonatedMines
         {
             get
@@ -42,6 +54,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets and sets MovesCount property of a MementoPlayer instance
+        /// </summary>    
         public int MovesCount
         {
             get

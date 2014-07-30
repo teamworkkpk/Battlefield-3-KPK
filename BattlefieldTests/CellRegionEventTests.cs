@@ -1,11 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BattleFiled;
-using BattleFiled.GameEngine;
-using BattleFiled.Cells;
-
-namespace BattlefieldTests
+﻿namespace BattlefieldTests
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using BattleFiled.GameEngine;
+
     [TestClass]
     public class CellRegionEventTests
     {

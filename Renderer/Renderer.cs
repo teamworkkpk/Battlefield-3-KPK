@@ -9,7 +9,6 @@ namespace BattleFiled.Renderer
     using BattleFiled.Cells;
     using BattleFiled.CellViews;
     using BattleFiled.GameEngine;
-    using BattleFiled.Renderer.Context;
     
     /// <summary>
     /// Abstract class defining the behavior and interaction with an <see cref="GameEngine" />class.
@@ -19,7 +18,7 @@ namespace BattleFiled.Renderer
     /// should provide implementation or redefine it according to the rendering context 
     /// (Console, Windows Forms, WPF, OpenGL, DirectX and etc.).
     /// </summary>
-    public abstract class Renderer : RenderingContext
+    public abstract class Renderer
     {
         /// <summary>
         /// A reference to the <see cref="Engine"/> object this Renderer is attached to.

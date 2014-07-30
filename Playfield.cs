@@ -1,13 +1,16 @@
-﻿namespace BattleFiled
+﻿// <copyright file="ConsoleView.cs" company="Team Battlefield 3">
+// All rights reserved.
+// </copyright>
+// <author>Team Battlefield 3</author>
+
+namespace BattleFiled
 {
     using System;
     using System.Text;
-    using BattleFiled.Cells;
-    using Interfaces;
     using System.Collections;
     using SaveLoad;
-    using System.Windows.Forms;
-    using System.Drawing;
+    using BattleFiled.Cells;
+    using Interfaces;
 
     /// <summary>
     /// Playfield.Cs implements Singleton design pattern, because the game needs only one 
@@ -27,6 +30,9 @@
         {
         }
 
+        /// <summary>
+        /// Gets Singleton instance of the class
+        /// </summary>
         public static Playfield Instance
         {
             get
@@ -39,6 +45,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets Playfield.Playfield size
+        /// </summary>
         public int PlayfieldSize
         {
             get
@@ -47,6 +56,9 @@
             }
         }
 
+        /// <summary>
+        /// Item property used to get and sets the type of a particular cell in the playfield
+        /// </summary>
         public ICell this[int posX, int posY]
         {
             get
@@ -59,6 +71,10 @@
             }
         }
 
+        /// <summary>
+        /// Sets Playfield size
+        /// </summary>
+        /// <param name="size"></param>
         public void SetFieldSize(int size)
         {
             if (size < MIN_FIELD_SIZE || size > MAX_FIELD_SIZE)
@@ -68,25 +84,31 @@
             this.cells = new Cell[size, size];
         }
 
+        /// <summary>
+        /// Initializes new empty field
+        /// </summary>
         public void InitializeEmptyField()
         {
             if (cells == null)
             {
                 throw new ArgumentNullException("Error: playfiled array cannot be null (not initialized)");
             }
-           
+
             for (int i = 0; i < this.cells.GetLength(0); i++)
             {
                 for (int j = 0; j < this.cells.GetLength(1); j++)
                 {
-                    ICell cell  = CellFactory.CreateCell(CellType.EmptyCell);                    
+                    ICell cell = CellFactory.CreateCell(CellType.EmptyCell);
                     cell.X = i;
                     cell.Y = j;
-                    this.cells[i, j] = cell;                    
+                    this.cells[i, j] = cell;
                 }
             }
         }
 
+        /// <summary>
+        /// String representation of the Playfield object
+        /// </summary>
         public override string ToString()
         {
             if (cells == null)
@@ -99,7 +121,7 @@
             for (int i = 0; i < this.PlayfieldSize; i++)
             {
                 for (int j = 0; j < this.PlayfieldSize; j++)
-                {                    
+                {
                     builder.Append(this.cells[i, j]);
                 }
 
@@ -109,6 +131,9 @@
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Places mines on the field
+        /// </summary>
         public void PlaceMines()
         {
             if (cells == null)
@@ -117,12 +142,12 @@
             }
 
             int totalCellsCount = this.PlayfieldSize * this.PlayfieldSize;
-            
+
             //CellView cellView;
             int fifteenPercentCellsCount = (int)Math.Floor(totalCellsCount * 0.15);
             int thirtyPercentCellsCount = (int)Math.Floor(totalCellsCount * 0.30);
 
-            int minesCount = RandomGenerator.GetRandomNumber(fifteenPercentCellsCount, thirtyPercentCellsCount + 1);            
+            int minesCount = RandomGenerator.GetRandomNumber(fifteenPercentCellsCount, thirtyPercentCellsCount + 1);
 
             for (int i = 0; i < minesCount; i++)
             {
@@ -136,7 +161,9 @@
                 //Console.WriteLine(this.playfield[mineRowPosition, mineColPosition].CellView);
             }
         }
-
+        /// <summary>
+        /// Iterates over the cells of the field
+        /// </summary>
         public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < this.PlayfieldSize; i++)
@@ -144,7 +171,7 @@
                 for (int j = 0; j < this.PlayfieldSize; j++)
                 {
                     yield return this[i, j];
-                }   
+                }
             }
             //return this.cells.GetEnumerator();
         }
@@ -162,7 +189,7 @@
 
             MementoField memento = new MementoField();
 
-            memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.cells as Cell[,]);            
+            memento.ZeroBasedPlayField = CloneToZeroBasedArray(this.cells as Cell[,]);
 
             memento.FieldDimension = this.PlayfieldSize;
 
@@ -191,10 +218,10 @@
         /// <param name="fieldToCopy"></param>
         /// <returns></returns>
         private Cell[] CloneToZeroBasedArray(Cell[,] fieldToCopy)
-        {            
+        {
             int backupArrayLength = fieldToCopy.GetLength(0) * fieldToCopy.GetLength(0);
 
-            Cell[] copy = new Cell[backupArrayLength];           
+            Cell[] copy = new Cell[backupArrayLength];
 
             int index = 0;
             foreach (Cell item in this)

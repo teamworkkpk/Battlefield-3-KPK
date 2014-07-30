@@ -1,4 +1,9 @@
-﻿namespace BattleFiled.SaveLoad
+﻿// <copyright file="ConsoleView.cs" company="Team Battlefield 3">
+// All rights reserved.
+// </copyright>
+// <author>Team Battlefield 3</author>
+
+namespace BattleFiled.SaveLoad
 {
     using System;
     using BattleFiled.Cells;
@@ -14,8 +19,13 @@
 
         private Cell[] zeroBasedPlayField;
         
-        private int fieldDimension;        
+        private int fieldDimension;
 
+
+        /// <summary>
+        /// Gets and sets ZeroBasedPlayfield
+        /// The class is used together with SaveLoadInterface.cs.
+        /// </summary>
         public Cell[] ZeroBasedPlayField
         {
             get { return this.zeroBasedPlayField; }
@@ -29,6 +39,11 @@
             }
         }
 
+
+        /// <summary>
+        /// Gets and sets field dimension
+        /// The class is used together with SaveLoadInterface.cs.
+        /// </summary>
         public int FieldDimension
         {
             get { return this.fieldDimension; }

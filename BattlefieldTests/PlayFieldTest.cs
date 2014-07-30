@@ -1,14 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BattleFiled;
-using BattleFiled.Cells;
-using BattleFiled.SaveLoad;
-using System.Text;
-using BattleFiled.GameEngine;
-
-namespace BattleFieldTests
+﻿namespace BattleFieldTests
 {
-    
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using BattleFiled;
+    using BattleFiled.Cells;
+    using BattleFiled.SaveLoad;
 
     [TestClass]
     public class PlayFieldTest

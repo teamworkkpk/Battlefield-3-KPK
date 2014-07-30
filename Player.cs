@@ -1,11 +1,16 @@
-﻿namespace BattleFiled
+﻿// <copyright file="ConsoleView.cs" company="Team Battlefield 3">
+// All rights reserved.
+// </copyright>
+// <author>Team Battlefield 3</author>
+
+namespace BattleFiled
 {
     using System;
     using SaveLoad;
 
-/// <summary>
-/// Class Player hold statistics about the player.
-/// </summary>
+    /// <summary>
+    /// Class Player hold statistics about the player.
+    /// </summary>
     public class Player
     {
         private string name;
@@ -17,6 +22,9 @@
             this.Name = name;
         }
 
+        /// <summary>
+        /// Gets and sets Player.Name property
+        /// </summary>
         public string Name
         {
             get
@@ -39,6 +47,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets and sets Player.DetonatedMines property
+        /// </summary>
         public int DetonatedMines
         {
             get
@@ -62,6 +73,9 @@
             }
         }
 
+        /// <summary>
+        /// Gets and sets Player.MovesCount property
+        /// </summary>
         public int MovesCount
         {
             get
@@ -97,6 +111,9 @@
             this.movesCount++;
         }
 
+        /// <summary>
+        /// Creates a string of the Player object.
+        /// </summary>
         public override string ToString()
         {
             return string.Format("Player: {0}, Detonated mines: {1}, Moves: {2}", this.Name, this.DetonatedMines, this.MovesCount);

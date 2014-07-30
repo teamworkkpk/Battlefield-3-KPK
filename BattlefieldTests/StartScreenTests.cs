@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BattleFiled.StartMenu;
-using BattleFiled.Interfaces;
-
-namespace BattlefieldTests
+﻿namespace BattlefieldTests
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using BattleFiled.StartMenu;
+
     [TestClass]
     public class StartScreenTests
     {
@@ -33,7 +32,7 @@ namespace BattlefieldTests
             ConsoleKey key = ConsoleKey.D3;
             StartScreen startscreen = StartScreen.Instance;
             PrivateObject obj = new PrivateObject(startscreen);
-            var retVal = obj.Invoke("HandleD3Key",key);
+            var retVal = obj.Invoke("HandleD3Key", key);
 
             Assert.AreEqual(retVal, true, "Expected result true when StartScreen.HandleD3Key is called with D3 key. Returned false");
         }
@@ -112,7 +111,7 @@ namespace BattlefieldTests
             PrivateObject obj = new PrivateObject(startscreen);
             var retVal = obj.Invoke("HandleD2Key", key);
 
-            Assert.AreEqual(retVal, false,"Expected result false when StartScreen.HandleD2Key is called with different key than D2 or NumPad2. Returned true");
+            Assert.AreEqual(retVal, false, "Expected result false when StartScreen.HandleD2Key is called with different key than D2 or NumPad2. Returned true");
         }
 
         [TestMethod]

@@ -7,7 +7,6 @@ namespace BattleFiled.StartMenu
 {    
     using System;
     using System.IO;
-    using BattleFiled.Interfaces;
 
     /// <summary>
     /// Class instance provides draw method for drawing all cell types on the console.

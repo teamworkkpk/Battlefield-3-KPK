@@ -6,7 +6,6 @@
 namespace BattleFiled.CellViews
 {
     using System;
-    using BattleFiled.Renderer.Context;
 
     /// <summary>
     /// Class instance provides draw method for drawing all cell types on the console.

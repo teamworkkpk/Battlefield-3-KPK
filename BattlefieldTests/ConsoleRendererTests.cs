@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BattleFiled.GameEngine;
-using BattleFiled.Renderer;
-using BattleFiled.Interfaces;
-using System.IO;
-
-namespace BattlefieldTests
+﻿namespace BattlefieldTests
 {
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using BattleFiled.GameEngine;
+    using BattleFiled.Renderer;
+    using System.IO;
+
     //can't create test because every time engine is instanace it will run and wait for user input
     //must find a workaround
 
