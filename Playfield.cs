@@ -19,11 +19,24 @@ namespace BattleFiled
     /// </summary>    
     public sealed class Playfield : IGameObject, IEnumerable
     {
+        /// <summary>
+        /// Constant for min field size.
+        /// </summary>
         private const int MIN_FIELD_SIZE = 2;
+
+        /// <summary>
+        /// Constant for max field size.
+        /// </summary>
         private const int MAX_FIELD_SIZE = 10;
 
+        /// <summary>
+        /// Singleton instance for playfield.
+        /// </summary>
         private static Playfield PlayfieldInstance;
 
+        /// <summary>
+        /// Two dimensional array, contains all cells.
+        /// </summary>
         private ICell[,] cells;
 
         private Playfield()
@@ -161,6 +174,7 @@ namespace BattleFiled
                 //Console.WriteLine(this.playfield[mineRowPosition, mineColPosition].CellView);
             }
         }
+
         /// <summary>
         /// Iterates over the cells of the field
         /// </summary>
@@ -172,8 +186,7 @@ namespace BattleFiled
                 {
                     yield return this[i, j];
                 }
-            }
-            //return this.cells.GetEnumerator();
+            }            
         }
 
         /// <summary>

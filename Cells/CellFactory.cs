@@ -49,6 +49,7 @@ namespace BattleFiled.Cells
                         cell = new EmptyCell();
                         cell.CellView = CellView.Empty;
                         break;
+
                     case CellType.Bomb:
                         int bombSize = RandomGenerator.GetRandomNumber(MIN_BOMB_SIZE, MAX_BOMB_SIZE);
                         cell = new BombCell(bombSize);
@@ -59,6 +60,7 @@ namespace BattleFiled.Cells
                         cell = new BlownCell(); 
                         cell.CellView = CellView.Blown;
                         break;
+
                     default:
                         throw new ArgumentException("Invalid cell type give to the cell factory");
                 }
